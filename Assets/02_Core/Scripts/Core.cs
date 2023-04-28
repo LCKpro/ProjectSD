@@ -46,6 +46,8 @@ public partial class Core : MonoBehaviour
 
     #region Common
 
+    public GameSceneManager gameSceneManager;
+
     /*public RootCheckManager rootCheckManager;
     public AppLovinMaxManager appLovinMaxManager;
     public HashCodeManager hashCodeManager;
@@ -56,7 +58,6 @@ public partial class Core : MonoBehaviour
     public NetworkManager networkManager;
     public UserSecureDataManager userSecureDataManager;
     public InstantDeviceID instantDeviceID;
-    public GameSceneManager gameSceneManager;
     public NetworkDataList networkDataList;
     public AppSwitch appSwitch;
     public StaticSet staticSet;

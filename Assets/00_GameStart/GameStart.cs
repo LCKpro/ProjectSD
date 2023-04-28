@@ -36,9 +36,12 @@ public class GameStart : MonoBehaviour
     void Start()
     {
         GameUtils.Log("Loaded GameStart");
+
+        ManagedStart();
     }
 
     public void ManagedStart()
     {
+        Core.Instance.gameSceneManager.LoadScene("05_MainMenu");
     }
 }
