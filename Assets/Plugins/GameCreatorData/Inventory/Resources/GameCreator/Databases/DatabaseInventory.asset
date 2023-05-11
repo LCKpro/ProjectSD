@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uuid: 816283316
   itemName:
-    content: "\uB3CC\uC870\uAC01"
+    content: Stone
     postProcess: 0
     translationID: 0
   itemDescription:
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uuid: 25686138
   itemName:
-    content: "\uB098\uBB47\uC870\uAC01"
+    content: Wood
     postProcess: 0
     translationID: 0
   itemDescription:
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uuid: 1273281591
   itemName:
-    content: "\uB2E4\uC774\uC544\uBAAC\uB4DC"
+    content: Diamond
     postProcess: 0
     translationID: 0
   itemDescription:
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uuid: 1379574024
   itemName:
-    content: "\uAE30\uB984"
+    content: Oil
     postProcess: 0
     translationID: 0
   itemDescription:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uuid: 1834752059
   itemName:
-    content: "\uACE8\uB4DC"
+    content: Gold
     postProcess: 0
     translationID: 0
   itemDescription:
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uuid: 750108221
   itemName:
-    content: "\uD3EC\uC778\uD2B8"
+    content: Point
     postProcess: 0
     translationID: 0
   itemDescription:
