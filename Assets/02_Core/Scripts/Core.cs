@@ -47,6 +47,8 @@ public partial class Core : MonoBehaviour
     #region Common
 
     public GameSceneManager gameSceneManager;
+    public BuildingManager buildingManager;
+    public ItemManager itemManager;
 
     /*public RootCheckManager rootCheckManager;
     public AppLovinMaxManager appLovinMaxManager;

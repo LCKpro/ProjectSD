@@ -11,14 +11,50 @@ public class Building : MonoBehaviour
     private int buildingLevel;
 
     [SerializeField]
-    private int maxItemValue;
+    private int maxItemValue = 2;
 
     [SerializeField]
-    private int minItemValue;
+    private int minItemValue = 0;
 
     [SerializeField]
     private bool isRootable;
 
-    [SerializeField]
-    private List<GameCreator.Inventory.Item> itemList;
+    private Dictionary<int, int> itemList;
+
+
+    private void Start()
+    {
+        itemList = new Dictionary<int, int>();
+        Init();
+    }
+
+    // 빌딩에 들어갈 아이템 설정하기
+    private void Init()
+    {
+        var list = Core.Instance.itemManager.uuidList;
+
+        int rndCount = Random.Range(minItemValue, maxItemValue);
+
+        for (int i = 0; i < rndCount; i++)
+        {
+            int rndItemCount = Random.Range(1, 10);
+
+            int itemUuid = GameUtils.RandomItem(list);
+
+            if(itemList.ContainsKey(itemUuid) == true)
+            {
+                itemList[itemUuid] += rndItemCount;
+            }
+            else
+            {
+                itemList.Add(itemUuid, rndItemCount);
+            }
+        }
+
+        foreach (var item in itemList)
+        {
+            Debug.Log("Key : " + item.Key);
+            Debug.Log("Value : " + item.Value);
+        }
+    }
 }

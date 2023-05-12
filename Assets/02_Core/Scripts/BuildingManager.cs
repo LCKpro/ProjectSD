@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameCreator.Core.Actions> actionList;
-
-
     private void Awake()
     {
+
     }
 
 }
