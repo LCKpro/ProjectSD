@@ -49,6 +49,7 @@ public partial class Core : MonoBehaviour
     public GameSceneManager gameSceneManager;
     public BuildingManager buildingManager;
     public ItemManager itemManager;
+    public UIPopUpManager uiPopUpManager;
 
     /*public RootCheckManager rootCheckManager;
     public AppLovinMaxManager appLovinMaxManager;

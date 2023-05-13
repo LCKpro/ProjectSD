@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,6 +29,16 @@ public class GameUtils : MonoBehaviour
     public static void Log(string l, string i)
     {
         ConsoleProDebug.LogToFilter(l, i);
+    }
+
+    public static void Error(string l)
+    {
+        Debug.LogError(l);
+    }
+
+    public static void LogException(Exception ex)
+    {
+        Debug.LogError($"{ex.GetType().FullName}\n{ex.Message}\n{ex.Source}\n{ex.StackTrace}");
     }
 
     public static int RandomWeightedList(IEnumerable<int> list)
