@@ -22,6 +22,11 @@ public class UI_PopUp_BuildingRoot : MonoBehaviour
 
     public void Init(Dictionary<int, int> itemList)
     {
+        foreach (var item in itemList)
+        {
+            Debug.Log("UUID : " + item.Key + " Count : " + item.Value);
+        }
+
         _itemManager = Core.Instance.itemManager;
         _itemList = itemList;
         SetToggle();
@@ -44,7 +49,7 @@ public class UI_PopUp_BuildingRoot : MonoBehaviour
 
         foreach (var item in _itemList)
         {
-            if(i < _itemList.Count)
+            if (i > _itemList.Count)
             {
                 break;
             }
