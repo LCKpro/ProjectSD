@@ -69,4 +69,9 @@ public class UI_PopUp_BuildingRoot : MonoBehaviour
             i++;
         }
     }
+
+    public void OnClick_Close()
+    {
+        Core.Instance.uiPopUpManager.Hide();
+    }
 }
