@@ -18,6 +18,19 @@ public class ItemManager : MonoBehaviour
 
         return null;
     }
+
+    public ItemData GetItemDataByUUID(int uuid)
+    {
+        foreach (var item in itemDataList)
+        {
+            if(item.uuid == uuid)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
 }
 
 [System.Serializable]

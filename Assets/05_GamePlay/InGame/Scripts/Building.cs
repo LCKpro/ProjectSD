@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Building : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class Building : MonoBehaviour
     [SerializeField]
     private bool isRootable;
 
-    private Dictionary<int, int> itemList;
+    private Dictionary<int, int> _itemList;
 
+    private bool isClicked = false;
 
     private void Start()
     {
-        itemList = new Dictionary<int, int>();
+        _itemList = new Dictionary<int, int>();
         Init();
     }
 
@@ -41,20 +43,44 @@ public class Building : MonoBehaviour
 
             int itemUuid = GameUtils.RandomItem(list).uuid;
 
-            if(itemList.ContainsKey(itemUuid) == true)
+            if(_itemList.ContainsKey(itemUuid) == true)
             {
-                itemList[itemUuid] += rndItemCount;
+                _itemList[itemUuid] += rndItemCount;
             }
             else
             {
-                itemList.Add(itemUuid, rndItemCount);
+                _itemList.Add(itemUuid, rndItemCount);
             }
         }
 
-        foreach (var item in itemList)
+        foreach (var item in _itemList)
         {
             Debug.Log("Key : " + item.Key);
             Debug.Log("Value : " + item.Value);
         }
+    }
+
+    private void OnMouseDown()
+    {
+        GameUtils.Log("Building", "클릭됨");
+
+        if(isClicked == false)
+        {
+            OnClick_ShowRoot();
+        }
+    }
+
+    public void OnClick_ShowRoot()
+    {
+        var popup = Core.Instance.uiPopUpManager.ShowAndGet<UI_PopUp_BuildingRoot>("UI_PopUp_BuildingRoot");
+        popup.Init(_itemList);
+    }
+
+    /// <summary>
+    /// 건물 파밍 UI 꺼지면 다시 클릭 가능하게 설정
+    /// </summary>
+    public void CloseRoot()
+    {
+        isClicked = false;
     }
 }

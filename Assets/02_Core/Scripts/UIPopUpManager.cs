@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class UIPopUpManager : MonoBehaviour
 {
-    public string location;
-    public string layerName;
+    //public string location;
+    //public string layerName;
     public Dictionary<string, GameObject> popUpBufferList = new Dictionary<string, GameObject>();
     public Transform safeArea;
-    [SerializeField] private GameObject screenGuard;
+    //[SerializeField] private GameObject screenGuard;
     private PopUpPools poolManager;
 
     public const string uiWorldPrefabName = "UI_PopUp_World";
@@ -75,25 +75,6 @@ public class UIPopUpManager : MonoBehaviour
             popUpBufferList[popUpName].GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
             popUpBufferList[popUpName].GetComponent<RectTransform>().SetSiblingIndex(safeArea.childCount - 1);
             popUpBufferList[popUpName].GetComponent<UIPopUpVisible>().Show();
-
-            // Back키 매니저 등록 예외처리
-            if (popUpName.Equals("UI_StatusImproved") ||
-                popUpName.Equals("UI_Level_Open_Info") ||
-                popUpName.Equals("UI_Preset_Level_Open_Info") ||
-                popUpName.Equals("UI_Shop_Lock"))
-            {
-            }
-            else
-            {
-                if (popUpBufferList.ContainsKey(popUpName) == true)
-                {
-                    //Core.Instance.backKeyManager.AddList(location, popUpName, popUpBufferList[popUpName].gameObject);
-                }
-                else
-                {
-                    return null;
-                }
-            }
         }
         catch (Exception e)
         {

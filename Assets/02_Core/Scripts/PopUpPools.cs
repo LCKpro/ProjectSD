@@ -4,10 +4,11 @@ using UnityEngine;
 // 리소스 폴더에서 UI를 관리하는 클래스
 public class PopUpPools : MonoBehaviour
 {
-    private Dictionary<string, Transform> spawnPopUpList = new Dictionary<string, Transform>();
+    private Dictionary<string, Transform> spawnPopUpList;
 
     public void Awake()
     {
+        spawnPopUpList = new Dictionary<string, Transform>();
         spawnPopUpList.Clear();
     }
 
