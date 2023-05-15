@@ -31,7 +31,7 @@ public class Building : MonoBehaviour
     // 빌딩에 들어갈 아이템 설정하기
     private void Init()
     {
-        var list = Core.Instance.itemManager.uuidList;
+        var list = Core.Instance.itemManager.GetItemData();
 
         int rndCount = Random.Range(minItemValue, maxItemValue);
 
@@ -39,7 +39,7 @@ public class Building : MonoBehaviour
         {
             int rndItemCount = Random.Range(1, 10);
 
-            int itemUuid = GameUtils.RandomItem(list);
+            int itemUuid = GameUtils.RandomItem(list).uuid;
 
             if(itemList.ContainsKey(itemUuid) == true)
             {

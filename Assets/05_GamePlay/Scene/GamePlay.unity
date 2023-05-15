@@ -3680,7 +3680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414327083}
   m_Layer: 5
-  m_Name: Root
+  m_Name: UI_PopUp_BuildingRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
