@@ -65,7 +65,7 @@ MonoBehaviour:
   price: 5
   maxStack: 999
   weight: 1
-  itemTypes: 0
+  itemTypes: 1
   onClick: 1
   consumeItem: 0
   actionsOnClick: {fileID: 6212259352951060973, guid: 267da271b8ffee5468fcc42d0e665c15, type: 3}
