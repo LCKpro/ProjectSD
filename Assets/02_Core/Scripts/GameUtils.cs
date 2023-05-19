@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Globalization;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -92,5 +93,10 @@ public class GameUtils : MonoBehaviour
         val *= max - min;
         item = (float)(val + min);
         return item;
+    }
+
+    public static float ConvertToSingle(string value)
+    {
+        return float.Parse(value, CultureInfo.InvariantCulture);
     }
 }

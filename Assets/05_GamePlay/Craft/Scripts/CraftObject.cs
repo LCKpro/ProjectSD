@@ -4,7 +4,7 @@ using System;
 using System.Globalization;
 using GameCreator.Characters;
 
-public class CraftingManager : MonoBehaviour
+public class CraftObject : MonoBehaviour
 {
     // 현재 크래프팅 모드가 켜져있는지?
     public bool isOn;
@@ -13,17 +13,13 @@ public class CraftingManager : MonoBehaviour
     private Vector3 craftVector = Vector3.zero;
     private Vector3 newPos = Vector3.zero;
 
-    public GameObject clickTrigger;
-    public GameObject buttonGroup;
-    public NavigationMarker marker;
+    private GameObject _clickTrigger;
+    private GameObject _buttonGroup;
+    private NavigationMarker _marker;
 
     public float changeValue = 12f;
 
-    // 임시용 코드. 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
-    private string buildingCode = "";
-    // 건물 짓기 전 예비 오브젝트
-    private GameObject preparatoryObj;
-
+    // 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
 
     public void FinalizeCraft()
     {
@@ -38,49 +34,24 @@ public class CraftingManager : MonoBehaviour
 
     private void Start()
     {
-        ManageActive(false);
-        InitCrafting("");
-        //CraftingModeStart();
+        SetData();
+        ManageActive(true);
+    }
+
+    // 매니저에서 데이터 가져오기
+    private void SetData()
+    {
+        var manager = GamePlay.Instance.craftingManager;
+        _marker = manager.marker;
+        _clickTrigger = manager.clickTrigger;
+        _buttonGroup = manager.buttonGroup;
     }
 
     // 오브젝트 액티브 관리
     private void ManageActive(bool isOn)
     {
-        clickTrigger.SetActive(isOn);
-        buttonGroup.SetActive(isOn);
-    }
-
-    public void InitCrafting(string code)
-    {
-        buildingCode = code;
-        //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);
-        GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
-
-        if (obj == null)
-        {
-            Debug.Log("크래프팅 오브젝트 Null");
-            return;
-        }
-        
-        preparatoryObj = Instantiate(obj, transform);
-
-        Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
-        /*playerPos.z = changeValue; // 카메라와의 거리 설정
-        Vector3 pos = Camera.main.ScreenToWorldPoint(playerPos);*/
-        playerPos.z += 3;
-
-        double truncateX = Math.Truncate(playerPos.x);
-        double truncateZ = Math.Truncate(playerPos.z);
-        var defaultValueX = truncateX > 0f ? 0.5f : -0.5f;
-        var defaultValueZ = truncateZ > 0f ? 0.5f : -0.5f;
-
-        float x = Convert.ToSingle(defaultValueX + truncateX, CultureInfo.InvariantCulture);
-        float z = Convert.ToSingle(defaultValueZ + truncateZ, CultureInfo.InvariantCulture);
-
-        newPos = new Vector3(x, 0, z);
-        preparatoryObj.transform.position = newPos;
-        //CraftingModeStart();
-        MoveUIByFirstMousePosition();
+        _clickTrigger.SetActive(isOn);
+        _buttonGroup.SetActive(isOn);
     }
 
     /// <summary>
@@ -127,9 +98,9 @@ public class CraftingManager : MonoBehaviour
         float z = Convert.ToSingle(defaultValueZ + truncateZ, CultureInfo.InvariantCulture);
 
         newPos = new Vector3(x, 0, z);
-        preparatoryObj.transform.position = marker.transform.position = newPos;
+        transform.position = _marker.transform.position = newPos;
 
-        Debug.Log("오브젝트 월드 좌표: " + preparatoryObj.transform.position);
+        Debug.Log("오브젝트 월드 좌표: " + transform.position);
     }
 
     // UI는 오브젝트랑 좌표가 다르므로 따로 처리
@@ -144,20 +115,20 @@ public class CraftingManager : MonoBehaviour
         float x = Convert.ToSingle(defaultValueX + truncateX, CultureInfo.InvariantCulture);
         float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
 
-        buttonGroup.transform.position = new Vector3(x, y, 0);
-        Debug.Log("UI 좌표: " + buttonGroup.transform.position);
+        _buttonGroup.transform.position = new Vector3(x, y, 0);
+        Debug.Log("UI 좌표: " + _buttonGroup.transform.position);
     }
-
-    // UI는 오브젝트랑 좌표가 다르므로 따로 처리
-    private void MoveUIByFirstMousePosition()
-    {
-        
-    }
-
 
     // 버튼 클릭. 건물 짓기. 캐릭터 움직이기 + 애니메이션은 액션으로 대체
     public void OnClick_ClickToCraft()
     {
-        marker.transform.position = craftVector;
+        _marker.transform.position = craftVector;
+    }
+
+    private void OnMouseDrag()
+    {
+        CheckCoordinates(); // 마우스 위치에 따른 좌표 계산
+        MoveObjectByMousePosition();    // 오브젝트를 이동시킬 때 마우스 위치에 따라 딱딱 움직이도록
+        MoveUIByMousePosition();    // UI 위치 움직이기
     }
 }
