@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class DefaultCraft : MonoBehaviour
 {
-    private void Start()
+    private void OnEnable()
     {
         SpawnBuilding();
     }
 
     private void SpawnBuilding()
     {
-        string code = GamePlay.Instance.craftingManager.GetBuildingCode();
+        var tr = GamePlay.Instance.craftingManager;
+        string code = tr.GetBuildingCode();
 
         Debug.Log(code);
 
         GameObject obj = Resources.Load<GameObject>("GameObject/" + code);
 
-        Instantiate(obj, transform);
+        var building = Instantiate(obj, tr.transform);
+        building.transform.position = tr.marker.transform.position;
+
+        transform.gameObject.SetActive(false);
     }
 }
