@@ -24,9 +24,12 @@ public class CraftingManager : MonoBehaviour
     // 건물 짓기 전 예비 오브젝트
     private GameObject preparatoryObj;
 
-
+    /// <summary>
+    /// 크래프팅 모드 종료
+    /// </summary>
     public void FinalizeCraft()
     {
+        ManageActive(false); // 오브젝트 관리 - 전부 끄기
         craftingModeTimer.Dispose();
         craftingModeTimer = Disposable.Empty;
     }
@@ -40,6 +43,7 @@ public class CraftingManager : MonoBehaviour
     {
         ManageActive(false);
         InitCrafting("");
+        CraftingModeEnd();
         //CraftingModeStart();
     }
 
@@ -61,27 +65,50 @@ public class CraftingManager : MonoBehaviour
             Debug.Log("크래프팅 오브젝트 Null");
             return;
         }
-        
+
         preparatoryObj = Instantiate(obj, transform);
 
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
-        /*playerPos.z = changeValue; // 카메라와의 거리 설정
-        Vector3 pos = Camera.main.ScreenToWorldPoint(playerPos);*/
-        playerPos.z += 3;
+        playerPos.z += 2.0f;
+        playerPos.y = 0;
 
-        double truncateX = Math.Truncate(playerPos.x);
-        double truncateZ = Math.Truncate(playerPos.z);
+        preparatoryObj.transform.position = playerPos;
+
+        Vector3 uiPos = Camera.main.WorldToScreenPoint(playerPos);
+
+        double truncateX = Math.Truncate(uiPos.x);
+        double truncateY = Math.Truncate(uiPos.y);
         var defaultValueX = truncateX > 0f ? 0.5f : -0.5f;
-        var defaultValueZ = truncateZ > 0f ? 0.5f : -0.5f;
+        var defaultValueY = truncateY > 0f ? 0.5f : -0.5f;
 
         float x = Convert.ToSingle(defaultValueX + truncateX, CultureInfo.InvariantCulture);
-        float z = Convert.ToSingle(defaultValueZ + truncateZ, CultureInfo.InvariantCulture);
+        float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
 
-        newPos = new Vector3(x, 0, z);
-        preparatoryObj.transform.position = newPos;
-        //CraftingModeStart();
-        MoveUIByFirstMousePosition();
+        buttonGroup.transform.position = new Vector3(x, y, 0);
     }
+
+    /// <summary>
+    /// 움직일 때 크래프팅 모드 종료
+    /// </summary>
+    public void CraftingModeEnd()
+    {
+        Debug.Log("종료 감지중");
+        craftingModeTimer.Dispose();
+        craftingModeTimer = Disposable.Empty;
+        craftingModeTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
+            .TakeUntilDestroy(gameObject)
+            .Where(x => Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+            .Subscribe(_ =>
+            {
+                Debug.Log("종료V : " + Input.GetAxis("Vertical"));
+                Debug.Log("종료H : " + Input.GetAxis("Horizontal"));
+                ManageActive(false); // 오브젝트 관리 - 전부 끄기
+                preparatoryObj.gameObject.SetActive(false);
+            });
+    }
+
+
+    #region 미사용 코드
 
     /// <summary>
     /// 타이머 세팅. 매 업데이트마다 좌표를 계산함
@@ -151,7 +178,7 @@ public class CraftingManager : MonoBehaviour
     // UI는 오브젝트랑 좌표가 다르므로 따로 처리
     private void MoveUIByFirstMousePosition()
     {
-        
+
     }
 
 
@@ -160,4 +187,6 @@ public class CraftingManager : MonoBehaviour
     {
         marker.transform.position = craftVector;
     }
+
+    #endregion
 }
