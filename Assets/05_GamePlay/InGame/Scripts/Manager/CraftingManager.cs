@@ -3,6 +3,7 @@ using UniRx;
 using System;
 using System.Globalization;
 using GameCreator.Characters;
+using GameCreator.Core;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -13,16 +14,20 @@ public class CraftingManager : MonoBehaviour
     private Vector3 craftVector = Vector3.zero;
     private Vector3 newPos = Vector3.zero;
 
-    public GameObject clickTrigger;
     public GameObject buttonGroup;
     public NavigationMarker marker;
+
+    public GameObject loadingUIObj;
 
     public float changeValue = 12f;
 
     // 임시용 코드. 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
-    private string buildingCode = "";
+    private string _buildingCode = "";
     // 건물 짓기 전 예비 오브젝트
     private GameObject preparatoryObj;
+
+    public Actions playerMoveAction;
+
 
     /// <summary>
     /// 크래프팅 모드 종료
@@ -30,6 +35,7 @@ public class CraftingManager : MonoBehaviour
     public void FinalizeCraft()
     {
         ManageActive(false); // 오브젝트 관리 - 전부 끄기
+        preparatoryObj.gameObject.SetActive(false);
         craftingModeTimer.Dispose();
         craftingModeTimer = Disposable.Empty;
     }
@@ -42,21 +48,26 @@ public class CraftingManager : MonoBehaviour
     private void Start()
     {
         ManageActive(false);
-        InitCrafting("");
+        InitCrafting("Appliances_Store");
         CraftingModeEnd();
+        //SpawnLoadingUI();
         //CraftingModeStart();
     }
 
     // 오브젝트 액티브 관리
     private void ManageActive(bool isOn)
     {
-        clickTrigger.SetActive(isOn);
         buttonGroup.SetActive(isOn);
+    }
+
+    public string GetBuildingCode()
+    {
+        return _buildingCode;
     }
 
     public void InitCrafting(string code)
     {
-        buildingCode = code;
+        _buildingCode = code;
         //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);
         GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
 
@@ -66,14 +77,17 @@ public class CraftingManager : MonoBehaviour
             return;
         }
 
+        // 오브젝트 띄우기(건축하기 전 투명 상태)
         preparatoryObj = Instantiate(obj, transform);
 
+        // 플레이어 앞에 설치하기 위한 준비
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
         playerPos.z += 2.0f;
         playerPos.y = 0;
 
         preparatoryObj.transform.position = playerPos;
 
+        // 스폰된 건물의 위치에 맞게 UI도 위치 변경
         Vector3 uiPos = Camera.main.WorldToScreenPoint(playerPos);
 
         double truncateX = Math.Truncate(uiPos.x);
@@ -92,7 +106,6 @@ public class CraftingManager : MonoBehaviour
     /// </summary>
     public void CraftingModeEnd()
     {
-        Debug.Log("종료 감지중");
         craftingModeTimer.Dispose();
         craftingModeTimer = Disposable.Empty;
         craftingModeTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
@@ -102,11 +115,35 @@ public class CraftingManager : MonoBehaviour
             {
                 Debug.Log("종료V : " + Input.GetAxis("Vertical"));
                 Debug.Log("종료H : " + Input.GetAxis("Horizontal"));
-                ManageActive(false); // 오브젝트 관리 - 전부 끄기
-                preparatoryObj.gameObject.SetActive(false);
+                FinalizeCraft();    // UniRx 하고 다른 버튼들 다 끄기
             });
     }
 
+    // 버튼 클릭시 미리 옮겨놓은 마커를 향해 플레이어가 움직임
+    // 마커를 향해 움직이는 사이에 플레이어 Input이 감지되면 멈추는 UniRx를 추가해야 할듯
+    // 버튼 클릭. 건물 짓기. 캐릭터 움직이기 + 애니메이션은 액션으로 대체
+    public void OnClick_ClickToCraft()
+    {
+        //marker.transform.position = craftVector;
+        FinalizeCraft();    // UniRx 하고 다른 버튼들 다 끄기
+        playerMoveAction.Execute();
+    }
+
+    public void SpawnLoadingUI()
+    {
+        loadingUIObj.SetActive(true);
+
+        Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
+        Vector3 uiPos = Camera.main.WorldToScreenPoint(playerPos);
+
+        loadingUIObj.transform.position = uiPos;
+    }
+
+    public void FinishCraft()
+    {
+        GameObject obj = Resources.Load<GameObject>("GameObject/Appliances_Store");
+        obj.transform.position = marker.transform.position;
+    }
 
     #region 미사용 코드
 
@@ -175,18 +212,7 @@ public class CraftingManager : MonoBehaviour
         Debug.Log("UI 좌표: " + buttonGroup.transform.position);
     }
 
-    // UI는 오브젝트랑 좌표가 다르므로 따로 처리
-    private void MoveUIByFirstMousePosition()
-    {
-
-    }
-
-
-    // 버튼 클릭. 건물 짓기. 캐릭터 움직이기 + 애니메이션은 액션으로 대체
-    public void OnClick_ClickToCraft()
-    {
-        marker.transform.position = craftVector;
-    }
+    
 
     #endregion
 }

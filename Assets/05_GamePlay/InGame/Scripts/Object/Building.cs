@@ -53,11 +53,11 @@ public class Building : MonoBehaviour
             }
         }
 
-        foreach (var item in _itemList)
+        /*foreach (var item in _itemList)
         {
             Debug.Log("Key : " + item.Key);
             Debug.Log("Value : " + item.Value);
-        }
+        }*/
     }
 
     private void OnMouseDown()

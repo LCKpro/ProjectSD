@@ -13,11 +13,13 @@ public class CraftObject : MonoBehaviour
     private Vector3 craftVector = Vector3.zero;
     private Vector3 newPos = Vector3.zero;
 
-    private GameObject _clickTrigger;
+    //private GameObject _clickTrigger;
     private GameObject _buttonGroup;
     private NavigationMarker _marker;
 
     public float changeValue = 12f;
+
+
 
     // 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
 
@@ -43,14 +45,14 @@ public class CraftObject : MonoBehaviour
     {
         var manager = GamePlay.Instance.craftingManager;
         _marker = manager.marker;
-        _clickTrigger = manager.clickTrigger;
+        //_clickTrigger = manager.clickTrigger;
         _buttonGroup = manager.buttonGroup;
     }
 
     // 오브젝트 액티브 관리
     private void ManageActive(bool isOn)
     {
-        _clickTrigger.SetActive(isOn);
+        //_clickTrigger.SetActive(isOn);
         _buttonGroup.SetActive(isOn);
     }
 
@@ -83,7 +85,6 @@ public class CraftObject : MonoBehaviour
 
         //buttonGroup.transform.position = Input.mousePosition;
         craftVector = Camera.main.ScreenToWorldPoint(mousePosition);
-        Debug.Log("마우스 월드 좌표: " + craftVector);
     }
 
     // 오브젝트를 이동시킬 때 마우스 위치에 따라 딱딱 움직이도록 수정
@@ -99,8 +100,6 @@ public class CraftObject : MonoBehaviour
 
         newPos = new Vector3(x, 0, z);
         transform.position = _marker.transform.position = newPos;
-
-        Debug.Log("오브젝트 월드 좌표: " + transform.position);
     }
 
     // UI는 오브젝트랑 좌표가 다르므로 따로 처리
@@ -116,13 +115,6 @@ public class CraftObject : MonoBehaviour
         float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
 
         _buttonGroup.transform.position = new Vector3(x, y, 0);
-        Debug.Log("UI 좌표: " + _buttonGroup.transform.position);
-    }
-
-    // 버튼 클릭. 건물 짓기. 캐릭터 움직이기 + 애니메이션은 액션으로 대체
-    public void OnClick_ClickToCraft()
-    {
-        _marker.transform.position = craftVector;
     }
 
     private void OnMouseDrag()
