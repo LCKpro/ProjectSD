@@ -1,0 +1,5 @@
+ID,Name,Type,NameText_Key,Description_Key,Icon,Ingredient,Quantity,durability,Delete,Rotation,Upgrade,Rage,
+Building_DFS_001,BarricadeLV1,1,바리케이드,적들의 공격을 막을 수 있는 바리케이드다,,"""Item_ETC_Wood""",5,100,TRUE,180,TRUE,2*2,
+Building_DFS_002,BarricadeLV2,1,바리케이드,적들의 공격을 막을 수 있는 바리케이드다,,"""Item_ETC_Wood""",10,150,TRUE,180,TRUE,2*2,
+Building_DFS_003,BarricadeLV3,1,바리케이드,적들의 공격을 막을 수 있는 바리케이드다,,"""Item_ETC_Wood""",20,200,TRUE,180,FALSE,2*2,
+Building_DFS_004,Watchtower,1,망루,적들의 공격이 어디서 오는지 알 수있는 망루,,"""Item_ETC_Wood"",""Item_ETC_Stone""","10,10",150,TRUE,180,FALSE,4*4,
