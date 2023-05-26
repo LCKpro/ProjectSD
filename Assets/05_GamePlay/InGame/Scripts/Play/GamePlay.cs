@@ -50,4 +50,5 @@ public class GamePlay : MonoBehaviour
     public NatureManager natureManager;
     public CraftingManager craftingManager;
     public UI_System ui_System;
+    public InGamePools inGamePools;
 }

@@ -79,7 +79,7 @@ public class CraftingManager : MonoBehaviour
     {
         _buildingCode = code;
         //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);
-        GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
+        /*GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
 
         if (obj == null)
         {
@@ -88,7 +88,10 @@ public class CraftingManager : MonoBehaviour
         }
 
         // 오브젝트 띄우기(건축하기 전 투명 상태)
-        preparatoryObj = Instantiate(obj, transform);
+        preparatoryObj = Instantiate(obj, transform);*/
+
+        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("GameObject/" + _buildingCode).gameObject;
+        preparatoryObj = GamePlay.Instance.inGamePools.Spawn("Craft_Appliances_Store").gameObject;
 
         // 플레이어 앞에 설치하기 위한 준비
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;

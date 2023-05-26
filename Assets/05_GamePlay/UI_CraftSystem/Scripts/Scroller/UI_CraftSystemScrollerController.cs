@@ -65,7 +65,7 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
 
     public float GetCellViewSize(EnhancedScroller scroller, int dataIndex)
     {
-        return 160.0f;
+        return 180.0f;
     }
 
     public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
