@@ -1,0 +1,13 @@
+ID,Name,Type,NameText_Key,Description_Key,Icon,Ingredient,Quantity,ATK,durability,Crossroads,ATK Speed,Delete,Rotation,Upgrade,Rage
+Building_ATK_001,BalistaLV1,0,발리스타,적들을 자동으로 공격하는 발리스타이다,Icons/Balista_1,Item_ETC_Wood@Item_ETC_Stone,2@5,50,100,100,100,TRUE,180,TRUE,3*3
+Building_ATK_002,BalistaLV2,0,발리스타,더 강력한 공격이 가능한 발리스타이다,Icons/Balista_2,Item_ETC_Wood@Item_ETC_Gold,5@100,75,120,100,100,TRUE,180,TRUE,3*3
+Building_ATK_003,BalistaLV3,0,발리스타,강력한 발리스타 앞에선 모두가 평등합니다,Icons/Balista_3,Item_ETC_Wood@Item_ETC_Gold@Item_ETC_Stone,20@250@50,100,150,100,100,TRUE,180,FALSE,3*3
+Building_ATK_004,CannonLV1,0,대포,다수의 적들을 공격 할 수 있는 대포이다,Icons/Cannon_1,Item_ETC_Wood@Item_ETC_Stone,5@5,75,100,150,100,TRUE,180,TRUE,3*3
+Building_ATK_005,CannonLV2,0,대포,더 강력한 공격이 가능한 대포이다,Icons/Cannon_2,Item_ETC_Wood@Item_ETC_Stone,5@10,100,120,150,100,TRUE,180,TRUE,3*3
+Building_ATK_006,CannonLV3,0,대포,강력한 대포는 좋은 대화 수단이죠,Icons/Cannon_3,Item_ETC_Wood@Item_ETC_Stone,10@10,150,150,150,100,TRUE,180,FALSE,3*3
+Building_ATK_007,FlameLV1,0,화염방사타워,다수의 적들에게 화상을 입힙니다,Icons/Flame_1,Item_ETC_Wood@Item_ETC_Oil,10@1,20,100,50,100,TRUE,180,TRUE,3*3
+Building_ATK_008,FlameLV2,0,화염방사타워,다수의 적들에게 화상을 입힙니다,Icons/Flame_2,Item_ETC_Wood@Item_ETC_Oil,20@5,40,120,50,100,TRUE,180,TRUE,3*3
+Building_ATK_009,FlameLV3,0,화염방사타워,다수의 적들에게 화상을 입힙니다,Icons/Flame_3,Item_ETC_Wood@Item_ETC_Oil,30@10,60,150,50,100,TRUE,180,TRUE,3*3
+Building_ATK_010,StunLV1,0,전기타워,적의 움직임을 느리게 만들며 데미지를 입힙니다,Icons/Stun_1,Item_ETC_Stone@Item_ETC_Diamond,5@50,20,100,100,100,TRUE,180,TRUE,3*3
+Building_ATK_010,StunLV2,0,전기타워,적의 움직임을 느리게 만들며 데미지를 입힙니다,Icons/Stun_2,Item_ETC_Stone@Item_ETC_Diamond,10@100,40,120,100,100,TRUE,180,TRUE,3*3
+Building_ATK_011,StunLV3,0,전기타워,다수의 적들을 느리게 만들며 데미지를 입힙니다,Icons/Stun_3,Item_ETC_Stone@Item_ETC_Diamond,50@150,60,150,100,100,TRUE,180,TRUE,3*3

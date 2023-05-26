@@ -35,7 +35,8 @@ public class CraftingManager : MonoBehaviour
     public void FinalizeCraft()
     {
         ManageActive(false); // 오브젝트 관리 - 전부 끄기
-        preparatoryObj.gameObject.SetActive(false);
+        if(preparatoryObj != null)
+            preparatoryObj.gameObject.SetActive(false);
         craftingModeTimer.Dispose();
         craftingModeTimer = Disposable.Empty;
     }
@@ -48,16 +49,25 @@ public class CraftingManager : MonoBehaviour
     private void Start()
     {
         ManageActive(false);
-        InitCrafting("Appliances_Store");
-        CraftingModeEnd();
-        //SpawnLoadingUI();
-        //CraftingModeStart();
+        /*GetReadyToCraft("Appliances_Store");
+        CraftingModeEnd();*/
     }
 
-    // 오브젝트 액티브 관리
+    // 오브젝트 액티브 관리. 버튼 처음에 안보이도록
     private void ManageActive(bool isOn)
     {
         buttonGroup.SetActive(isOn);
+    }
+
+    /// <summary>
+    /// 크래프팅 시작. DB의 키값을 받아와서 해당 건물을 건축시도할 수 있도록 기능
+    /// </summary>
+    /// <param name="key"></param>
+    public void InitCraft(string key)
+    {
+        GetReadyToCraft(key);       // 키 받고 오브젝트 준비
+        //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
+        CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
     }
 
     public string GetBuildingCode()
@@ -65,7 +75,7 @@ public class CraftingManager : MonoBehaviour
         return _buildingCode;
     }
 
-    public void InitCrafting(string code)
+    public void GetReadyToCraft(string code)
     {
         _buildingCode = code;
         //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);

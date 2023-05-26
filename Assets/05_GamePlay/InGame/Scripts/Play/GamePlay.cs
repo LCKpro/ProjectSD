@@ -49,4 +49,5 @@ public class GamePlay : MonoBehaviour
     public PlayerManager playerManager;
     public NatureManager natureManager;
     public CraftingManager craftingManager;
+    public UI_System ui_System;
 }

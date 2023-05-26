@@ -19,9 +19,26 @@ public class UI_System : MonoBehaviour
     public GameObject blankObj_0;
     public GameObject blankObj_1;
 
+    public RectTransform ui_Rect_On;
+    public RectTransform ui_Rect_Off;
+
     private void Start()
     {
         uiAnim = GetComponent<Animator>();
+    }
+
+    /// <summary>
+    ///  시스템 UI 버튼 다 끄기
+    /// </summary>
+    private void SetActiveFalse()
+    {
+        craftBtn_On.SetActive(false);
+        blankBtn_0_On.SetActive(false);
+        blankBtn_1_On.SetActive(false);
+
+        craftObj.SetActive(false);
+        blankObj_0.SetActive(false);
+        blankObj_1.SetActive(false);
     }
 
     /// <summary>
@@ -30,26 +47,22 @@ public class UI_System : MonoBehaviour
     public void OnClick_StartCraftSystem()
     {
         OnUIAnimation();
+        SetActiveFalse();
 
         if (craftBtn_On.activeSelf == true)
         {
-            craftBtn_On.SetActive(false);
-            craftObj.SetActive(false);
-
             return;
         }
 
         craftSystem.OnCraft();
 
         craftBtn_On.SetActive(true);
-        blankBtn_0_On.SetActive(false);
-        blankBtn_1_On.SetActive(false);
-
         craftObj.SetActive(true);
-        blankObj_0.SetActive(false);
-        blankObj_1.SetActive(false);
     }
 
+    /// <summary>
+    /// 올라가거나 내려가는 애니메이션 추가
+    /// </summary>
     private void OnUIAnimation()
     { 
         if(isUIOn == false)
@@ -62,5 +75,20 @@ public class UI_System : MonoBehaviour
             uiAnim.SetTrigger("UIOff");
             isUIOn = false;
         }
+    }
+
+    /*// UI 바로 켜기
+    public void ShowUIImmediately()
+    {
+        isUIOn = true;
+        uiAnim.SetTrigger("UIOnImmediate");
+    }*/
+
+    // UI 바로 끄기 
+    public void HideUIImmediately()
+    {
+        SetActiveFalse();   // 다 끄고
+        isUIOn = false; // 현재 UI 상태 체크하는 식별자
+        uiAnim.SetTrigger("UIOffImmediate");
     }
 }

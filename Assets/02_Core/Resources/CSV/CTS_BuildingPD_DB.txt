@@ -1,0 +1,10 @@
+ID,Name,Type,NameText_Key,Description_Key,Icon,Ingredient,Quantity,durability,Production_amount,Production_random,Production_1,Production_Time,Range
+Building_PD_001,ParmLV1,2,아치의 밭 (Lv1),이곳에서 농사를 지어보도록 하자꾸냥!,,"""Item_ETC_Gold""",100,100,2,FALSE,"""Item_ETC_Point""",15,8*2
+Building_PD_002,ParmLV2,2,아치의 밭 (Lv2),정말 비옥한 땅이다냥!,,"""Item_ETC_Point"",""Item_ETC_Gold""","50,100",150,2,FALSE,"""Item_ETC_Point""",10,
+Building_PD_003,ParmLV3,2,아치의 밭 (Lv3),농사의 신의 가호가 깃든 땅이다냥!,,"""Item_ETC_Point"",""Item_ETC_Gold""","100,200",200,2,FALSE,"""Item_ETC_Point""",5,
+Building_PD_004,PondLV1,2,아치의 연못 (Lv1),우리가 좋아하는 물고기를 잡을 수 있다냥!,,"""Item_ETC_Point""",50,100,2,TRUE,"""Item_ETC_Fish"",""Item_ETC_GoldFish""",15,6*4
+Building_PD_005,PondLV2,2,아치의 연못 (Lv2),낚시꾼들의 핫플레이스다냥!,,"""Item_ETC_Point"",""Item_ETC_Gold""","50,100",150,2,TRUE,"""Item_ETC_Fish"",""Item_ETC_GoldFish""",10,
+Building_PD_006,PondLV3,2,아치의 연못 (Lv3),강태공이 낚시하던 바로 그 연못이다냥!,,"""Item_ETC_Point"",""Item_ETC_Gold""","100,200",200,2,TRUE,"""Item_ETC_Fish"",""Item_ETC_GoldFish""",5,
+Building_PD_007,GristmillLV1,2,냥앗간 (Lv1),밀이나 벼로 빵을 구울 수 있는 공간이다냥!,,"""Item_ETC_Point""",50,100,2,FALSE,"""Item_ETC_Point"",""Item_ETC_Bread""",15,3*3
+Building_PD_008,GristmillLV2,2,냥앗간 (Lv2),냥앗간 구색이 완벽하게 갖춰졌다냥!,,"""Item_ETC_Point"",""Item_ETC_Gold""","50,100",150,3,FALSE,"""Item_ETC_Point"",""Item_ETC_Bread""",10,
+Building_PD_009,GristmillLV3,2,냥앗간 (Lv3),빵지순례 하러 냥앗간으로 오라냥!,,"""Item_ETC_Point"",""Item_ETC_Gold""","100,100",200,3,FALSE,"""Item_ETC_Point"",""Item_ETC_Bread""",5,
