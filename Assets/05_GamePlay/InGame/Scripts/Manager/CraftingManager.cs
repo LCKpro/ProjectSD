@@ -91,7 +91,9 @@ public class CraftingManager : MonoBehaviour
         preparatoryObj = Instantiate(obj, transform);*/
 
         //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("GameObject/" + _buildingCode).gameObject;
-        preparatoryObj = GamePlay.Instance.inGamePools.Spawn("Craft_Appliances_Store").gameObject;
+        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("Craft_Appliances_Store").gameObject;
+
+
 
         // 플레이어 앞에 설치하기 위한 준비
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;

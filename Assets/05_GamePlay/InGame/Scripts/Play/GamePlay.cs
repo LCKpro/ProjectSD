@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using GameCreator.Inventory;
+using Redcode.Pools;
 
 public class GamePlay : MonoBehaviour
 {
@@ -51,4 +49,6 @@ public class GamePlay : MonoBehaviour
     public CraftingManager craftingManager;
     public UI_System ui_System;
     public InGamePools inGamePools;
+    public PoolManager poolManager;
+    public PoolManagerA poolManagerA;
 }
