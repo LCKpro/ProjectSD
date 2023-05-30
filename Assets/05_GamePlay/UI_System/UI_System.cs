@@ -36,9 +36,9 @@ public class UI_System : MonoBehaviour
         blankBtn_0_On.SetActive(false);
         blankBtn_1_On.SetActive(false);
 
-        craftObj.SetActive(false);
-        blankObj_0.SetActive(false);
-        blankObj_1.SetActive(false);
+        //craftObj.SetActive(false);
+        //blankObj_0.SetActive(false);
+        //blankObj_1.SetActive(false);
     }
 
     /// <summary>
@@ -47,17 +47,13 @@ public class UI_System : MonoBehaviour
     public void OnClick_StartCraftSystem()
     {
         OnUIAnimation();
+        
         SetActiveFalse();
 
-        if (craftBtn_On.activeSelf == true)
-        {
-            return;
-        }
-
+        craftBtn_On.SetActive(isUIOn);
         craftSystem.OnCraft();
 
-        craftBtn_On.SetActive(true);
-        craftObj.SetActive(true);
+        //craftObj.SetActive(true);
     }
 
     /// <summary>

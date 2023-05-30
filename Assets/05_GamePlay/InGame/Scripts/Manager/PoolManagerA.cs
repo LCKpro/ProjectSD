@@ -9,13 +9,20 @@ public class PoolManagerA : MonoBehaviour
 
     private void Awake()
     {
-        poolManager = GetComponent<PoolManager>();
+        poolManager = GamePlay.Instance.poolManager;
+    }
+
+    private void Start()
+    {
+        Spawn();
     }
 
     public void Spawn()
     {
-        int ran = Random.Range(0, 6);
-        AIPlayer newObj = poolManager.GetFromPool<AIPlayer>(ran);
+        for (int i = 0; i < 5; i++)
+        {
+            AIPlayer newObj = poolManager.GetFromPool<AIPlayer>(0);
+        }
     }
 
     public void ReturnPool(AIPlayer clone)

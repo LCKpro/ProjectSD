@@ -17,11 +17,6 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
     private List<Dictionary<string, object>> _data_Building_OA;
     private List<Dictionary<string, object>> _data_Building;
 
-    public TextAsset csv_Building_ATK;
-    public TextAsset csv_Building_DFS;
-    public TextAsset csv_Building_PD;
-    public TextAsset csv_Building_OA;
-
     private bool isStart = false;
 
     public void SetData()
