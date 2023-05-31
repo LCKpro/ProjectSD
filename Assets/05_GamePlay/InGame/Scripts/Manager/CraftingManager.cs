@@ -23,6 +23,7 @@ public class CraftingManager : MonoBehaviour
 
     // 임시용 코드. 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
     private string _buildingCode = "";
+    private int _code = 0;
     // 건물 짓기 전 예비 오브젝트
     private GameObject preparatoryObj;
 
@@ -63,6 +64,17 @@ public class CraftingManager : MonoBehaviour
     /// 크래프팅 시작. DB의 키값을 받아와서 해당 건물을 건축시도할 수 있도록 기능
     /// </summary>
     /// <param name="key"></param>
+    public void InitCraft(int key)
+    {
+        GetReadyToCraft(key);       // 키 받고 오브젝트 준비
+        //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
+        CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
+    }
+
+    /// <summary>
+    /// 크래프팅 시작. DB의 키값을 받아와서 해당 건물을 건축시도할 수 있도록 기능
+    /// </summary>
+    /// <param name="key"></param>
     public void InitCraft(string key)
     {
         GetReadyToCraft(key);       // 키 받고 오브젝트 준비
@@ -75,25 +87,17 @@ public class CraftingManager : MonoBehaviour
         return _buildingCode;
     }
 
-    public void GetReadyToCraft(string code)
+    public int GetCode()
     {
-        _buildingCode = code;
-        //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);
-        /*GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
+        return 0;
+    }
 
-        if (obj == null)
-        {
-            Debug.Log("크래프팅 오브젝트 Null");
-            return;
-        }
+    public void GetReadyToCraft(int code)
+    {
+        _code = code;
 
-        // 오브젝트 띄우기(건축하기 전 투명 상태)
-        preparatoryObj = Instantiate(obj, transform);*/
-
-        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("GameObject/" + _buildingCode).gameObject;
-        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("Craft_Appliances_Store").gameObject;
-
-
+        // 여기서 버그나면 매니저랑 DB의 인덱스가 일치하지 않아서 그럼
+        preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(code).gameObject;
 
         // 플레이어 앞에 설치하기 위한 준비
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
@@ -115,6 +119,8 @@ public class CraftingManager : MonoBehaviour
 
         buttonGroup.transform.position = new Vector3(x, y, 0);
     }
+
+    
 
     /// <summary>
     /// 움직일 때 크래프팅 모드 종료
@@ -161,6 +167,47 @@ public class CraftingManager : MonoBehaviour
     }
 
     #region 미사용 코드
+
+    public void GetReadyToCraft(string code)
+    {
+        _buildingCode = code;
+        //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);
+        /*GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
+
+        if (obj == null)
+        {
+            Debug.Log("크래프팅 오브젝트 Null");
+            return;
+        }
+
+        // 오브젝트 띄우기(건축하기 전 투명 상태)
+        preparatoryObj = Instantiate(obj, transform);*/
+
+        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("GameObject/" + _buildingCode).gameObject;
+        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("Craft_Appliances_Store").gameObject;
+
+        preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(0).gameObject;
+
+        // 플레이어 앞에 설치하기 위한 준비
+        Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
+        playerPos.z += 2.0f;
+        playerPos.y = 0;
+
+        preparatoryObj.transform.position = playerPos;
+
+        // 스폰된 건물의 위치에 맞게 UI도 위치 변경
+        Vector3 uiPos = Camera.main.WorldToScreenPoint(playerPos);
+
+        double truncateX = Math.Truncate(uiPos.x);
+        double truncateY = Math.Truncate(uiPos.y);
+        var defaultValueX = truncateX > 0f ? 0.5f : -0.5f;
+        var defaultValueY = truncateY > 0f ? 0.5f : -0.5f;
+
+        float x = Convert.ToSingle(defaultValueX + truncateX, CultureInfo.InvariantCulture);
+        float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
+
+        buttonGroup.transform.position = new Vector3(x, y, 0);
+    }
 
     /// <summary>
     /// 타이머 세팅. 매 업데이트마다 좌표를 계산함

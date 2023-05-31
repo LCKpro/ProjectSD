@@ -49,6 +49,8 @@ public class GamePlay : MonoBehaviour
     public CraftingManager craftingManager;
     public UI_System ui_System;
     public InGamePools inGamePools;
-    public PoolManager poolManager;
-    public PoolManagerA poolManagerA;
+    public PoolManager poolManager_Monster;
+    public PoolManager poolManager_Structure;
+    public PoolManager poolManager_IncompleteStructure;
+    public SpawnManager spawnManager;
 }

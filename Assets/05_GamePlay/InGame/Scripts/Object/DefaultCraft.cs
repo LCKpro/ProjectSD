@@ -14,15 +14,12 @@ public class DefaultCraft : MonoBehaviour
     /// </summary>
     private void SpawnBuilding()
     {
-        var tr = GamePlay.Instance.craftingManager;
-        string code = tr.GetBuildingCode();
+        var gamePlay = GamePlay.Instance;
+        int bCode = gamePlay.craftingManager.GetCode();
 
-        Debug.Log(code);
+        var building = gamePlay.spawnManager.SpawnStructure(bCode);
 
-        GameObject obj = Resources.Load<GameObject>("GameObject/" + code);
-
-        var building = Instantiate(obj, tr.transform);
-        building.transform.position = tr.marker.transform.position;
+        building.position = gamePlay.craftingManager.marker.transform.position;
 
         transform.gameObject.SetActive(false);
     }

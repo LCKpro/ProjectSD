@@ -17,9 +17,7 @@ public class CraftObject : MonoBehaviour
     private GameObject _buttonGroup;
     private NavigationMarker _marker;
 
-    public float changeValue = 12f;
-
-
+    public float changeValue = 15f;
 
     // 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
 
