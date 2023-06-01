@@ -387,7 +387,7 @@ MonoBehaviour:
     cursorDrag: {fileID: 2800000, guid: 21b611b5099004ff38798dfed2a007ad, type: 3}
     cursorDragHotspot: {x: 8, y: 8}
     dragItemsToCombine: 1
-    pauseTimeOnUI: 1
+    pauseTimeOnUI: 0
     canDropItems: 1
     dropItemMaxDistance: 2
     limitInventoryWeight: 1
