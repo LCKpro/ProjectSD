@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class UI_CraftSystem : MonoBehaviour
 {
-    private UI_CraftSystemScrollerController _controller;
-
-    
+    private UI_CraftSystemScrollerController _controller = null;
 
     void Start()
     {
-        _controller = GetComponent<UI_CraftSystemScrollerController>();
     }
 
-    public void OnCraft()
+    public void OnCraft(BuildingType type)
     {
-        _controller.SetData();
+        if(_controller == null)
+            _controller = GetComponent<UI_CraftSystemScrollerController>();
+        _controller.SetData(type);
     }
 }

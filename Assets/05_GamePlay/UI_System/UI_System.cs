@@ -5,40 +5,22 @@ using UnityEngine.UI;
 
 public class UI_System : MonoBehaviour
 {
-    private bool isUIOn = false;
-
-    private Animator uiAnim;
-
     public UI_CraftSystem craftSystem;
 
-    public GameObject craftBtn_On;
-    public GameObject blankBtn_0_On;
-    public GameObject blankBtn_1_On;
-
-    public GameObject craftObj;
-    public GameObject blankObj_0;
-    public GameObject blankObj_1;
-
-    public RectTransform ui_Rect_On;
-    public RectTransform ui_Rect_Off;
-
-    private void Start()
-    {
-        uiAnim = GetComponent<Animator>();
-    }
+    public GameObject btn_ATK;
+    public GameObject btn_DFS;
+    public GameObject btn_PD;
+    public GameObject btn_OA;
 
     /// <summary>
     ///  시스템 UI 버튼 다 끄기
     /// </summary>
     private void SetActiveFalse()
     {
-        craftBtn_On.SetActive(false);
-        blankBtn_0_On.SetActive(false);
-        blankBtn_1_On.SetActive(false);
-
-        //craftObj.SetActive(false);
-        //blankObj_0.SetActive(false);
-        //blankObj_1.SetActive(false);
+        btn_ATK.SetActive(false);
+        btn_DFS.SetActive(false);
+        btn_PD.SetActive(false);
+        btn_OA.SetActive(false);
     }
 
     /// <summary>
@@ -46,45 +28,63 @@ public class UI_System : MonoBehaviour
     /// </summary>
     public void OnClick_StartCraftSystem()
     {
-        OnUIAnimation();
-        
         SetActiveFalse();
+        btn_ATK.SetActive(true);
 
-        craftBtn_On.SetActive(isUIOn);
-        craftSystem.OnCraft();
-
-        //craftObj.SetActive(true);
+        craftSystem.OnCraft(BuildingType.ATK);
     }
 
-    /// <summary>
-    /// 올라가거나 내려가는 애니메이션 추가
-    /// </summary>
-    private void OnUIAnimation()
-    { 
-        if(isUIOn == false)
-        {
-            uiAnim.SetTrigger("UIOn");
-            isUIOn = true;
-        }
-        else
-        {
-            uiAnim.SetTrigger("UIOff");
-            isUIOn = false;
-        }
-    }
-
-    /*// UI 바로 켜기
-    public void ShowUIImmediately()
+    public void OnClick_CraftATK()
     {
-        isUIOn = true;
-        uiAnim.SetTrigger("UIOnImmediate");
-    }*/
+        if(btn_ATK.activeSelf == true)
+        {
+            return;
+        }
+
+        SetActiveFalse();
+        btn_ATK.SetActive(true);
+        craftSystem.OnCraft(BuildingType.ATK);
+    }
+
+    public void OnClick_CraftDFS()
+    {
+        if (btn_DFS.activeSelf == true)
+        {
+            return;
+        }
+
+        SetActiveFalse();
+        btn_DFS.SetActive(true);
+        craftSystem.OnCraft(BuildingType.DFS);
+    }
+
+    public void OnClick_CraftPD()
+    {
+        if (btn_PD.activeSelf == true)
+        {
+            return;
+        }
+
+        SetActiveFalse();
+        btn_PD.SetActive(true);
+        craftSystem.OnCraft(BuildingType.PD);
+    }
+
+    public void OnClick_CraftOA()
+    {
+        if (btn_OA.activeSelf == true)
+        {
+            return;
+        }
+
+        SetActiveFalse();
+        btn_OA.SetActive(true);
+        craftSystem.OnCraft(BuildingType.OA);
+    }
 
     // UI 바로 끄기 
     public void HideUIImmediately()
     {
-        SetActiveFalse();   // 다 끄고
-        isUIOn = false; // 현재 UI 상태 체크하는 식별자
-        uiAnim.SetTrigger("UIOffImmediate");
+        transform.gameObject.SetActive(false);
     }
 }

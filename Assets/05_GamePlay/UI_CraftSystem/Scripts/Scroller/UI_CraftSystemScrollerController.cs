@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
 {
+    
+
     // Enhanced Scroller
     public EnhancedScroller scroller;
 
@@ -19,9 +21,13 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
 
     private bool isStart = false;
 
-    public void SetData()
+    private BuildingType _type = BuildingType.None;
+
+    public void SetData(BuildingType type)
     {
-        if(isStart == false)
+        _type = type;
+
+        if (isStart == false)
         {
             scroller.Delegate = this;
             scroller.lookAheadAfter = 500;
@@ -29,6 +35,10 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
 
             SetCSV();
             isStart = true;
+        }
+        else
+        {
+            SetType();
         }
 
         LoadCraftSystemData();
@@ -45,6 +55,31 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
         _data_Building_OA = CSVReader.Read("CTS_BuildingOA_DB");
 
         _data_Building = _data_Building_ATK;
+    }
+
+    private void SetType()
+    {
+        switch (_type)
+        {
+            case BuildingType.ATK:
+                _data_Building = _data_Building_ATK;
+                break;
+            case BuildingType.DFS:
+                _data_Building = _data_Building_DFS;
+                break;
+            case BuildingType.PD:
+                _data_Building = _data_Building_PD;
+                break;
+            case BuildingType.OA:
+                _data_Building = _data_Building_OA;
+                break;
+            case BuildingType.None:
+                Debug.Log("¹ö±×");
+                _data_Building = _data_Building_ATK;
+                break;
+            default:
+                break;
+        }
     }
 
     public void LoadCraftSystemData()
@@ -83,4 +118,13 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
 
         return 0;
     }
+}
+
+public enum BuildingType
+{
+    ATK = 0,
+    DFS = 1,
+    PD = 2,
+    OA = 3,
+    None = 4,
 }

@@ -53,4 +53,14 @@ public class GamePlay : MonoBehaviour
     public PoolManager poolManager_Structure;
     public PoolManager poolManager_IncompleteStructure;
     public SpawnManager spawnManager;
+
+    #region ¹öÆ°
+
+    public void OnClick_ShowCraftSystem()
+    {
+        ui_System.gameObject.SetActive(true);
+        ui_System.OnClick_StartCraftSystem();
+    }
+
+    #endregion
 }
