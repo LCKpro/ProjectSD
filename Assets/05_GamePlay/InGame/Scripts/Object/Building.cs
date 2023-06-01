@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Building : MonoBehaviour
+public class Building : Health
 {
     [SerializeField]
     private BuildingSort buildingSort;
@@ -83,4 +83,10 @@ public class Building : MonoBehaviour
     {
         isClicked = false;
     }
+
+    protected override void Die()
+    {
+        transform.gameObject.SetActive(false);
+    }
+
 }
