@@ -53,6 +53,7 @@ public class GamePlay : MonoBehaviour
     public PoolManager poolManager_Structure;
     public PoolManager poolManager_IncompleteStructure;
     public SpawnManager spawnManager;
+    public UI_ClockSystem uI_ClockSystem;
 
     #region ¹öÆ°
 
