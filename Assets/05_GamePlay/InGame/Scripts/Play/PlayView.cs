@@ -45,4 +45,9 @@ public class PlayView : MonoBehaviour
     }
 
     #endregion
+
+    public void OnClick_Setting()
+    {
+        Core.Instance.uiPopUpManager.Show("UI_Setting");
+    }
 }

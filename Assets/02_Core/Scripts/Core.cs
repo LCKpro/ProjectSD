@@ -50,6 +50,7 @@ public partial class Core : MonoBehaviour
     public BuildingManager buildingManager;
     public ItemManager itemManager;
     public UIPopUpManager uiPopUpManager;
+    public AudioManager audioManager;
 
     /*public RootCheckManager rootCheckManager;
     public AppLovinMaxManager appLovinMaxManager;
