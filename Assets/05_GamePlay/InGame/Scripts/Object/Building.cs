@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Building : Health
+public class Building : Stat
 {
     [SerializeField]
     private BuildingSort buildingSort;

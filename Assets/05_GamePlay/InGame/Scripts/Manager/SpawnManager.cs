@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            AIPlayer newObj = poolManager_Monster.GetFromPool<AIPlayer>(0);
+            AIState newObj = poolManager_Monster.GetFromPool<AIState>(0);
             SetPosition(newObj);
         }
     }
@@ -43,7 +43,7 @@ public class SpawnManager : MonoBehaviour
         return newObj;
     }
 
-    private void SetPosition(AIPlayer player)
+    private void SetPosition(AIState player)
     {
         if(_target == null)
             _target = GamePlay.Instance.playerManager.GetPlayer().transform;
@@ -75,8 +75,8 @@ public class SpawnManager : MonoBehaviour
         player.transform.position = new Vector3(_target.position.x + x, 0, _target.position.z + z);
     }
 
-    public void ReturnPool(AIPlayer clone)
+    public void ReturnPool(AIState clone)
     {
-        poolManager_Monster.TakeToPool<AIPlayer>(clone.idName, clone);
+        poolManager_Monster.TakeToPool<AIState>(clone.idName, clone);
     }
 }

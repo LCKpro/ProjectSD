@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Appliances_Store_0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cf049117258669548809bad082985d2d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cf049117258669548809bad082985d2d, type: 3}
+      propertyPath: m_TagString
+      value: Breakable
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cf049117258669548809bad082985d2d, type: 3}
       propertyPath: m_RootOrder
       value: 0

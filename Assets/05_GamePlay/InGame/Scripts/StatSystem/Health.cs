@@ -36,7 +36,7 @@ public abstract class Health : MonoBehaviour
     /// 데미지 받았을 때
     /// </summary>
     /// <param name="damage"></param>
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, GameObject attacker = null)
     {
         Debug.Log(transform.name + "이(가) " + damage +"의 데미지를 받음");
         healthValue -= GetDamage(damage, defenseValue);

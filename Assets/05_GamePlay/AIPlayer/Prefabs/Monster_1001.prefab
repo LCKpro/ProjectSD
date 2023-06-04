@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e05ce9bb23c5049bd81343f4b10048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1741099072697501312}
+  state: {fileID: 0}
 --- !u!1 &1740751099363315619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,8 +1014,9 @@ GameObject:
   - component: {fileID: 1741099072697501313}
   - component: {fileID: 1741099072697501318}
   - component: {fileID: 1741099072697501319}
+  - component: {fileID: -914429518868391928}
   m_Layer: 0
-  m_Name: Monster
+  m_Name: Monster_1001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1072,12 +1073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29f27759080f7f4cb1878a188d6e59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthValue: 100
-  damageValue: 20
-  defenseValue: 0
-  idName: Monster
-  anim: {fileID: 1836062057119939809}
-  target: {fileID: 0}
 --- !u!54 &1741099072697501313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1130,6 +1125,24 @@ CapsuleCollider:
   m_Height: 0.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!114 &-914429518868391928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741099072697501315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382371477a6b1e84e97c2d9046ea15ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idName: "\uD1A0\uBD95\uC774"
+  healthValue: 100
+  damageValue: 50
+  defenseValue: 0
+  stateType: 99
+  anim: {fileID: 1836062057119939809}
 --- !u!1 &1741113284682548657
 GameObject:
   m_ObjectHideFlags: 0

@@ -770,8 +770,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24442947}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.43318883, y: 7e-45, z: -3e-45, w: 0.9013032}
+  m_LocalPosition: {x: 15.61, y: 15.08, z: -26.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20252,7 +20252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pools:
   - _name: Monster
-    _component: {fileID: 1741099072697501312, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
+    _component: {fileID: -914429518868391928, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
     _count: 10
     _container: {fileID: 1665813473}
     _nonLazy: 1
@@ -22232,9 +22232,6 @@ MonoBehaviour:
   healthValue: 100
   damageValue: 10
   defenseValue: 0
-  idName: Monster
-  anim: {fileID: 1836062057976288832}
-  target: {fileID: 0}
 --- !u!1 &1741099073486629922
 GameObject:
   m_ObjectHideFlags: 0
