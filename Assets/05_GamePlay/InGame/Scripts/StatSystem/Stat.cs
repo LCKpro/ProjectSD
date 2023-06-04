@@ -6,6 +6,8 @@ public class Stat : MonoBehaviour
     public float healthValue = 0f;
     public float damageValue = 0f;
     public float defenseValue = 0f;
+    public float rangeValue = 0f;
+    public float moveSpeed = 0f;
 
     /// <summary>
     /// 데미지 줄 때

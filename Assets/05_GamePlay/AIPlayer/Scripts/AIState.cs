@@ -9,10 +9,12 @@ public class AIState : Stat, IPoolObject
     private IDisposable _stateController = Disposable.Empty;
     private IDisposable _attackController = Disposable.Empty;   // 공격할 때 쓸 타이머
     private IDisposable _attackTimeLimit = Disposable.Empty;   // 만약 시간 내에 공격 못했을 경우
+
     private Transform _target;
     private NavMeshAgent _ai;
 
     public GameDefine.AIStateType stateType = GameDefine.AIStateType.None;
+    public GameDefine.AttackType attackType = GameDefine.AttackType.None;
 
     public Animator anim;
 
@@ -36,29 +38,12 @@ public class AIState : Stat, IPoolObject
         AIControllerStart();
     }
 
-    /// 이동 멈추기
-    private void StopAlMove()
+    private void AIMove()
     {
-        _stateController.Dispose();
-        _stateController = Disposable.Empty;
-
-        _ai.isStopped = true;
-        _ai.velocity = Vector3.zero;
+        _ai.SetDestination(_target.position);
     }
 
-    /// 공격 멈추기
-    private void StopAIAttack()
-    {
-        _attackController.Dispose();
-        _attackController = Disposable.Empty;
-    }
-
-    /// 추격 대기 타이머 멈추기
-    private void StopAttackTimeLimit()
-    {
-        _attackTimeLimit.Dispose();
-        _attackTimeLimit = Disposable.Empty;
-    }
+    #region UniRx Start
 
     private void AIControllerStart()
     {
@@ -84,14 +69,9 @@ public class AIState : Stat, IPoolObject
             });
     }
 
-    private void AIMove()
-    {
-        _ai.SetDestination(_target.position);
-    }
-
     private GameObject targetObj = null;
     // 공격 시작할 때 필요한거
-    public void AttackStart(Collider other)
+    public void MeleeAttackStart(Collider other)
     {
         StopAttackTimeLimit();      // 공격하는데 성공했으면 타이머 끄기
         stateType = GameDefine.AIStateType.Attack;
@@ -112,7 +92,37 @@ public class AIState : Stat, IPoolObject
             });
     }
 
-    public void AIAttack()
+    #endregion
+
+    #region UniRx Finalize
+
+    /// 이동 멈추기
+    private void StopAlMove()
+    {
+        _stateController.Dispose();
+        _stateController = Disposable.Empty;
+
+        _ai.isStopped = true;
+        _ai.velocity = Vector3.zero;
+    }
+
+    /// 공격 멈추기
+    private void StopAIAttack()
+    {
+        _attackController.Dispose();
+        _attackController = Disposable.Empty;
+    }
+
+    /// 추격 대기 타이머 멈추기
+    private void StopAttackTimeLimit()
+    {
+        _attackTimeLimit.Dispose();
+        _attackTimeLimit = Disposable.Empty;
+    }
+
+    #endregion
+
+    public void MeleeAttack()
     {
         if (targetObj != null)
         {
@@ -129,6 +139,9 @@ public class AIState : Stat, IPoolObject
     public override void DealDamage(GameObject target)
     {
         base.DealDamage(target);
+
+        CheckDamageType();
+        KnockBack(target);
     }
 
     public override void TakeDamage(float damage, GameObject attacker = null)
@@ -142,6 +155,33 @@ public class AIState : Stat, IPoolObject
             stateType = GameDefine.AIStateType.Chase_Attacker;
             AITimeLimitStart(); // 공격 5초 세고 공격했으면 끝
         }
+    }
+
+    // 공격 타입 체크한 후 공격하기
+    private void CheckDamageType()
+    {
+        if(attackType == GameDefine.AttackType.Melee)
+        {
+            var atk = GetComponent<AIMeleeAttack>();
+            atk.Attack();
+        }
+        else if(attackType == GameDefine.AttackType.Range)
+        {
+            var atk = GetComponent<AIRangeAttack>();
+            atk.Attack();
+        }
+        else if(attackType == GameDefine.AttackType.Suicide)
+        {
+            var atk = GetComponent<AISuicide>();
+            atk.Attack();
+        }
+    }
+
+    private void KnockBack(GameObject target)
+    {
+        var vec = this.transform.position - target.transform.position;
+        _ai.isStopped = true;
+        _ai.velocity = vec * 10;
     }
 
     #endregion

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIObserver : MonoBehaviour
+public class AIRangeAttack : MonoBehaviour
 {
+    public void Attack()
+    {
+
+    }
 }

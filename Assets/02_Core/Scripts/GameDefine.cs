@@ -11,4 +11,12 @@ public static class GameDefine
         Breakable = 6,
         None = 99,
     }
+
+    public enum AttackType
+    {
+        Melee = 0,
+        Range = 1,
+        Suicide = 2,
+        None = 99,
+    }
 }

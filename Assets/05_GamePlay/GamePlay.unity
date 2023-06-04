@@ -4988,9 +4988,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a84e858a0651e438e288b7c1df4bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idName: 
   healthValue: 0
   damageValue: 0
   defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
   buildingSort: 0
   buildingLevel: 1
   maxItemValue: 5
@@ -8379,9 +8382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a84e858a0651e438e288b7c1df4bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idName: 
   healthValue: 100
   damageValue: 0
   defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -15556,9 +15562,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a84e858a0651e438e288b7c1df4bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idName: 
   healthValue: 100
   damageValue: 0
   defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -15685,9 +15694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a84e858a0651e438e288b7c1df4bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idName: 
   healthValue: 100
   damageValue: 0
   defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -16436,9 +16448,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a84e858a0651e438e288b7c1df4bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idName: 
   healthValue: 100
   damageValue: 0
   defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -22229,9 +22244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29f27759080f7f4cb1878a188d6e59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthValue: 100
-  damageValue: 10
-  defenseValue: 0
 --- !u!1 &1741099073486629922
 GameObject:
   m_ObjectHideFlags: 0
