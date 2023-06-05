@@ -1,26 +1,23 @@
-using UnityEngine.AI;
 using System;
 using UnityEngine;
 using UniRx;
 using Redcode.Pools;
+using Random = UnityEngine.Random;
 
-public class AIState : Stat, IPoolObject
+public partial class AIPlayer : IPoolObject
 {
     private IDisposable _stateController = Disposable.Empty;
-    private IDisposable _attackController = Disposable.Empty;   // 공격할 때 쓸 타이머
-    private IDisposable _attackTimeLimit = Disposable.Empty;   // 만약 시간 내에 공격 못했을 경우
 
     private Transform _target;
-    private NavMeshAgent _ai;
+    private Rigidbody _rigid;
 
-    public GameDefine.AIStateType stateType = GameDefine.AIStateType.None;
-    public GameDefine.AttackType attackType = GameDefine.AttackType.None;
+    private GameDefine.AIStateType _stateType = GameDefine.AIStateType.None;
 
     public Animator anim;
 
-    private void Start()
+    public void SetStateType(GameDefine.AIStateType type)
     {
-        _ai = GetComponent<NavMeshAgent>();
+        _stateType = type;
     }
 
     public void OnCreatedInPool()
@@ -35,19 +32,60 @@ public class AIState : Stat, IPoolObject
     public void Init()
     {
         _target = GamePlay.Instance.playerManager.GetPlayer().transform;
+        _rigid = GetComponent<Rigidbody>();
+        SetPosition();
         AIControllerStart();
+    }
+
+    private void SetPosition()
+    {
+        int x, z;
+        var r = GameUtils.RandomBool();
+
+        if (r)
+        {
+            x = Random.Range(0, 23);
+            z = 30;
+
+            if (x % 2 == 0) // x좌표는 좌우 구분을 위해 음수도 추가되어야 함
+            {
+                x *= -1;
+            }
+        }
+        else
+        {
+            x = 23;
+            z = Random.Range(0, 30);
+
+            if (z % 2 == 0) // x좌표는 좌우 구분을 위해 음수도 추가되어야 함
+            {
+                x *= -1;
+            }
+        }
+
+        transform.position = new Vector3(_target.position.x + x, 0, _target.position.z + z);
+        transform.LookAt(_target);
     }
 
     private void AIMove()
     {
-        _ai.SetDestination(_target.position);
+        //_ai.SetDestination(_target.position);
+        
+        _rigid.velocity = Vector3.zero;
+        if (_target != null)
+        {
+            _rigid.velocity = (_target.position - this.transform.position) * moveSpeed;
+        }
+        else
+            Debug.Log("타겟 NULL");
     }
 
     #region UniRx Start
 
     private void AIControllerStart()
     {
-        stateType = GameDefine.AIStateType.Chase_CatTower;
+        _stateType = GameDefine.AIStateType.Chase_CatTower;
+        StopAIController();
         StopAlMove();
         anim.SetInteger("animation", 15);
         _stateController = Observable.EveryUpdate().TakeUntilDisable(gameObject)
@@ -60,35 +98,13 @@ public class AIState : Stat, IPoolObject
 
     private void AITimeLimitStart()
     {
+        StopAIController();
         _stateController = Observable.Interval(TimeSpan.FromSeconds(5f)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                StopAttackTimeLimit(); // 타이머 끄고
-                stateType = GameDefine.AIStateType.Breakable;
-            });
-    }
-
-    private GameObject targetObj = null;
-    // 공격 시작할 때 필요한거
-    public void MeleeAttackStart(Collider other)
-    {
-        StopAttackTimeLimit();      // 공격하는데 성공했으면 타이머 끄기
-        stateType = GameDefine.AIStateType.Attack;
-        targetObj = other.gameObject;
-        StopAlMove();  // 이동 멈추고
-        StopAIAttack();   // 공격 일단 먼저 멈추고
-        anim.SetInteger("animation", 13);    // 공격 애니메이션
-        _attackController = Observable.Interval(TimeSpan.FromSeconds(1f)).TakeUntilDisable(gameObject)
-            .TakeUntilDestroy(gameObject)
-            .Subscribe(_ =>
-            {
-                if (targetObj.activeSelf == false)
-                {
-                    targetObj = null;
-                    StopAIAttack();
-                    AIControllerStart();
-                }
+                StopAIController(); // 타이머 끄고
+                _stateType = GameDefine.AIStateType.Breakable;
             });
     }
 
@@ -96,28 +112,18 @@ public class AIState : Stat, IPoolObject
 
     #region UniRx Finalize
 
-    /// 이동 멈추기
-    private void StopAlMove()
+    private void StopAIController()
     {
         _stateController.Dispose();
         _stateController = Disposable.Empty;
-
-        _ai.isStopped = true;
-        _ai.velocity = Vector3.zero;
     }
 
-    /// 공격 멈추기
-    private void StopAIAttack()
+    /// 이동 멈추기
+    private void StopAlMove()
     {
-        _attackController.Dispose();
-        _attackController = Disposable.Empty;
-    }
-
-    /// 추격 대기 타이머 멈추기
-    private void StopAttackTimeLimit()
-    {
-        _attackTimeLimit.Dispose();
-        _attackTimeLimit = Disposable.Empty;
+        _rigid.velocity = Vector3.zero;
+        //_ai.isStopped = true;
+        //_ai.velocity = Vector3.zero;
     }
 
     #endregion
@@ -140,48 +146,30 @@ public class AIState : Stat, IPoolObject
     {
         base.DealDamage(target);
 
-        CheckDamageType();
-        KnockBack(target);
     }
 
     public override void TakeDamage(float damage, GameObject attacker = null)
     {
         base.TakeDamage(damage);
 
+        if(attacker != null)
+        {
+            KnockBack(attacker);
+        }
+
         // 공격자가 있으면(유닛이던 건물이던) 그쪽을 먼저 추격
-        if (attacker != null && stateType != GameDefine.AIStateType.Chase_Attacker)
+        if (attacker != null && _stateType != GameDefine.AIStateType.Chase_Attacker)
         {
             _target = attacker.transform;
-            stateType = GameDefine.AIStateType.Chase_Attacker;
+            _stateType = GameDefine.AIStateType.Chase_Attacker;
             AITimeLimitStart(); // 공격 5초 세고 공격했으면 끝
-        }
-    }
-
-    // 공격 타입 체크한 후 공격하기
-    private void CheckDamageType()
-    {
-        if(attackType == GameDefine.AttackType.Melee)
-        {
-            var atk = GetComponent<AIMeleeAttack>();
-            atk.Attack();
-        }
-        else if(attackType == GameDefine.AttackType.Range)
-        {
-            var atk = GetComponent<AIRangeAttack>();
-            atk.Attack();
-        }
-        else if(attackType == GameDefine.AttackType.Suicide)
-        {
-            var atk = GetComponent<AISuicide>();
-            atk.Attack();
         }
     }
 
     private void KnockBack(GameObject target)
     {
         var vec = this.transform.position - target.transform.position;
-        _ai.isStopped = true;
-        _ai.velocity = vec * 10;
+        _rigid.AddForce(vec * 2, ForceMode.Impulse);
     }
 
     #endregion
@@ -194,14 +182,9 @@ public class AIState : Stat, IPoolObject
         // 건물 역시 마찬가지로 넣어주기
     }
 
-    private void ReturnToPool()
+    private void OnCollisionEnter(Collision collision)
     {
-        GamePlay.Instance.spawnManager.ReturnPool(this);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             FinalizeAI();
         }

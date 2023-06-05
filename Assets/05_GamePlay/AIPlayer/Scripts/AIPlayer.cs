@@ -1,7 +1,5 @@
-using UnityEngine;
 
-
-public class AIPlayer : MonoBehaviour
+public partial class AIPlayer : Stat
 {
     
 }

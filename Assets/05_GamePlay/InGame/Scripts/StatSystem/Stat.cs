@@ -50,6 +50,8 @@ public class Stat : MonoBehaviour
 
     protected virtual void Die()
     {
+        Debug.Log(gameObject.name + "사망");
+        transform.gameObject.SetActive(false);
         // 몬스터의 경우 풀에 다시 넣어주는 로직 필요.
         // 건물 역시 마찬가지로 넣어주기
     }

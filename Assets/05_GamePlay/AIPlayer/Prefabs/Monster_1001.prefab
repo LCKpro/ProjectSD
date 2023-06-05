@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e05ce9bb23c5049bd81343f4b10048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: {fileID: -914429518868391928}
+  state: {fileID: 1741099072697501312}
 --- !u!1 &1740751099363315619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,12 +1010,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1738938771852781937}
   - component: {fileID: 1836062057119939809}
-  - component: {fileID: -914429518868391928}
-  - component: {fileID: 1741099072697501312}
   - component: {fileID: 1741099072697501313}
-  - component: {fileID: 1741099072697501318}
   - component: {fileID: 1741099072697501319}
-  - component: {fileID: 7702367483933628290}
+  - component: {fileID: 1741099072697501312}
   m_Layer: 0
   m_Name: Monster_1001
   m_TagString: Untagged
@@ -1062,39 +1059,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-914429518868391928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741099072697501315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382371477a6b1e84e97c2d9046ea15ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idName: "\uD1A0\uBD95\uC774"
-  healthValue: 100
-  damageValue: 50
-  defenseValue: 0
-  rangeValue: 0
-  moveSpeed: 0
-  stateType: 99
-  attackType: 0
-  anim: {fileID: 1836062057119939809}
---- !u!114 &1741099072697501312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741099072697501315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29f27759080f7f4cb1878a188d6e59a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1741099072697501313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1109,30 +1073,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!195 &1741099072697501318
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741099072697501315}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &1741099072697501319
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1141,13 +1083,13 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741099072697501315}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
   m_Height: 0.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.4, z: 0}
---- !u!114 &7702367483933628290
+--- !u!114 &1741099072697501312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1156,9 +1098,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1741099072697501315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1587e632ecef7434c8aae30b27f763e9, type: 3}
+  m_Script: {fileID: 11500000, guid: f29f27759080f7f4cb1878a188d6e59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idName: "\uD1A0\uBD95\uC774"
+  healthValue: 100
+  damageValue: 50
+  defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0.45
+  atkType: 0
+  poolProjectileIndex: 0
+  startPos: {fileID: 0}
+  projectileSpeed: 5
+  suicideRange: 5
+  anim: {fileID: 1836062057119939809}
 --- !u!1 &1741113284682548657
 GameObject:
   m_ObjectHideFlags: 0
