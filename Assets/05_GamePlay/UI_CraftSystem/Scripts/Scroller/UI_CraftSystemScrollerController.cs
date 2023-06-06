@@ -104,7 +104,7 @@ public class UI_CraftSystemScrollerController : MonoBehaviour, IEnhancedScroller
 
         cellView = scroller.GetCellView(craftSystemCellViewPrefab) as UI_CraftSystemCellView;
 
-        cellView.SetData(_data_Building[dataIndex]);
+        cellView.SetData(_data_Building[dataIndex], dataIndex);
 
         return cellView;
     }

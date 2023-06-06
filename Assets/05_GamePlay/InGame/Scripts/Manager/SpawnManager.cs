@@ -7,6 +7,10 @@ public class SpawnManager : MonoBehaviour
     private PoolManager poolManager_Monster;
     private PoolManager poolManager_Structure;
     private PoolManager poolManager_IncompleteStructure;
+
+    private PoolManager[] poolManager_Structure_Array;
+    private PoolManager[] poolManager_IncompleteStructure_Array;
+
     private PoolManager poolManager_Projectile;
 
     //private Transform _target = null;
@@ -19,15 +23,18 @@ public class SpawnManager : MonoBehaviour
         poolManager_IncompleteStructure = manager.poolManager_IncompleteStructure;
         poolManager_Projectile = manager.poolManager_Projectile;
 
+        poolManager_Structure_Array = manager.poolManager_StructureArray;
+        poolManager_IncompleteStructure_Array = manager.poolManager_IncompleteStructureArray;
+
         SpawnMonster();
     }
 
     public void SpawnMonster()
     {
-        for (int i = 0; i < 5; i++)
+        /*for (int i = 0; i < 5; i++)
         {
             poolManager_Monster.GetFromPool<AIPlayer>(3);
-        }
+        }*/
 
         //poolManager_Monster.GetFromPool<AIPlayer>(2);
         //poolManager_Monster.GetFromPool<AIPlayer>(0);
@@ -40,6 +47,13 @@ public class SpawnManager : MonoBehaviour
         return newObj;
     }
 
+    public Transform SpawnStructure(int structIndex, int index)
+    {
+        Transform newObj = poolManager_Structure_Array[structIndex].GetFromPool<Transform>(index);
+
+        return newObj;
+    }
+
     public Transform SpawnIncompleteStructure(int index)
     {
         Transform newObj = poolManager_IncompleteStructure.GetFromPool<Transform>(index);
@@ -47,7 +61,13 @@ public class SpawnManager : MonoBehaviour
         return newObj;
     }
 
-    
+    public Transform SpawnIncompleteStructure(int structIndex, int index)
+    {
+        Transform newObj = poolManager_IncompleteStructure_Array[structIndex].GetFromPool<Transform>(index);
+
+        return newObj;
+    }
+
 
     public void ReturnPool(AIPlayer clone)
     {

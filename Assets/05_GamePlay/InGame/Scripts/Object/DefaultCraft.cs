@@ -16,10 +16,11 @@ public class DefaultCraft : MonoBehaviour
     {
         var gamePlay = GamePlay.Instance;
         int bCode = gamePlay.craftingManager.GetCode();
+        int typeCode = gamePlay.craftingManager.GetTypeCode();
 
-        var building = gamePlay.spawnManager.SpawnStructure(bCode);
+        var building = gamePlay.spawnManager.SpawnStructure(typeCode, bCode);
 
-        building.position = gamePlay.craftingManager.marker.transform.position;
+        building.position = gamePlay.craftingManager.spawnPos.position;
 
         transform.gameObject.SetActive(false);
     }

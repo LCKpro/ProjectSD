@@ -56,6 +56,9 @@ public class GamePlay : MonoBehaviour
     public SpawnManager spawnManager;
     public UI_ClockSystem uI_ClockSystem;
 
+    public PoolManager[] poolManager_StructureArray;
+    public PoolManager[] poolManager_IncompleteStructureArray;
+
     #region ¹öÆ°
 
     public void OnClick_ShowCraftSystem()

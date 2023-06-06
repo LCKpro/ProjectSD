@@ -16,6 +16,7 @@ public class CraftingManager : MonoBehaviour
 
     public GameObject buttonGroup;
     public NavigationMarker marker;
+    public Transform spawnPos;
 
     public GameObject loadingUIObj;
 
@@ -23,6 +24,7 @@ public class CraftingManager : MonoBehaviour
 
     // 임시용 코드. 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
     private string _buildingCode = "";
+    private int _typeCode = 0;
     private int _code = 0;
     // 건물 짓기 전 예비 오브젝트
     private GameObject preparatoryObj;
@@ -66,7 +68,7 @@ public class CraftingManager : MonoBehaviour
     /// <param name="key"></param>
     public void InitCraft(int key)
     {
-        GetReadyToCraft(key);       // 키 받고 오브젝트 준비
+        //GetReadyToCraft(key);       // 키 받고 오브젝트 준비
         //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
         CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
     }
@@ -77,7 +79,14 @@ public class CraftingManager : MonoBehaviour
     /// <param name="key"></param>
     public void InitCraft(string key)
     {
-        GetReadyToCraft(key);       // 키 받고 오브젝트 준비
+        //GetReadyToCraft(key);       // 키 받고 오브젝트 준비
+        //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
+        CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
+    }
+
+    public void InitCraft(int type, int key)
+    {
+        GetReadyToCraft(type, key);       // 키 받고 오브젝트 준비
         //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
         CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
     }
@@ -87,17 +96,25 @@ public class CraftingManager : MonoBehaviour
         return _buildingCode;
     }
 
-    public int GetCode()
+
+    // 타입 코드는 건물의 타입(공,방,장식), 일반 코드는 건물의 인덱스 번호
+    public int GetTypeCode()
     {
-        return 0;
+        return _typeCode;
     }
 
-    public void GetReadyToCraft(int code)
+    public int GetCode()
     {
+        return _code;
+    }
+
+    public void GetReadyToCraft(int type, int code)
+    {
+        _typeCode = type;
         _code = code;
 
         // 여기서 버그나면 매니저랑 DB의 인덱스가 일치하지 않아서 그럼
-        preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(code).gameObject;
+        preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(_typeCode, _code).gameObject;
 
         // 플레이어 앞에 설치하기 위한 준비
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
@@ -145,7 +162,6 @@ public class CraftingManager : MonoBehaviour
     // 버튼 클릭. 건물 짓기. 캐릭터 움직이기 + 애니메이션은 액션으로 대체
     public void OnClick_ClickToCraft()
     {
-        //marker.transform.position = craftVector;
         FinalizeCraft();    // UniRx 하고 다른 버튼들 다 끄기
         playerMoveAction.Execute();
     }
@@ -160,32 +176,12 @@ public class CraftingManager : MonoBehaviour
         loadingUIObj.transform.position = uiPos;
     }
 
-    public void FinishCraft()
-    {
-        GameObject obj = Resources.Load<GameObject>("GameObject/Appliances_Store");
-        obj.transform.position = marker.transform.position;
-    }
-
     #region 미사용 코드
 
     public void GetReadyToCraft(string code)
     {
         _buildingCode = code;
-        //GameObject obj = Resources.Load<GameObject>("GameObject/" + buildingCode);
-        /*GameObject obj = Resources.Load<GameObject>("GameObject/Craft_Appliances_Store");
-
-        if (obj == null)
-        {
-            Debug.Log("크래프팅 오브젝트 Null");
-            return;
-        }
-
-        // 오브젝트 띄우기(건축하기 전 투명 상태)
-        preparatoryObj = Instantiate(obj, transform);*/
-
-        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("GameObject/" + _buildingCode).gameObject;
-        //preparatoryObj = GamePlay.Instance.inGamePools.Spawn("Craft_Appliances_Store").gameObject;
-
+        
         preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(0).gameObject;
 
         // 플레이어 앞에 설치하기 위한 준비
@@ -274,7 +270,11 @@ public class CraftingManager : MonoBehaviour
         Debug.Log("UI 좌표: " + buttonGroup.transform.position);
     }
 
-    
+    public void FinishCraft()
+    {
+        GameObject obj = Resources.Load<GameObject>("GameObject/Appliances_Store");
+        obj.transform.position = marker.transform.position;
+    }
 
     #endregion
 }

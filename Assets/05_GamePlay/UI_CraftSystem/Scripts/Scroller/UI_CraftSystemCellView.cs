@@ -15,15 +15,19 @@ public class UI_CraftSystemCellView : EnhancedScrollerCellView
     public UI_CraftItem[] craftItemArray;
 
     private string craftKey;
+    private int _index;
+    private int typeKey;
 
     public GameObject infoObj;
     public TextMeshProUGUI text_Info;
 
-    public void SetData(Dictionary<string, object> data)
+    public void SetData(Dictionary<string, object> data, int index)
     {
         infoObj.SetActive(false);   // 인포박스는 가려주자
 
+        _index = index;
         craftKey = Convert.ToString(data["ID"]);
+        typeKey = Convert.ToInt32(data["Type"]);
 
         foreach (var item in craftItemArray)
         {
@@ -59,7 +63,7 @@ public class UI_CraftSystemCellView : EnhancedScrollerCellView
     public void OnClick_InitCraft()
     {
         GamePlay.Instance.ui_System.HideUIImmediately();
-        GamePlay.Instance.craftingManager.InitCraft(craftKey);
+        GamePlay.Instance.craftingManager.InitCraft(typeKey, _index);
     }
 
     public void OnClick_OpenInfo()

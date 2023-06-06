@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Building : Stat
 {
     [SerializeField]
-    private BuildingSort buildingSort;
+    private GameDefine.BuildingSort buildingSort;
 
     [SerializeField]
     private int buildingLevel;
@@ -83,10 +83,4 @@ public class Building : Stat
     {
         isClicked = false;
     }
-
-    protected override void Die()
-    {
-        transform.gameObject.SetActive(false);
-    }
-
 }

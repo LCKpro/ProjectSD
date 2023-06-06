@@ -16,6 +16,7 @@ public class CraftObject : MonoBehaviour
     //private GameObject _clickTrigger;
     private GameObject _buttonGroup;
     private NavigationMarker _marker;
+    private Transform _spawnPos;
 
     public float changeValue = 15f;
 
@@ -43,7 +44,7 @@ public class CraftObject : MonoBehaviour
     {
         var manager = GamePlay.Instance.craftingManager;
         _marker = manager.marker;
-        //_clickTrigger = manager.clickTrigger;
+        _spawnPos = manager.spawnPos;
         _buttonGroup = manager.buttonGroup;
     }
 
@@ -97,7 +98,10 @@ public class CraftObject : MonoBehaviour
         float z = Convert.ToSingle(defaultValueZ + truncateZ, CultureInfo.InvariantCulture);
 
         newPos = new Vector3(x, 0, z);
-        transform.position = _marker.transform.position = newPos;
+        //transform.position = _marker.transform.position = newPos;
+        transform.position = newPos;
+        _spawnPos.position = newPos;
+        SetMarkerPos(newPos);
     }
 
     // UI는 오브젝트랑 좌표가 다르므로 따로 처리
@@ -113,6 +117,13 @@ public class CraftObject : MonoBehaviour
         float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
 
         _buttonGroup.transform.position = new Vector3(x, y, 0);
+    }
+
+    private void SetMarkerPos(Vector3 targetPos)
+    {
+        var vec = GamePlay.Instance.playerManager.GetPlayer().transform.position - targetPos;
+
+        _marker.transform.position = targetPos + (vec.normalized * 3.5f);
     }
 
     private void OnMouseDrag()
