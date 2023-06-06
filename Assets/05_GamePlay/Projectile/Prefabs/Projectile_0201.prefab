@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4443964096871521123
+--- !u!1 &7532904239499508117
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4443964096871286595}
-  - component: {fileID: 4443964096872580963}
-  - component: {fileID: 4443964096873711011}
-  - component: {fileID: 4443964096871521149}
-  - component: {fileID: 3076351803846281713}
+  - component: {fileID: 6399473922696522209}
+  - component: {fileID: 5584638194138709165}
+  - component: {fileID: 8333413463756925008}
+  - component: {fileID: 555292472607654155}
+  - component: {fileID: 5768930707119675217}
+  - component: {fileID: 5418595207532551840}
   m_Layer: 0
-  m_Name: Building_DFS_00101
-  m_TagString: Breakable
+  m_Name: Projectile_0201
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4443964096871286595
+--- !u!4 &6399473922696522209
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443964096871521123}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_GameObject: {fileID: 7532904239499508117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4443964096872580963
+--- !u!33 &5584638194138709165
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443964096871521123}
-  m_Mesh: {fileID: 4300000, guid: 970a2b892dfd5d747b7f91abe90f3d9c, type: 3}
---- !u!23 &4443964096873711011
+  m_GameObject: {fileID: 7532904239499508117}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8333413463756925008
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443964096871521123}
+  m_GameObject: {fileID: 7532904239499508117}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5890bf67b291f3646b25893fc38d7b6a, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,35 +86,45 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4443964096871521149
-BoxCollider:
+--- !u!54 &555292472607654155
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443964096871521123}
+  m_GameObject: {fileID: 7532904239499508117}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &5768930707119675217
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532904239499508117}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3619466, y: 1.9114836, z: 1.4205213}
-  m_Center: {x: 0.00000023841858, y: -0.304466, z: 0.6055034}
---- !u!114 &3076351803846281713
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5418595207532551840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443964096871521123}
+  m_GameObject: {fileID: 7532904239499508117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e63aef3463b514dbd43570a6872648, type: 3}
+  m_Script: {fileID: 11500000, guid: 7479967aec4447b4bbf64eb8ef9ba4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idName: BarricadeLV1
-  healthValue: 100
-  damageValue: 0
-  defenseValue: 0
-  rangeValue: 0
-  moveSpeed: 0
-  craftType: 1
+  power: -1.5

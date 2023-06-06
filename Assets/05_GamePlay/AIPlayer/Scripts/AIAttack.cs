@@ -68,7 +68,7 @@ public partial class AIPlayer
             });
     }
 
-    public void RangeAttack(Collider other)
+    public void RangeAttack()
     {
         //StopAIController();     // 공격하는데 성공했으면 타이머 끄기
         //StopAlMove();  // 이동 멈추고

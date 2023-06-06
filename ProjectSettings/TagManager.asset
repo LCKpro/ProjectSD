@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Craft
   - Breakable
+  - AnimTag
+  - Monster
   layers:
   - Default
   - TransparentFX

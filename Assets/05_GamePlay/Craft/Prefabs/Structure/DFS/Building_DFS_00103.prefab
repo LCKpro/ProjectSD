@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8741342642282682051}
   - component: {fileID: 8741342642279782115}
   - component: {fileID: 8741342642280780835}
-  - component: {fileID: 8741342642282711776}
   - component: {fileID: 8741342642282711777}
+  - component: {fileID: 5164559879195975892}
   m_Layer: 0
   m_Name: Building_DFS_00103
   m_TagString: Breakable
@@ -85,25 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8741342642282711776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8741342642282711779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 490f3ef6c27235a44a3c2309a936c975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idName: BarricadeLV3
-  healthValue: 200
-  damageValue: 0
-  defenseValue: 0
-  rangeValue: 0
-  moveSpeed: 0
-  craftType: 1
 --- !u!65 &8741342642282711777
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,3 +98,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.481679, y: 2.3278806, z: 1.4928113}
   m_Center: {x: -0.00000011920928, y: -0.09985628, z: 0.63473326}
+--- !u!114 &5164559879195975892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8741342642282711779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e63aef3463b514dbd43570a6872648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idName: BarricadeLV3
+  healthValue: 200
+  damageValue: 0
+  defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
+  craftType: 1

@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 3356561302075201082}
   - component: {fileID: 3382183612145770478}
   - component: {fileID: 3371899959911354472}
-  - component: {fileID: 3357819195123608873}
   - component: {fileID: 3357819195123608872}
+  - component: {fileID: 7812446193801525288}
   m_Layer: 0
   m_Name: Building_DFS_00201
   m_TagString: Breakable
@@ -169,25 +169,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3357819195123608873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3357819195123608854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 490f3ef6c27235a44a3c2309a936c975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idName: Watchtower
-  healthValue: 150
-  damageValue: 0
-  defenseValue: 0
-  rangeValue: 0
-  moveSpeed: 0
-  craftType: 1
 --- !u!65 &3357819195123608872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -201,3 +182,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 309.1092, y: 506.4563, z: 355.2038}
   m_Center: {x: 0, y: 243.79471, z: 0}
+--- !u!114 &7812446193801525288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357819195123608854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e63aef3463b514dbd43570a6872648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idName: Watchtower
+  healthValue: 150
+  damageValue: 0
+  defenseValue: 0
+  rangeValue: 0
+  moveSpeed: 0
+  craftType: 1

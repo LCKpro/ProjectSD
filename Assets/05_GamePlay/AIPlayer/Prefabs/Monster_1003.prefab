@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 9170072265919622782}
   m_Layer: 0
   m_Name: Monster_1003
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,6 +359,7 @@ MonoBehaviour:
   defenseValue: 0
   rangeValue: 10
   moveSpeed: 0.45
+  atkSpeed: 0
   atkType: 1
   poolProjectileIndex: 0
   startPos: {fileID: 9173453475036705349}
