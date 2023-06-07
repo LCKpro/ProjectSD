@@ -28,6 +28,7 @@ public class UI_System : MonoBehaviour
     /// </summary>
     public void OnClick_StartCraftSystem()
     {
+        
         SetActiveFalse();
         btn_ATK.SetActive(true);
 
@@ -85,6 +86,7 @@ public class UI_System : MonoBehaviour
     // UI ¹Ù·Î ²ô±â 
     public void HideUIImmediately()
     {
+        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
         transform.gameObject.SetActive(false);
     }
 }

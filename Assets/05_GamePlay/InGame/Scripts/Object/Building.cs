@@ -64,7 +64,7 @@ public class Building : Stat
     {
         GameUtils.Log("Building", "Å¬¸¯µÊ");
 
-        if(isClicked == false)
+        if(isClicked == false && GamePlay.Instance.gameStateManager.CheckStateType(GameDefine.StateType.None) == true)
         {
             OnClick_ShowRoot();
         }
@@ -72,6 +72,8 @@ public class Building : Stat
 
     public void OnClick_ShowRoot()
     {
+        isClicked = true;
+        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.Explore);
         var popup = Core.Instance.uiPopUpManager.ShowAndGet<UI_PopUp_BuildingRoot>("UI_PopUp_BuildingRoot");
         popup.Init(_itemList);
     }
@@ -82,5 +84,6 @@ public class Building : Stat
     public void CloseRoot()
     {
         isClicked = false;
+        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
     }
 }

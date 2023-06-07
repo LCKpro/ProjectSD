@@ -162,6 +162,7 @@ public class CraftingManager : MonoBehaviour
     // 버튼 클릭. 건물 짓기. 캐릭터 움직이기 + 애니메이션은 액션으로 대체
     public void OnClick_ClickToCraft()
     {
+        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.Build);
         FinalizeCraft();    // UniRx 하고 다른 버튼들 다 끄기
         playerMoveAction.Execute();
     }

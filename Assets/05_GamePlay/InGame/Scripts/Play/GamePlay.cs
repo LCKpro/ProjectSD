@@ -57,10 +57,17 @@ public class GamePlay : MonoBehaviour
     public PoolManager[] poolManager_StructureArray;
     public PoolManager[] poolManager_IncompleteStructureArray;
 
+    public GameStateManager gameStateManager;
+
     #region ¹öÆ°
 
     public void OnClick_ShowCraftSystem()
     {
+        if(gameStateManager.CheckStateType(GameDefine.StateType.Build) == true)
+        {
+            return;
+        }
+
         ui_System.gameObject.SetActive(true);
         ui_System.OnClick_StartCraftSystem();
     }

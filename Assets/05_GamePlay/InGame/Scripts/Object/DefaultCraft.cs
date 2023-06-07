@@ -23,5 +23,7 @@ public class DefaultCraft : MonoBehaviour
         building.position = gamePlay.craftingManager.spawnPos.position;
 
         transform.gameObject.SetActive(false);
+
+        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
     }
 }

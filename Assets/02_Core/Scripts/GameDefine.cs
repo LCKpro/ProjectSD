@@ -1,8 +1,6 @@
 public static class GameDefine
 {
-    /// <summary>
     /// 몬스터 상태 타입
-    /// </summary>
     public enum AIStateType
     {
         Idle = 0,
@@ -15,9 +13,7 @@ public static class GameDefine
         None = 99,
     }
 
-    /// <summary>
     /// 몬스터 공격 타입
-    /// </summary>
     public enum AIAttackType
     {
         Melee = 0,
@@ -26,6 +22,7 @@ public static class GameDefine
         None = 99,
     }
 
+    /// 파밍 건물 종류
     public enum BuildingSort
     {
         Apartment = 0,
@@ -39,6 +36,7 @@ public static class GameDefine
         GunStore = 8,
     }
 
+    /// 건축 가능한 건물의 타입
     public enum CraftType
     {
         ATK = 0,
@@ -48,8 +46,11 @@ public static class GameDefine
         None = 99,
     }
 
+    /// 게임 상태 타입
     public enum StateType
     {
-
+        Build = 0,  // 건축 중일 때
+        Explore = 1,    // 건물 파밍 중일 때
+        None = 99,
     }
 }
