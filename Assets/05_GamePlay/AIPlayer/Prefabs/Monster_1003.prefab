@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29f27759080f7f4cb1878a188d6e59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idName: "\uC2DD\uCE7C\uACE0\uC591\uC774"
+  idName: Monster_1003
   healthValue: 70
   damageValue: 35
   defenseValue: 0

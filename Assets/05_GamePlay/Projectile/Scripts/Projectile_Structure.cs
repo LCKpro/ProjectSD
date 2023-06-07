@@ -5,9 +5,9 @@ using UniRx;
 public class Projectile_Structure : MonoBehaviour
 {
     public float power;
+    public string idName;
 
     private IDisposable _atkController = Disposable.Empty;
-    private Rigidbody _rigid;
     private AI_Structure ai_Structure;
 
     // 공격하는데 성공했으면 타이머 끄기
@@ -17,27 +17,24 @@ public class Projectile_Structure : MonoBehaviour
         _atkController = Disposable.Empty;
     }
 
-    public void ReadyAndShot(AI_Structure structure, GameObject target, float speed)
+    public void ReadyAndShot(AI_Structure structure, GameObject target)
     {
         ai_Structure = structure;
-        _rigid = GetComponent<Rigidbody>();
-
-        _rigid.AddForce(target.transform.position * power, ForceMode.Impulse);
 
         _atkController = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                this.transform.position = Vector3.Slerp(transform.position, target.transform.position, Time.deltaTime);
-            });
-    }
+                Vector3 startPos = transform.position;
+                Vector3 endPos = target.transform.position;
+                Vector3 center = (startPos + target.transform.position) * 0.5f;
+                center -= new Vector3(0, 10, 0);
+                startPos = startPos - center;
+                endPos = endPos - center;
 
-    public void RangeAttackStart(Collider other)
-    {
-        _atkController = Observable.EveryUpdate().TakeUntilDisable(gameObject)
-            .TakeUntilDestroy(gameObject)
-            .Subscribe(_ =>
-            {
+                transform.position = Vector3.Slerp(startPos, endPos, 0.05f);
+                //transform.position = Vector3.Slerp(transform.position, target.transform.position, 0.05f);
+                transform.position += center;
             });
     }
 
@@ -46,7 +43,7 @@ public class Projectile_Structure : MonoBehaviour
         if (other.tag == "Monster")
         {
             ai_Structure.DealDamage(other.gameObject);
-            GamePlay.Instance.spawnManager.ReturnProjectilePool(this.transform);
+            GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
             StopAttack();
         }
     }

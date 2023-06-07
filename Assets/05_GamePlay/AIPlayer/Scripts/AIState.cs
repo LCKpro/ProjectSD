@@ -177,9 +177,17 @@ public partial class AIPlayer : IPoolObject
     protected override void Die()
     {
         anim.SetInteger("animation", 6);   // 6 or 7
-        Invoke("ReturnToPool", 2);
+        Invoke("ReturnToPool", 1);
         // 몬스터의 경우 풀에 다시 넣어주는 로직 필요.
         // 건물 역시 마찬가지로 넣어주기
+    }
+
+    /// <summary>
+    /// Invoke용 함수! 삭제x
+    /// </summary>
+    public void ReturnToPool()
+    {
+        GamePlay.Instance.spawnManager.ReturnPool(this);
     }
 
     private void OnCollisionEnter(Collision collision)

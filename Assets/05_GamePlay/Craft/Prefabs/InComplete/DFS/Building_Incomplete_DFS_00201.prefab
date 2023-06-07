@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6384396500657875687}
   - component: {fileID: -5531325515366393035}
   m_Layer: 0
-  m_Name: Building_DFS_00201
+  m_Name: Building_Incomplete_DFS_00201
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

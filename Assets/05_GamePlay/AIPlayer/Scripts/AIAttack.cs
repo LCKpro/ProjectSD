@@ -4,7 +4,7 @@ using System;
 
 public partial class AIPlayer
 {
-    public GameDefine.AttackType atkType;
+    public GameDefine.AIAttackType atkType;
 
     #region 원거리 공격 전용 인스펙터
 

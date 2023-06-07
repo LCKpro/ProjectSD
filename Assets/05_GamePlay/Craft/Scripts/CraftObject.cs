@@ -6,8 +6,6 @@ using GameCreator.Characters;
 
 public class CraftObject : MonoBehaviour
 {
-    // 현재 크래프팅 모드가 켜져있는지?
-    public bool isOn;
     private IDisposable craftingModeTimer = Disposable.Empty;
 
     private Vector3 craftVector = Vector3.zero;

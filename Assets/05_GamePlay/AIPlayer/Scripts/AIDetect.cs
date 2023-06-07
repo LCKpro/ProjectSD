@@ -13,15 +13,15 @@ public class AIDetect : MonoBehaviour
             return;
         }
 
-        if (state.atkType == GameDefine.AttackType.Melee)
+        if (state.atkType == GameDefine.AIAttackType.Melee)
         {
             state.MeleeAttackStart(other);
         }
-        else if (state.atkType == GameDefine.AttackType.Range)
+        else if (state.atkType == GameDefine.AIAttackType.Range)
         {
             state.RangeAttackStart(other);
         }
-        else if (state.atkType == GameDefine.AttackType.Suicide)
+        else if (state.atkType == GameDefine.AIAttackType.Suicide)
         {
             state.SuicideAttackStart();
         }

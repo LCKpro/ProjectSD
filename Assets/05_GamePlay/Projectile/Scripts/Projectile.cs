@@ -3,6 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private AIPlayer player;
+    public string idName;
 
     public void SetPlayer(AIPlayer aiPlayer)
     {
@@ -14,7 +15,7 @@ public class Projectile : MonoBehaviour
         if(other.tag == "Breakable")
         {
             player.DealDamage(other.gameObject);
-            GamePlay.Instance.spawnManager.ReturnProjectilePool(this.transform);
+            GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
         }
     }
 }

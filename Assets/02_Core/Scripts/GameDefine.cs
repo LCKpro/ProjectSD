@@ -1,5 +1,8 @@
 public static class GameDefine
 {
+    /// <summary>
+    /// 몬스터 상태 타입
+    /// </summary>
     public enum AIStateType
     {
         Idle = 0,
@@ -12,7 +15,10 @@ public static class GameDefine
         None = 99,
     }
 
-    public enum AttackType
+    /// <summary>
+    /// 몬스터 공격 타입
+    /// </summary>
+    public enum AIAttackType
     {
         Melee = 0,
         Range = 1,
@@ -40,5 +46,10 @@ public static class GameDefine
         PD = 2,
         OA = 3,
         None = 99,
+    }
+
+    public enum StateType
+    {
+
     }
 }

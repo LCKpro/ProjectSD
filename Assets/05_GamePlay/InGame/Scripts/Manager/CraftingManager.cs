@@ -182,7 +182,7 @@ public class CraftingManager : MonoBehaviour
     {
         _buildingCode = code;
         
-        preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(0).gameObject;
+        //preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(0).gameObject;
 
         // 플레이어 앞에 설치하기 위한 준비
         Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;

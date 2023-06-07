@@ -5,8 +5,6 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     private PoolManager poolManager_Monster;
-    private PoolManager poolManager_Structure;
-    private PoolManager poolManager_IncompleteStructure;
 
     private PoolManager[] poolManager_Structure_Array;
     private PoolManager[] poolManager_IncompleteStructure_Array;
@@ -19,8 +17,6 @@ public class SpawnManager : MonoBehaviour
     {
         var manager = GamePlay.Instance;
         poolManager_Monster = manager.poolManager_Monster;
-        poolManager_Structure = manager.poolManager_Structure;
-        poolManager_IncompleteStructure = manager.poolManager_IncompleteStructure;
         poolManager_Projectile = manager.poolManager_Projectile;
 
         poolManager_Structure_Array = manager.poolManager_StructureArray;
@@ -40,23 +36,9 @@ public class SpawnManager : MonoBehaviour
         //poolManager_Monster.GetFromPool<AIPlayer>(0);
     }
 
-    public Transform SpawnStructure(int index)
-    {
-        Transform newObj = poolManager_Structure.GetFromPool<Transform>(index);
-
-        return newObj;
-    }
-
     public Transform SpawnStructure(int structIndex, int index)
     {
         Transform newObj = poolManager_Structure_Array[structIndex].GetFromPool<Transform>(index);
-
-        return newObj;
-    }
-
-    public Transform SpawnIncompleteStructure(int index)
-    {
-        Transform newObj = poolManager_IncompleteStructure.GetFromPool<Transform>(index);
 
         return newObj;
     }
@@ -74,8 +56,8 @@ public class SpawnManager : MonoBehaviour
         poolManager_Monster.TakeToPool<AIPlayer>(clone.idName, clone);
     }
 
-    public void ReturnProjectilePool(Transform clone)
+    public void ReturnProjectilePool(string idName, Transform clone)
     {
-        poolManager_Projectile.TakeToPool<Transform>(clone);
+        poolManager_Projectile.TakeToPool<Transform>(idName, clone);
     }
 }

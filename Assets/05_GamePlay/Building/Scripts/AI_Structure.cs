@@ -10,6 +10,10 @@ public partial class AI_Structure : Stat
     public Animator anim;
     public NavigationMarker marker;
     public Actions lookAtAction;
+    public int poolProjectileIndex;
+    // 원거리 투사체 출발 위치
+    public Transform startPos;
+
 
     // 공격하는데 성공했으면 타이머 끄기
     private void StopAttack()
@@ -17,11 +21,6 @@ public partial class AI_Structure : Stat
         _atkController.Dispose();
         _atkController = Disposable.Empty;
     }
-
-    public int poolProjectileIndex;
-    // 원거리 투사체 출발 위치
-    public Transform startPos;
-
 
     private GameObject targetObj = null;
 
@@ -53,10 +52,9 @@ public partial class AI_Structure : Stat
 
     public void RangeAttack()
     {
-        var projectile = GamePlay.Instance.poolManager_Projectile.GetFromPool<Transform>(poolProjectileIndex);
+        var projectile = GamePlay.Instance.poolManager_Projectile.GetFromPool<Transform>("P0201");
 
         projectile.position = startPos.position;
-        projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj, atkSpeed);
-        //projectile.GetComponent<Rigidbody>().velocity = (targetObj.transform.position - projectile.position) * atkSpeed;
+        projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
     }
 }
