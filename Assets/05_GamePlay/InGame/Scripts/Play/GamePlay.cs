@@ -58,6 +58,7 @@ public class GamePlay : MonoBehaviour
     public PoolManager[] poolManager_IncompleteStructureArray;
 
     public GameStateManager gameStateManager;
+    public SkillManager skillManager;
 
     #region ¹öÆ°
 

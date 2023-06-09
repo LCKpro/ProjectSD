@@ -1355,6 +1355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idName: Monster_1004
+  maxHealthValue: 50
   healthValue: 50
   damageValue: 100
   defenseValue: 0

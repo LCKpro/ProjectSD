@@ -111,9 +111,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idName: BarricadeLV4
+  maxHealthValue: 250
   healthValue: 250
   damageValue: 0
   defenseValue: 0
   rangeValue: 0
   moveSpeed: 0
+  atkSpeed: 0
+  anim: {fileID: 0}
+  marker: {fileID: 0}
+  lookAtAction: {fileID: 0}
+  poolProjectileIndex: 0
+  startPos: {fileID: 0}
   craftType: 1

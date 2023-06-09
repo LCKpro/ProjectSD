@@ -3,6 +3,7 @@ using UnityEngine;
 public class Stat : MonoBehaviour
 {
     public string idName;
+    public float maxHealthValue = 0f;
     public float healthValue = 0f;
     public float damageValue = 0f;
     public float defenseValue = 0f;

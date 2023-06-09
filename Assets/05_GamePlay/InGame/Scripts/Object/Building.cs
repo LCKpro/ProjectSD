@@ -52,12 +52,6 @@ public class Building : Stat
                 _itemList.Add(itemUuid, rndItemCount);
             }
         }
-
-        /*foreach (var item in _itemList)
-        {
-            Debug.Log("Key : " + item.Key);
-            Debug.Log("Value : " + item.Value);
-        }*/
     }
 
     private void OnMouseDown()

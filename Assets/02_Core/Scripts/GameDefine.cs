@@ -53,4 +53,20 @@ public static class GameDefine
         Explore = 1,    // 건물 파밍 중일 때
         None = 99,
     }
+
+    /// 아치 상태 타입
+    public enum Unit0001StateType
+    {
+        None = 0,
+        Detect = 1,
+        MoveToRepair = 2,
+        Repair = 3,
+    }
+
+    public enum SkillStateType
+    {
+        Player0001Skill = 1,   // 아치 스킬 발동. 건물 클릭시 
+
+        None = 99,
+    }
 }

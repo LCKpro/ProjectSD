@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idName: Building_ATK_00201
+  maxHealthValue: 100
   healthValue: 100
   damageValue: 75
   defenseValue: 0
