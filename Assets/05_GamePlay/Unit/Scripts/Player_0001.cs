@@ -53,10 +53,10 @@ public class Player_0001 : Stat
 
     private void CheckRepair()
     {
-        Debug.Log("CheckRepair");
+        //Debug.Log("CheckRepair");
         Collider[] hitCol = Physics.OverlapSphere(transform.position, detectRange);
 
-        Debug.Log("HitCol : " + hitCol.Length);
+        //Debug.Log("HitCol : " + hitCol.Length);
 
         float minHPRaet = 1f;
         AI_Structure structure = null;
@@ -64,12 +64,12 @@ public class Player_0001 : Stat
 
         for (int i = 0; i < hitCol.Length; i++)
         {
-            Debug.Log("ColName : " + hitCol[i].name);
+            //Debug.Log("ColName : " + hitCol[i].name);
             if (hitCol[i].gameObject.CompareTag("Breakable") == true)
             {
                 var aiStructure = hitCol[i].GetComponentInParent<AI_Structure>();
                 var rate = aiStructure.GetStructureHpRate();
-                Debug.Log("Rate : " + rate);
+                //Debug.Log("Rate : " + rate);
 
                 if (minHPRaet > rate)
                 {
@@ -82,7 +82,7 @@ public class Player_0001 : Stat
 
         if(isCheck == true)
         {
-            Debug.Log("CheckRepair Check OK");
+            //Debug.Log("CheckRepair Check OK");
             stateType = GameDefine.Unit0001StateType.MoveToRepair;
             targetPos = structure.transform.position;
             var vec = transform.position - targetPos;
@@ -112,7 +112,7 @@ public class Player_0001 : Stat
 
     public void Skill_Repair()
     {
-        Debug.Log("Skill_Repair");
+        //Debug.Log("Skill_Repair");
         StopMove();
         anim.SetInteger("animation", 28);    // 달리기 애니메이션
         _target.RepairStructure(repairTime, this);
@@ -123,13 +123,15 @@ public class Player_0001 : Stat
     /// </summary>
     public void ChangeStateToIdle()
     {
-        Debug.Log("ChangeStateToIdle");
+        //Debug.Log("ChangeStateToIdle");
         anim.SetInteger("animation", 1);      // Idle 1
         stateType = GameDefine.Unit0001StateType.None;
     }
 
     public void ActiveSkill0001(AI_Structure obj)
     {
+        StopMove();
+        StopPlayer();
         stateType = GameDefine.Unit0001StateType.MoveToRepair;
         targetPos = obj.transform.position;
         var vec = transform.position - targetPos;
@@ -141,16 +143,5 @@ public class Player_0001 : Stat
         nav.SetDestination(targetPos);
         MoveTimerStart();
         Invoke("Skill_Repair", 1.2f);
-    }
-
-    public void OnClick_Skill0001()
-    {
-        GamePlay.Instance.gameStateManager.SetSkillStateType(GameDefine.SkillStateType.Player0001Skill);
-        GamePlay.Instance.skillManager.ReadySkill0001(this);
-    }
-
-    public void DeActive_Skill0001()
-    {
-        GamePlay.Instance.gameStateManager.SetSkillStateType(GameDefine.SkillStateType.None);
     }
 }

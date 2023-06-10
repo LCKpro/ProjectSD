@@ -9,6 +9,8 @@ public partial class AI_Structure
     public Animator repairAnim;
     public TextMeshProUGUI repairTxt;
 
+    public GameObject btn_Repair;
+
     /// <summary>
     /// 현재 체력 퍼센트를 보여주는 UI 등장/숨김
     /// </summary>
@@ -67,4 +69,32 @@ public partial class AI_Structure
         return healthValue / maxHealthValue;
     }
 
+    private bool isClick = false;
+    /// <summary>
+    /// 일단 스킬 사용 확인 후 건물을 클릭했을 때 -> 수리버튼이 등장하도록
+    /// </summary>
+    public void OnClick_Skill0001_CheckStructure()
+    {
+        if (isClick == false)    // 처음 클릭한거면 
+        {
+            GamePlay.Instance.skillManager.SetTargetStructure(this);
+        }
+        else
+        {
+            GamePlay.Instance.skillManager.DeActive_Skill0001();
+        }
+    }
+
+
+    private void OnMouseDown()
+    {
+        Debug.Log("클릭 감지");
+
+        if (GamePlay.Instance.gameStateManager.CheckSkillStateType(GameDefine.SkillStateType.Player0001Skill) == false)
+        {
+            return;
+        }
+
+        OnClick_Skill0001_CheckStructure();
+    }
 }

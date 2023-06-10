@@ -59,6 +59,7 @@ public class GamePlay : MonoBehaviour
 
     public GameStateManager gameStateManager;
     public SkillManager skillManager;
+    public UnitManager unitManager;
 
     #region ¹öÆ°
 
