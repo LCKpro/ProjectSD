@@ -154,6 +154,7 @@ public partial class AIPlayer : IPoolObject
 
         if(attacker != null)
         {
+            Debug.Log("몬스터 데미지 받음");
             KnockBack(attacker);
         }
 
@@ -169,13 +170,38 @@ public partial class AIPlayer : IPoolObject
     private void KnockBack(GameObject target)
     {
         var vec = this.transform.position - target.transform.position;
-        _rigid.AddForce(vec * 2, ForceMode.Impulse);
+        transform.GetComponent<Rigidbody>().AddForce(vec * 3, ForceMode.Impulse);
+        anim.SetInteger("animation", 3);
+        Invoke("ChangeAnim", 1.5f);
+    }
+
+    public void ChangeAnim()
+    {
+        int state = 1;
+
+        if(_stateType == GameDefine.AIStateType.Idle ||
+           _stateType == GameDefine.AIStateType.None)
+        {
+            state = 1;
+        }
+        else if(_stateType == GameDefine.AIStateType.Attack)
+        {
+            state = 6;
+        }
+        else if (_stateType == GameDefine.AIStateType.Chase_CatTower ||
+                 _stateType == GameDefine.AIStateType.Chase_Attacker)
+        {
+            state = 15;
+        }
+
+        anim.SetInteger("animation", state);
     }
 
     #endregion
 
     protected override void Die()
     {
+        _stateType = GameDefine.AIStateType.Die;
         anim.SetInteger("animation", 6);   // 6 or 7
         Invoke("ReturnToPool", 1);
         // 몬스터의 경우 풀에 다시 넣어주는 로직 필요.

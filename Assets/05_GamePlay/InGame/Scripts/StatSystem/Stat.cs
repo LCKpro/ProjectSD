@@ -18,7 +18,7 @@ public class Stat : MonoBehaviour
     public virtual void DealDamage(GameObject target)
     {
         Debug.Log(target.name + "에게 " + transform.name + "이(가) 데미지 줌");
-        target.GetComponent<Stat>().TakeDamage(damageValue);
+        target.GetComponent<Stat>().TakeDamage(damageValue, transform.gameObject);
     }
 
     /// <summary>

@@ -5541,6 +5541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player0001: {fileID: 5485556108338998867}
+  player0002: {fileID: 745399454}
 --- !u!1 &511111579
 GameObject:
   m_ObjectHideFlags: 0
@@ -8574,6 +8575,17 @@ Transform:
   m_Father: {fileID: 1335485748}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &745399454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3179328636783840231, guid: ef1e8f09dac098948940a9ceaa67f455, type: 3}
+  m_PrefabInstance: {fileID: 7742381941472306096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6e2ba7f2a022d4c929f65ddd0b6026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &746730302
 GameObject:
   m_ObjectHideFlags: 0
@@ -20431,7 +20443,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863845743}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ca6f644ddf68c56409c93cd8fa0c3df4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4

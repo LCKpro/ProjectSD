@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    #region 1001
+
     private Player_0001 player0001;
     private AI_Structure targetStructure;
     public GameObject btn_Skill;
@@ -15,7 +17,7 @@ public class SkillManager : MonoBehaviour
     {
         Debug.Log("1001");
         GamePlay.Instance.gameStateManager.SetSkillStateType(GameDefine.SkillStateType.Player0001Skill);
-        GamePlay.Instance.skillManager.ReadySkill0001(GamePlay.Instance.unitManager.player0001);
+        ReadySkill0001(GamePlay.Instance.unitManager.player0001);
     }
 
     /// <summary>
@@ -72,4 +74,19 @@ public class SkillManager : MonoBehaviour
             Debug.Log("스킬 버그");
         }
     }
+
+    #endregion
+
+    #region 1002
+
+    /// <summary>
+    /// 처음에 좌측 유닛 스킬 버튼 누르면 작동하는 온클릭 버튼 함수
+    /// </summary>
+    public void OnClick_Skill0002()
+    {
+        Debug.Log("1002");
+        GamePlay.Instance.unitManager.player0002.skill1002.SkillAttackStart();
+    }
+
+    #endregion
 }

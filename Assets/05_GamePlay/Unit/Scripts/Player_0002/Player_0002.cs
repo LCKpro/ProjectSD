@@ -11,9 +11,12 @@ public class Player_0002 : Stat
     public NavMeshAgent nav;
     public float detectRange;   // 공격 감지 범위
     public Animator anim;
-    public GameObject waterShot;
+    public NormalAttack_0002 waterShot;
+    public SkillAttack_0002 skill1002;
     private Vector3 targetPos;
     private GameObject _target = null;
+
+    private bool _isSkill = false;
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class Player_0002 : Stat
     public void DetectEnemyStart()
     {
         Debug.Log("DetectEnemyStart");
+        _isSkill = false;
         StopPlayer();     // 타이머 일시 종료
         _atkTimer = Observable.Interval(TimeSpan.FromSeconds(2f)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
@@ -44,16 +48,16 @@ public class Player_0002 : Stat
             });
     }
 
-    private void MoveTimerStart()
+    public void DetectEnemyStart_Skill()
     {
-        StopMove();
-        transform.LookAt(targetPos);
-        Debug.Log("MoveTimerStart");
-        _moveTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
+        Debug.Log("DetectEnemyStart_Skill");
+        _isSkill = true;
+        StopPlayer();     // 타이머 일시 종료
+        _atkTimer = Observable.Interval(TimeSpan.FromSeconds(2f)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.5f);
+                ChaseEnemy();
             });
     }
 
@@ -105,13 +109,22 @@ public class Player_0002 : Stat
         if (_target.gameObject.activeSelf == true)
         {
             anim.SetInteger("animation", 51);    // 달리기 애니메이션
-            //transform.LookAt(targetPos);
-            waterShot.SetActive(true);
+            transform.LookAt(targetPos);
+
+            if(_isSkill == true)
+            {
+                waterShot.AttackStart();
+            }
+            else
+            {
+                skill1002.SkillAttackStart();
+            }
+
+            Invoke("Skill_WaterShot", 1.2f);
         }
         else
         {
             DetectEnemyStart();
         }
     }
-
 }
