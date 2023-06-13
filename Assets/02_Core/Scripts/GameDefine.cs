@@ -69,4 +69,13 @@ public static class GameDefine
 
         None = 99,
     }
+
+    // CC(Crowd Control) е╦ют
+    public enum CCType
+    {
+        Slow = 0,
+        Stun = 1,
+
+        None = 99,
+    }
 }

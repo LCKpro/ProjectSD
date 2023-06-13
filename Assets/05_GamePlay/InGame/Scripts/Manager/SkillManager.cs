@@ -85,7 +85,20 @@ public class SkillManager : MonoBehaviour
     public void OnClick_Skill0002()
     {
         Debug.Log("1002");
-        GamePlay.Instance.unitManager.player0002.skill1002.SkillAttackStart();
+        GamePlay.Instance.unitManager.player0002.SetSkill();
+    }
+
+    #endregion
+
+    #region 1003
+
+    public NormalAttack_0003 normalAtk_1003;
+    public SkillAttack_0003 skillAtk_1003;
+
+    public void OnClick_Skill0003()
+    {
+        Debug.Log("1002");
+        GamePlay.Instance.unitManager.player0003.SetSkill();
     }
 
     #endregion

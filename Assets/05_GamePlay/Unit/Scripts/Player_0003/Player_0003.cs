@@ -3,16 +3,16 @@ using UniRx;
 using System;
 using UnityEngine.AI;
 
-public class Player_0002 : Stat
+public class Player_0003 : Stat
 {
     private IDisposable _atkTimer = Disposable.Empty;
     private IDisposable _moveTimer = Disposable.Empty;
 
     public NavMeshAgent nav;
     public float detectRange;   // 공격 감지 범위
-    public Animator anim;
-    public NormalAttack_0002 waterShot;
-    public SkillAttack_0002 skill1002;
+    public Animator anim;   
+    private NormalAttack_0003 normal1003;
+    private SkillAttack_0003 skill1003;
     private Vector3 targetPos;
     private GameObject _target = null;
 
@@ -20,6 +20,8 @@ public class Player_0002 : Stat
 
     private void Start()
     {
+        normal1003 = GamePlay.Instance.skillManager.normalAtk_1003;
+        skill1003 = GamePlay.Instance.skillManager.skillAtk_1003;
         DetectEnemyStart();
     }
 
@@ -44,6 +46,7 @@ public class Player_0002 : Stat
     {
         Debug.Log("DetectEnemyStart");
         _isSkill = false;
+        anim.SetInteger("animation", 1);    // Idle 애니메이션
         StopPlayer();     // 타이머 일시 종료
         _atkTimer = Observable.Interval(TimeSpan.FromSeconds(1f)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
@@ -57,8 +60,9 @@ public class Player_0002 : Stat
     {
         Debug.Log("DetectEnemyStart_Skill");
         _isSkill = true;
+        anim.SetInteger("animation", 1);    // Idle 애니메이션
         StopPlayer();     // 타이머 일시 종료
-        _atkTimer = Observable.Interval(TimeSpan.FromSeconds(2f)).TakeUntilDisable(gameObject)
+        _atkTimer = Observable.Interval(TimeSpan.FromSeconds(0.5f)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
@@ -94,7 +98,7 @@ public class Player_0002 : Stat
             targetPos = _target.transform.position;
             var vec = transform.position - targetPos;
 
-            if(Vector3.Distance(transform.position, targetPos) > 13.5f)
+            if (Vector3.Distance(transform.position, targetPos) > 13.5f)
             {
                 var pos = targetPos + (vec.normalized * 13.5f);    // 13.5f 는 사정거리 더미수치. 이거 수정해야 함
                 nav.SetDestination(pos);
@@ -104,31 +108,47 @@ public class Player_0002 : Stat
             {
                 transform.LookAt(targetPos);
             }
-            Invoke("UnitAtk_0002", 1.2f);
+            Invoke("UnitAtk_0003", 1.2f);
         }
     }
-    public void UnitAtk_0002()
+
+    private AIPlayer monster = null;
+    public void UnitAtk_0003()
     {
-        Debug.Log("UnitAtk_0002");
-        StopMove();
-        if (_target.gameObject.activeSelf == true)
+        Debug.Log("UnitAtk_0003");
+
+        if(monster == null)
         {
-            anim.SetInteger("animation", 51);    // 조준 애니메이션
+            monster = _target.GetComponent<AIPlayer>();
+        }
+
+        StopMove();
+        Debug.Log(monster.GetStateType());
+        if (monster.GetStateType() != GameDefine.AIStateType.Die)
+        {
+            anim.SetInteger("animation", 50);    // 점프 애니메이션
             transform.LookAt(targetPos);
 
-            if(_isSkill == false)
+            if (_isSkill == false)
             {
-                waterShot.AttackStart();
+                normal1003.transform.position = targetPos + new Vector3(0, 5, 0);
+                normal1003.SpawnCloud();
+                DealCrowdControl(_target, GameDefine.CCType.Slow, 1.5f, 0.2f);
+                DealDamage(_target);
 
-                Invoke("UnitAtk_0002", 1.2f);
+                Invoke("UnitAtk_0003", 1.2f);
             }
             else
             {
-                skill1002.SkillAttackStart();
+                skill1003.transform.position = targetPos + new Vector3(0, -5, 0);
+                skill1003.SkillAttackStart();
+                _isSkill = false;
+                Invoke("UnitAtk_0003", 2.7f);
             }
         }
         else
         {
+            monster = null;
             DetectEnemyStart();
         }
     }

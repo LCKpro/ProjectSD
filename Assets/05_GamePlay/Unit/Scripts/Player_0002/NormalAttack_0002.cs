@@ -41,7 +41,7 @@ public class NormalAttack_0002 : Stat
 
         if(other.gameObject.CompareTag("Monster") == true)
         {
-            DealDamage(other.gameObject);
+            DealDamage(other.gameObject, 2f);
             isHit = true;
         }
     }

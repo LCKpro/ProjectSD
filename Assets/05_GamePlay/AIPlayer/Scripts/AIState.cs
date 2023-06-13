@@ -13,11 +13,18 @@ public partial class AIPlayer : IPoolObject
 
     private GameDefine.AIStateType _stateType = GameDefine.AIStateType.None;
 
+    private float finalMoveSpeed = 0f;
+
     public Animator anim;
 
     public void SetStateType(GameDefine.AIStateType type)
     {
         _stateType = type;
+    }
+
+    public GameDefine.AIStateType GetStateType()
+    {
+        return _stateType;
     }
 
     public void OnCreatedInPool()
@@ -67,19 +74,6 @@ public partial class AIPlayer : IPoolObject
         transform.LookAt(_target);
     }
 
-    private void AIMove()
-    {
-        //_ai.SetDestination(_target.position);
-        
-        _rigid.velocity = Vector3.zero;
-        if (_target != null)
-        {
-            _rigid.velocity = (_target.position - this.transform.position) * moveSpeed;
-        }
-        else
-            Debug.Log("타겟 NULL");
-    }
-
     #region UniRx Start
 
     private void AIControllerStart()
@@ -88,6 +82,7 @@ public partial class AIPlayer : IPoolObject
         StopAIController();
         StopAlMove();
         anim.SetInteger("animation", 15);
+        finalMoveSpeed = moveSpeed;
         _stateController = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
@@ -108,6 +103,19 @@ public partial class AIPlayer : IPoolObject
             });
     }
 
+    private void AIMove()
+    {
+        //_ai.SetDestination(_target.position);
+
+        _rigid.velocity = Vector3.zero;
+        if (_target != null)
+        {
+            _rigid.velocity = (_target.position - this.transform.position) * finalMoveSpeed;
+        }
+        else
+            Debug.Log("타겟 NULL");
+    }
+
     #endregion
 
     #region UniRx Finalize
@@ -121,7 +129,8 @@ public partial class AIPlayer : IPoolObject
     /// 이동 멈추기
     private void StopAlMove()
     {
-        _rigid.velocity = Vector3.zero;
+        if (_rigid != null)
+            _rigid.velocity = Vector3.zero;
         //_ai.isStopped = true;
         //_ai.velocity = Vector3.zero;
     }
@@ -142,20 +151,30 @@ public partial class AIPlayer : IPoolObject
 
     #region 데미지 관련
 
-    public override void DealDamage(GameObject target)
+    public override void DealDamage(GameObject target, float power = 0f)
     {
         base.DealDamage(target);
 
     }
 
-    public override void TakeDamage(float damage, GameObject attacker = null)
+    public override void TakeDamage(float damage, GameObject attacker = null, float power = 0f)
     {
         base.TakeDamage(damage);
 
-        if(attacker != null)
+        /*if(attacker != null)
         {
             Debug.Log("몬스터 데미지 받음");
             KnockBack(attacker);
+        }*/
+
+        if(_stateType == GameDefine.AIStateType.Die)
+        {
+            return;
+        }
+
+        if (power > 1f)
+        {
+            KnockBack(attacker, power);
         }
 
         // 공격자가 있으면(유닛이던 건물이던) 그쪽을 먼저 추격
@@ -167,10 +186,10 @@ public partial class AIPlayer : IPoolObject
         }
     }
 
-    private void KnockBack(GameObject target)
+    private void KnockBack(GameObject target, float power)
     {
         var vec = this.transform.position - target.transform.position;
-        transform.GetComponent<Rigidbody>().AddForce(vec * 3, ForceMode.Impulse);
+        transform.GetComponent<Rigidbody>().AddForce(vec * power, ForceMode.Impulse);
         anim.SetInteger("animation", 3);
         Invoke("ChangeAnim", 1.5f);
     }
@@ -179,12 +198,12 @@ public partial class AIPlayer : IPoolObject
     {
         int state = 1;
 
-        if(_stateType == GameDefine.AIStateType.Idle ||
+        if (_stateType == GameDefine.AIStateType.Idle ||
            _stateType == GameDefine.AIStateType.None)
         {
             state = 1;
         }
-        else if(_stateType == GameDefine.AIStateType.Attack)
+        else if (_stateType == GameDefine.AIStateType.Attack)
         {
             state = 6;
         }
@@ -204,8 +223,14 @@ public partial class AIPlayer : IPoolObject
         _stateType = GameDefine.AIStateType.Die;
         anim.SetInteger("animation", 6);   // 6 or 7
         Invoke("ReturnToPool", 1);
+        //Invoke("DieAI", 1);
         // 몬스터의 경우 풀에 다시 넣어주는 로직 필요.
         // 건물 역시 마찬가지로 넣어주기
+    }
+
+    public void DieAI()
+    {
+        transform.gameObject.SetActive(false);
     }
 
     /// <summary>
