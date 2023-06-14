@@ -107,11 +107,20 @@ public class Player_0002 : Stat
             Invoke("UnitAtk_0002", 1.2f);
         }
     }
+
+    private AIPlayer monster = null;
     public void UnitAtk_0002()
     {
         Debug.Log("UnitAtk_0002");
+
+        if (monster == null)
+        {
+            monster = _target.GetComponent<AIPlayer>();
+        }
+
         StopMove();
-        if (_target.gameObject.activeSelf == true)
+
+        if (CheckMonsterDie(monster) == false)
         {
             anim.SetInteger("animation", 51);    // 조준 애니메이션
             transform.LookAt(targetPos);
@@ -120,16 +129,39 @@ public class Player_0002 : Stat
             {
                 waterShot.AttackStart();
 
+                if (CheckMonsterDie(monster) == false)
+                    Invoke("UnitAtk_0002", 1.2f);
+                else
+                {
+                    monster = null;
+                    DetectEnemyStart();
+                }
+
                 Invoke("UnitAtk_0002", 1.2f);
             }
             else
             {
                 skill1002.SkillAttackStart();
+
+                _isSkill = false;
+
+                if (CheckMonsterDie(monster) == false)
+                    Invoke("UnitAtk_0002", 2.7f);
+                else
+                {
+                    monster = null;
+                    DetectEnemyStart();
+                }
             }
         }
         else
         {
             DetectEnemyStart();
         }
+    }
+
+    private bool CheckMonsterDie(AIPlayer monster)
+    {
+        return monster.GetStateType() == GameDefine.AIStateType.Die;
     }
 }

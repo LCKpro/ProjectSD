@@ -123,8 +123,7 @@ public class Player_0003 : Stat
         }
 
         StopMove();
-        Debug.Log(monster.GetStateType());
-        if (monster.GetStateType() != GameDefine.AIStateType.Die)
+        if (CheckMonsterDie(monster) == false)
         {
             anim.SetInteger("animation", 50);    // 점프 애니메이션
             transform.LookAt(targetPos);
@@ -136,14 +135,27 @@ public class Player_0003 : Stat
                 DealCrowdControl(_target, GameDefine.CCType.Slow, 1.5f, 0.2f);
                 DealDamage(_target);
 
-                Invoke("UnitAtk_0003", 1.2f);
+                if (CheckMonsterDie(monster) == false)
+                    Invoke("UnitAtk_0003", 1.2f);
+                else
+                {
+                    monster = null;
+                    DetectEnemyStart();
+                }
             }
             else
             {
                 skill1003.transform.position = targetPos + new Vector3(0, -5, 0);
                 skill1003.SkillAttackStart();
                 _isSkill = false;
-                Invoke("UnitAtk_0003", 2.7f);
+
+                if (CheckMonsterDie(monster) == false)
+                    Invoke("UnitAtk_0003", 2.7f);
+                else
+                {
+                    monster = null;
+                    DetectEnemyStart();
+                }
             }
         }
         else
@@ -151,5 +163,15 @@ public class Player_0003 : Stat
             monster = null;
             DetectEnemyStart();
         }
+    }
+
+    /// <summary>
+    /// true = 죽음  false = 안죽음
+    /// </summary>
+    /// <param name="monster"></param>
+    /// <returns></returns>
+    private bool CheckMonsterDie(AIPlayer monster)
+    {
+        return monster.GetStateType() == GameDefine.AIStateType.Die;
     }
 }
