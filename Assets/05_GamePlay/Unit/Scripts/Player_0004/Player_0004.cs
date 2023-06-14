@@ -2,6 +2,7 @@ using UnityEngine;
 using UniRx;
 using System;
 using UnityEngine.AI;
+using Cysharp.Threading.Tasks;
 
 public class Player_0004 : Stat
 {
@@ -11,6 +12,8 @@ public class Player_0004 : Stat
     public NavMeshAgent nav;
     public float detectRange;   // 공격 감지 범위
     public Animator anim;
+    public GameObject redLight;
+    public int skillHitLimit = 5;
     private Vector3 targetPos;
     private GameObject _target = null;
 
@@ -86,7 +89,7 @@ public class Player_0004 : Stat
             {
                 var pos = targetPos + (vec.normalized * 13.5f);    // 13.5f 는 사정거리 더미수치. 이거 수정해야 함
                 nav.SetDestination(pos);
-                anim.SetInteger("animation", 21);    // 달리기 애니메이션
+                anim.SetInteger("animation", 21);    // 걷기 애니메이션
             }
             else
             {
@@ -113,32 +116,13 @@ public class Player_0004 : Stat
         StopMove();
         if (CheckMonsterDie(monster) == false)
         {
-            anim.SetInteger("animation", 52);    // 총 뽑는 애니메이션
-            transform.LookAt(targetPos);
-
-            
-
-            if (_isSkill == false)
+            if(_isSkill == false)
             {
-                if (CheckMonsterDie(monster) == false)
-                    Invoke("UnitAtk_0004", 1.2f);
-                else
-                {
-                    monster = null;
-                    ChaseEnemy();
-                }
+                NormalAtk();
             }
             else
             {
-                _isSkill = false;
-
-                if (CheckMonsterDie(monster) == false)
-                    Invoke("UnitAtk_0004", 2.7f);
-                else
-                {
-                    monster = null;
-                    ChaseEnemy();
-                }
+                SkillAtk();
             }
         }
         else
@@ -146,6 +130,88 @@ public class Player_0004 : Stat
             monster = null;
             ChaseEnemy();
         }
+    }
+
+    private void NormalAtk()
+    {
+        anim.SetInteger("animation", 52);    // 총 뽑는 애니메이션
+        transform.LookAt(targetPos);
+        _isSkill = false;
+
+        if (CheckMonsterDie(monster) == false)
+            Invoke("UnitAtk_0004", 1.2f);
+        else
+        {
+            monster = null;
+            ChaseEnemy();
+        }
+
+    }
+
+    private void SkillAtk()
+    {
+        Collider[] hitCol = Physics.OverlapSphere(transform.position, detectRange);
+
+        int hitCount = 0;   // 최대 공격 가능한 대상
+        GameObject[] hitTarget = new GameObject[5] { null, null, null, null, null };
+
+        for (int i = 0; i < hitCol.Length; i++)
+        {
+            Debug.Log("ColName : " + hitCol[i].name);
+            if (hitCol[i].gameObject.CompareTag("Monster") == true)
+            {
+                hitTarget[hitCount] = hitCol[i].gameObject;
+                hitCount++;
+
+                if(hitCount >= skillHitLimit)   // 5명 다 차면 스탑
+                {
+                    break;
+                }
+            }
+        }
+
+        redLight.SetActive(true);
+        anim.SetInteger("animation", 52);    // 총 뽑는 애니메이션
+        transform.LookAt(targetPos);
+
+        for (int i = 0; i < hitTarget.Length; i++)
+        {
+            if(hitTarget[i] == null)
+            {
+                break;
+            }
+        }
+
+
+        if (CheckMonsterDie(monster) == false)
+            Invoke("UnitAtk_0004", 2.7f);
+        else
+        {
+            monster = null;
+            ChaseEnemy();
+        }
+    }
+
+    public void OnEvent_NormalAtk()
+    {
+        if(_isSkill == true)
+        {
+            return;
+        }
+
+        _isSkill = false;
+
+
+    }
+
+    public void OnEvent_SkillAtk()
+    {
+        if (_isSkill == false)
+        {
+            return;
+        }
+
+        _isSkill = false;
     }
 
     /// <summary>
