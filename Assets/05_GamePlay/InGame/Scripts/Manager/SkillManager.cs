@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    #region 1001
+    #region 0001
 
     private Player_0001 player0001;
     private AI_Structure targetStructure;
@@ -77,28 +77,38 @@ public class SkillManager : MonoBehaviour
 
     #endregion
 
-    #region 1002
+    #region 0002
 
     /// <summary>
     /// 처음에 좌측 유닛 스킬 버튼 누르면 작동하는 온클릭 버튼 함수
     /// </summary>
     public void OnClick_Skill0002()
     {
-        Debug.Log("1002");
+        Debug.Log("0002");
         GamePlay.Instance.unitManager.player0002.SetSkill();
     }
 
     #endregion
 
-    #region 1003
+    #region 0003
 
     public NormalAttack_0003 normalAtk_1003;
     public SkillAttack_0003 skillAtk_1003;
 
     public void OnClick_Skill0003()
     {
-        Debug.Log("1002");
+        Debug.Log("0003");
         GamePlay.Instance.unitManager.player0003.SetSkill();
+    }
+
+    #endregion
+
+    #region 0004
+
+    public void OnClick_Skill0004()
+    {
+        Debug.Log("0003");
+        GamePlay.Instance.unitManager.player0004.SetSkill();
     }
 
     #endregion

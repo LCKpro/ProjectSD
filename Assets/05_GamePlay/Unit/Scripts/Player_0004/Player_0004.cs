@@ -14,6 +14,7 @@ public class Player_0004 : Stat
     public Animator anim;
     public GameObject redLight;
     public int skillHitLimit = 5;
+    public Transform nozzlePos;
     private Vector3 targetPos;
     private GameObject _target = null;
 
@@ -26,14 +27,11 @@ public class Player_0004 : Stat
 
     private void StopPlayer()
     {
+        anim.SetInteger("animation", 32);    // Idle 애니메이션
         _atkTimer.Dispose();
         _atkTimer = Disposable.Empty;
-    }
-
-    private void StopMove()
-    {
-        _moveTimer.Dispose();
-        _moveTimer = Disposable.Empty;
+        nav.isStopped = true;
+        nav.velocity = Vector3.zero;
     }
 
     public void SetSkill()
@@ -46,7 +44,7 @@ public class Player_0004 : Stat
     {
         Debug.Log("DetectEnemyStart");
         _isSkill = false;
-        anim.SetInteger("animation", 1);    // Idle 애니메이션
+        anim.SetInteger("animation", 32);    // Idle 애니메이션
         StopPlayer();     // 타이머 일시 종료
         _atkTimer = Observable.Interval(TimeSpan.FromSeconds(detectTime)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
@@ -113,7 +111,7 @@ public class Player_0004 : Stat
             monster = _target.GetComponent<AIPlayer>();
         }
 
-        StopMove();
+        StopPlayer();
         if (CheckMonsterDie(monster) == false)
         {
             if(_isSkill == false)
@@ -134,7 +132,7 @@ public class Player_0004 : Stat
 
     private void NormalAtk()
     {
-        anim.SetInteger("animation", 52);    // 총 뽑는 애니메이션
+        anim.SetInteger("animation", 53);    // 총 쏘는 애니메이션
         transform.LookAt(targetPos);
         _isSkill = false;
 
@@ -148,22 +146,24 @@ public class Player_0004 : Stat
 
     }
 
+    private GameObject[] _hitTarget = new GameObject[5] { null, null, null, null, null };
     private void SkillAtk()
     {
         Collider[] hitCol = Physics.OverlapSphere(transform.position, detectRange);
 
         int hitCount = 0;   // 최대 공격 가능한 대상
-        GameObject[] hitTarget = new GameObject[5] { null, null, null, null, null };
 
         for (int i = 0; i < hitCol.Length; i++)
         {
-            Debug.Log("ColName : " + hitCol[i].name);
             if (hitCol[i].gameObject.CompareTag("Monster") == true)
             {
-                hitTarget[hitCount] = hitCol[i].gameObject;
+                _hitTarget[hitCount] = hitCol[i].gameObject;
                 hitCount++;
+                hitCol[i].GetComponent<AIPlayer>().SetDieMark();
 
-                if(hitCount >= skillHitLimit)   // 5명 다 차면 스탑
+                Debug.Log("0004 스킬" + hitCount + "명 찾음");
+
+                if (hitCount >= skillHitLimit)   // 5명 다 차면 스탑
                 {
                     break;
                 }
@@ -173,15 +173,6 @@ public class Player_0004 : Stat
         redLight.SetActive(true);
         anim.SetInteger("animation", 52);    // 총 뽑는 애니메이션
         transform.LookAt(targetPos);
-
-        for (int i = 0; i < hitTarget.Length; i++)
-        {
-            if(hitTarget[i] == null)
-            {
-                break;
-            }
-        }
-
 
         if (CheckMonsterDie(monster) == false)
             Invoke("UnitAtk_0004", 2.7f);
@@ -201,7 +192,10 @@ public class Player_0004 : Stat
 
         _isSkill = false;
 
+        var projectile = GamePlay.Instance.poolManager_Projectile.GetFromPool<Transform>("P0004");
 
+        projectile.position = nozzlePos.position;
+        projectile.GetComponent<Rigidbody>().AddForce(monster.transform.position * 2f, ForceMode.Impulse);
     }
 
     public void OnEvent_SkillAtk()
@@ -212,6 +206,21 @@ public class Player_0004 : Stat
         }
 
         _isSkill = false;
+
+        damageValue = 200;
+
+        for (int i = 0; i < _hitTarget.Length; i++)
+        {
+            if (_hitTarget[i] == null)
+            {
+                break;
+            }
+
+            DealDamage(_hitTarget[i].gameObject);
+        }
+
+        damageValue = 75;
+        redLight.SetActive(false);
     }
 
     /// <summary>
