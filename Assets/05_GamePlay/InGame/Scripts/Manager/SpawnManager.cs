@@ -27,10 +27,10 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        for (int i = 0; i < 5; i++)
+        /*for (int i = 0; i < 5; i++)
         {
             poolManager_Monster.GetFromPool<AIPlayer>(0);
-        }
+        }*/
 
         //poolManager_Monster.GetFromPool<AIPlayer>(2);
         //poolManager_Monster.GetFromPool<AIPlayer>(0);

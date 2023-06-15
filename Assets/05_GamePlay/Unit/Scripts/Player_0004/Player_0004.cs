@@ -195,6 +195,7 @@ public class Player_0004 : Stat
         var projectile = GamePlay.Instance.poolManager_Projectile.GetFromPool<Transform>("P0004");
 
         projectile.position = nozzlePos.position;
+        projectile.LookAt(monster.transform.position);
         projectile.GetComponent<Rigidbody>().AddForce(monster.transform.position * 2f, ForceMode.Impulse);
     }
 
