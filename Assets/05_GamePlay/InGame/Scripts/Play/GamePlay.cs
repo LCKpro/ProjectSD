@@ -74,5 +74,16 @@ public class GamePlay : MonoBehaviour
         ui_System.OnClick_StartCraftSystem();
     }
 
+    public void OnClick_OpenInventory()
+    {
+        if(gameStateManager.CheckStateType(GameDefine.StateType.OpenInventory) == true)
+        {
+            return;
+        }
+
+        gameStateManager.SetStateType(GameDefine.StateType.OpenInventory);
+        GameCreator.Inventory.InventoryUIManager.OpenInventory();
+    }
+
     #endregion
 }

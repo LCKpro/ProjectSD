@@ -74,6 +74,9 @@ public class UI_DayNightSystem : MonoBehaviour
     {
         _dayNightTimer.Dispose();
         _dayNightTimer = Disposable.Empty;
+
+        dayLight.intensity = 0.5f;
+
         float fullTime = dayTimeSecond * 2; // 낮 밤 합친 시간
         float time = 450;    // 계산할 시간
         _dayNightTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
