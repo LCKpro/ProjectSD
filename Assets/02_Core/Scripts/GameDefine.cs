@@ -79,4 +79,12 @@ public static class GameDefine
 
         None = 99,
     }
+
+    public enum FarmingType
+    {
+        OnFarming = 0,
+        OffFarming = 1,
+
+        None = 99,
+    }
 }
