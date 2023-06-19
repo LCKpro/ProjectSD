@@ -74,6 +74,44 @@ MonoBehaviour:
   conditionsEquip: {fileID: 274001430086708533, guid: bd8de1030a44d58438740bd5326f647c, type: 3}
   actionsOnEquip: {fileID: 2851156492716895593, guid: 31ee0ee78cb7a12419f4d504256bcb1d, type: 3}
   actionsOnUnequip: {fileID: 4544027022488932841, guid: 30796b7422b3dae4da9ec3c99a404b9e, type: 3}
+--- !u!114 &-8513969733027499149
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.1938025036
+  m_EditorClassIdentifier: 
+  uuid: 2093547052
+  itemName:
+    content: PerfectFish
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uB108\uBB34\uB098 \uC644\uBCBD\uD55C \uC0DD\uC120 \uAD6C\uC774\uB2E4.
+      \uBA39\uC73C\uBA74 \uC5C4\uCCAD\uB09C \uD798\uC774 \uB0A0 \uAC83 \uAC19\uB2E4!"
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: fccfd5871bacd4c45b6a9d62eae55a15, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 25
+  maxStack: 100
+  weight: 1
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 7056889655399551117, guid: 499608a84402f2e4ba337d31577049b2, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 8794358173238352614, guid: 7f91cb7dd81679b4abdf08f29de68677, type: 3}
+  actionsOnEquip: {fileID: 1761936658655779293, guid: 52dd72655d5c0cd45878d67f14cac830, type: 3}
+  actionsOnUnequip: {fileID: 6791696631470636010, guid: 49482973c034b4a40a4f4ef95478f060, type: 3}
 --- !u!114 &-7074830667949382275
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,6 +187,158 @@ MonoBehaviour:
   conditionsEquip: {fileID: 274001430086708533, guid: 8156e16531331844c92b117550ee2db4, type: 3}
   actionsOnEquip: {fileID: 2851156492716895593, guid: feee5cc3d23b6424e83c19727e52bcd0, type: 3}
   actionsOnUnequip: {fileID: 4544027022488932841, guid: ece6ecbd509b37a46a754b6ff57111f6, type: 3}
+--- !u!114 &-5169350836398756759
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.1938025036
+  m_EditorClassIdentifier: 
+  uuid: 1048599861
+  itemName:
+    content: GrilledFish
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uBA39\uC74C\uC9C1\uC2A4\uB7FD\uAC8C \uC775\uD78C \uC0DD\uC120 \uAD6C\uC774\uB2E4.
+      \uBA39\uC73C\uBA74 \uD798\uC774 \uB0A0 \uAC83 \uAC19\uB2E4!"
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: fccfd5871bacd4c45b6a9d62eae55a15, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 10
+  maxStack: 100
+  weight: 1
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 7056889655399551117, guid: e6f21bfc465c8e440aa6721e65eb15f2, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 8794358173238352614, guid: 0dcae162de0d967419e0901ecbca5afc, type: 3}
+  actionsOnEquip: {fileID: 1761936658655779293, guid: 6cfe4819f59a9ce408c7db59c55fffef, type: 3}
+  actionsOnUnequip: {fileID: 6791696631470636010, guid: 9ca05605cb20e564b9f8853e0a8200f7, type: 3}
+--- !u!114 &-4387803855646704306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.1028915250
+  m_EditorClassIdentifier: 
+  uuid: 1028915250
+  itemName:
+    content: Bread
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uB530\uB048\uB530\uB048 \uB9DB\uC788\uB294 \uBE75\uC774\uB2E4. \uCCB4\uB825\uC744
+      \uD68C\uBCF5\uD558\uB294 \uB2A5\uB825\uC774 \uC788\uB2E4."
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: 775349ccfb62d0a468f4f25394a70436, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 1
+  maxStack: 100
+  weight: 1
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 2809056173231366631, guid: c6fc39aa48b1ae245b422ca4a0dc1636, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 3762214533012127922, guid: f7aeaba3d01300d43b7d0e01966131ed, type: 3}
+  actionsOnEquip: {fileID: 4976259403085110864, guid: c1cc30a36b7726447aa6101b2f2e52e8, type: 3}
+  actionsOnUnequip: {fileID: 5736265020215579344, guid: d825fab9279a914489106dbb856cad19, type: 3}
+--- !u!114 &-3509838516038227368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.284123081
+  m_EditorClassIdentifier: 
+  uuid: 284123081
+  itemName:
+    content: GoldStone
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uBC14\uC704\uC5D0\uC11C \uC5BB\uC744 \uC218 \uC788\uB294 \uD76C\uADC0\uD55C
+      \uB3CC\uC870\uAC01\uC774\uB2E4"
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: dbe463ee999164c4ba4dd39f6ad36d28, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 20
+  maxStack: 100
+  weight: 5
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 5468463998046699693, guid: 4710e0044ffd8ef43902d4171c80a0b4, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 6752941975834758530, guid: b21c433582fa6234c87eb882ae9c6d63, type: 3}
+  actionsOnEquip: {fileID: 524913507630996997, guid: e6f169cb1894a4e42a46bd057fb08a09, type: 3}
+  actionsOnUnequip: {fileID: 2467950345899320673, guid: ddb1cb9b377591249ab84fc33b1ea0ff, type: 3}
+--- !u!114 &-3150715002598557263
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.1938025036
+  m_EditorClassIdentifier: 
+  uuid: 1938025036
+  itemName:
+    content: Fish
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uB09A\uC2DC\uB97C \uD1B5\uD574 \uC7A1\uC740 \uD3C9\uBC94\uD55C \uBB3C\uACE0\uAE30\uB2E4.
+      \uD639\uC2DC \uBAA8\uB974\uB2C8 \uC775\uD600 \uBA39\uC790"
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: fccfd5871bacd4c45b6a9d62eae55a15, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 5
+  maxStack: 100
+  weight: 1
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 7056889655399551117, guid: e7ea3535f14ff3948bba6d84d903e6d4, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 8794358173238352614, guid: 3b781cd0c382d8645b52e4233b4a9044, type: 3}
+  actionsOnEquip: {fileID: 1761936658655779293, guid: 5f18161c93ca9c44db0989dd02cbfbc3, type: 3}
+  actionsOnUnequip: {fileID: 6791696631470636010, guid: 355792250820e3b4aa9f6516dab77e0e, type: 3}
 --- !u!114 &-1059117550697022666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +376,45 @@ MonoBehaviour:
   conditionsEquip: {fileID: 3562441977083313019, guid: 57b1937cf3da5304485212dae323f68c, type: 3}
   actionsOnEquip: {fileID: 8027058403685963367, guid: 959061127ea16794092c776dfe9e6bdc, type: 3}
   actionsOnUnequip: {fileID: 8084082124538573585, guid: e6b860facf7fdaf4ea1cd623bd9faa10, type: 3}
+--- !u!114 &-260517328162804374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.734007893
+  m_EditorClassIdentifier: 
+  uuid: 734007893
+  itemName:
+    content: CanFish
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uD76C\uADC0\uD55C \uBB3C\uACE0\uAE30\uB97C \uAC00\uACF5\uD574\uC11C
+      \uB9CC\uB4E0 \uB9DB\uC788\uB294 \uD1B5\uC870\uB9BC\uC774\uB2E4! \uACF5\uACA9
+      \uAC15\uD654 \uC9C0\uC18D\uC2DC\uAC04\uC774 \uB298\uC5B4\uB09C\uB2E4."
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: fccfd5871bacd4c45b6a9d62eae55a15, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 20
+  maxStack: 100
+  weight: 1
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 1293111256254864240, guid: 98c3cf605db59734bafd22938d0e1fc6, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 6161218673516469894, guid: fe739320d2deab642be96869eea46f0f, type: 3}
+  actionsOnEquip: {fileID: 4711046202872767219, guid: ed4de400091bec648a112bcc47078e50, type: 3}
+  actionsOnUnequip: {fileID: 4963066318491249690, guid: 5a8850549784b0d4cb8ab7490f2c3604, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +444,14 @@ MonoBehaviour:
     - {fileID: -8947325182483919495}
     - {fileID: -7074830667949382275}
     - {fileID: -5912487580687944092}
+    - {fileID: 2182674438904913359}
+    - {fileID: -3509838516038227368}
+    - {fileID: -3150715002598557263}
+    - {fileID: 7897820486771971296}
+    - {fileID: -5169350836398756759}
+    - {fileID: -8513969733027499149}
+    - {fileID: -260517328162804374}
+    - {fileID: -4387803855646704306}
     recipes:
     - {fileID: 114798038658200360}
     itemTypes:
@@ -1057,3 +1294,79 @@ MonoBehaviour:
   conditionsEquip: {fileID: 2896028720573520669, guid: fd1b37dcc51b05d48b448cffb410a32f, type: 3}
   actionsOnEquip: {fileID: 1035590905975561251, guid: fc3f9ee61f92f6f49ad4a63044ab20b6, type: 3}
   actionsOnUnequip: {fileID: 229408701006135922, guid: ad661821c0b51da4f9d4c3a7db8825e8, type: 3}
+--- !u!114 &2182674438904913359
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.823724849
+  m_EditorClassIdentifier: 
+  uuid: 823724849
+  itemName:
+    content: GoldWood
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uB098\uBB34\uC5D0\uC11C \uC5BB\uC744 \uC218 \uC788\uB294 \uD76C\uADC0\uD55C
+      \uB098\uBB34\uC870\uAC01\uC774\uB2E4"
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: 12f818f84b08625429602ced2c628836, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 20
+  maxStack: 100
+  weight: 5
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 5307198828899185416, guid: a99d26fc0ccd4e541be8fa3b19b6e34b, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 611458763501169637, guid: efe12fa5203369e4da56c8d80483f712, type: 3}
+  actionsOnEquip: {fileID: 8592276511242042989, guid: 7428f53e7d954ae438e705babc98904c, type: 3}
+  actionsOnUnequip: {fileID: 7570573581610046149, guid: 01a00283aec56a54e8fc698a69f0ccd8, type: 3}
+--- !u!114 &7897820486771971296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c3b42562c09470ea31efe19c9d3dd9, type: 3}
+  m_Name: item.1938025036
+  m_EditorClassIdentifier: 
+  uuid: 933419838
+  itemName:
+    content: GoldFish
+    postProcess: 0
+    translationID: 0
+  itemDescription:
+    content: "\uB09A\uC2DC\uB97C \uD1B5\uD574 \uC7A1\uC740 \uD76C\uADC0\uD55C \uBB3C\uACE0\uAE30\uB2E4.
+      \uB9DB\uC774 \uBB34\uCC99 \uAD81\uAE08\uD558\uB2E4"
+    postProcess: 0
+    translationID: 0
+  itemColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  sprite: {fileID: 21300000, guid: fccfd5871bacd4c45b6a9d62eae55a15, type: 3}
+  prefab: {fileID: 0}
+  canBeSold: 1
+  price: 15
+  maxStack: 100
+  weight: 1
+  itemTypes: 0
+  onClick: 1
+  consumeItem: 0
+  actionsOnClick: {fileID: 7056889655399551117, guid: bc1b2d018a89eb8449959404b679ca12, type: 3}
+  equipable: 0
+  fillAllTypes: 0
+  conditionsEquip: {fileID: 8794358173238352614, guid: 867cd5219714c4b4494dba35c893428e, type: 3}
+  actionsOnEquip: {fileID: 1761936658655779293, guid: 4f146cd186eabb845b7a6f6d333ecbb7, type: 3}
+  actionsOnUnequip: {fileID: 6791696631470636010, guid: 298e93c7c677b9e4b9b6b8a6a4d352e1, type: 3}
