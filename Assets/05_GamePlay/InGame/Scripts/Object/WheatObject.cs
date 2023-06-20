@@ -1,15 +1,14 @@
-using GameCreator.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NatureObject : MonoBehaviour
+public class WheatObject : MonoBehaviour
 {
     private GameDefine.FarmingType _farmingType = GameDefine.FarmingType.None;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_farmingType == GameDefine.FarmingType.OnFarming)
+        if (_farmingType == GameDefine.FarmingType.OnFarming)
         {
             return;
         }
@@ -17,7 +16,7 @@ public class NatureObject : MonoBehaviour
         if (other.tag == "Player")
         {
             _farmingType = GameDefine.FarmingType.OnFarming;
-            GamePlay.Instance.natureManager.TriggerOnNatureObjectData();
+            GamePlay.Instance.natureManager.TriggerOnWheatObjectData();
         }
     }
 
@@ -26,7 +25,7 @@ public class NatureObject : MonoBehaviour
         if (other.tag == "Player")
         {
             _farmingType = GameDefine.FarmingType.OffFarming;
-            GamePlay.Instance.natureManager.TriggerOffNatureObjectData();
+            GamePlay.Instance.natureManager.TriggerOffWheatObjectData();
         }
     }
 }
