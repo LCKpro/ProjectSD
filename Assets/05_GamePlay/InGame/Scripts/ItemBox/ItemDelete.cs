@@ -41,7 +41,6 @@ public class ItemDelete : MonoBehaviour
             {
                 isEvent = true;
                 this.eventOnHoverEnter.Invoke();
-                inventoryAnimator.SetBool("State", true);
             }
         }
         else
@@ -50,7 +49,6 @@ public class ItemDelete : MonoBehaviour
             {
                 isEvent = false;
                 this.eventOnHoverExit.Invoke();
-                inventoryAnimator.SetBool("State", false);
             }
         }
     }
