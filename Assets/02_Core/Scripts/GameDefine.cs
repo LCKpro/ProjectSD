@@ -80,6 +80,7 @@ public static class GameDefine
         None = 99,
     }
 
+    // 버튼 켜져있을 때 다시 켜지지 않도록 하는 식별자 역할
     public enum FarmingType
     {
         OnFarming = 0,
@@ -87,4 +88,12 @@ public static class GameDefine
 
         None = 99,
     }
+
+    // 인벤토리
+    public enum ItemBoxType
+    {
+        None = 0,
+        Delete = 1,
+    }
+
 }

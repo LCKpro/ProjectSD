@@ -8,6 +8,7 @@
 	using UnityEngine.EventSystems;
 	using GameCreator.Core;
     using GameCreator.Core.Hooks;
+	using TMPro;
 
     [AddComponentMenu("Game Creator/UI/Item")]
 	public class ItemUI : MonoBehaviour 
@@ -37,6 +38,9 @@
         public UnityEvent eventOnHoverEnter;
         public UnityEvent eventOnHoverExit;
 
+		public GameObject checkObj;
+		public TextMeshProUGUI descTex;
+
 		// CONSTRUCTOR & UPDATER: -----------------------------------------------------------------
 
 		public virtual void Setup(Item item, int amount)
@@ -52,8 +56,11 @@
 				this.SetupEvents(EventTriggerType.Drag, this.OnDragMove);
 			}
 
-            this.SetupEvents(EventTriggerType.PointerEnter, this.OnPointerEnter);
-            this.SetupEvents(EventTriggerType.PointerExit, this.OnPointerExit);
+            //this.SetupEvents(EventTriggerType.PointerEnter, this.OnPointerEnter);
+            //this.SetupEvents(EventTriggerType.PointerExit, this.OnPointerExit);
+
+			checkObj.SetActive(false);
+			descTex.text = item.itemDescription.content;
 		}
 
         // PUBLIC METHODS: ------------------------------------------------------------------------
@@ -268,7 +275,7 @@
 			}
 		}
 
-        protected void OnPointerEnter(BaseEventData eventData)
+        /*protected void OnPointerEnter(BaseEventData eventData)
 		{
 			if (this.eventOnHoverEnter != null) this.eventOnHoverEnter.Invoke();
 		}
@@ -276,6 +283,6 @@
         protected void OnPointerExit(BaseEventData eventData)
 		{
 			if (this.eventOnHoverExit != null) this.eventOnHoverExit.Invoke();
-		}
+		}*/
 	}
 }

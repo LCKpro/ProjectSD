@@ -60,6 +60,8 @@ public class GamePlay : MonoBehaviour
     public GameStateManager gameStateManager;
     public SkillManager skillManager;
     public UnitManager unitManager;
+    public ItemBoxManager itemBoxManager;
+
 
     #region 버튼
 
@@ -72,24 +74,6 @@ public class GamePlay : MonoBehaviour
 
         ui_System.gameObject.SetActive(true);
         ui_System.OnClick_StartCraftSystem();
-    }
-
-    public void OnClick_OpenInventory()
-    {
-        if(gameStateManager.CheckStateType(GameDefine.StateType.OpenInventory) == true)
-        {
-            gameStateManager.SetStateType(GameDefine.StateType.None);
-            GameCreator.Inventory.InventoryUIManager.CloseInventory();
-        }
-        else if(gameStateManager.CheckStateType(GameDefine.StateType.None) == true)
-        {
-            gameStateManager.SetStateType(GameDefine.StateType.OpenInventory);
-            GameCreator.Inventory.InventoryUIManager.OpenInventory();
-        }
-        else
-        {
-            Debug.Log("건축중이나 건물 파밍중에는 인벤토리를 열 수 없음");
-        }
     }
 
     #endregion
