@@ -28,7 +28,7 @@ MonoBehaviour:
   price: 10
   maxStack: 999
   weight: 1
-  itemTypes: 0
+  itemTypes: 33
   onClick: 1
   consumeItem: 0
   actionsOnClick: {fileID: 6212259352951060973, guid: 9aaa399795aac0945ae92aa0498109cb, type: 3}
@@ -65,7 +65,7 @@ MonoBehaviour:
   price: 5
   maxStack: 999
   weight: 1
-  itemTypes: 1
+  itemTypes: 33
   onClick: 1
   consumeItem: 0
   actionsOnClick: {fileID: 6212259352951060973, guid: 267da271b8ffee5468fcc42d0e665c15, type: 3}
@@ -330,7 +330,7 @@ MonoBehaviour:
   price: 5
   maxStack: 100
   weight: 1
-  itemTypes: 0
+  itemTypes: 32
   onClick: 1
   consumeItem: 0
   actionsOnClick: {fileID: 7056889655399551117, guid: e7ea3535f14ff3948bba6d84d903e6d4, type: 3}
@@ -480,9 +480,9 @@ MonoBehaviour:
         content: LeftHand
         postProcess: 0
         translationID: 0
-    - id: 
+    - id: General/
       name:
-        content: 
+        content: Farming
         postProcess: 0
         translationID: 0
     - id: 
