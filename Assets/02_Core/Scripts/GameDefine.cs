@@ -96,4 +96,11 @@ public static class GameDefine
         Delete = 1,
     }
 
+    public enum AtkStructureType
+    {
+        Balista = 0,
+        Cannon = 1,
+
+        None = 99,
+    }
 }

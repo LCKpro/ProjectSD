@@ -33,7 +33,6 @@ public class Projectile_Structure : MonoBehaviour
                 endPos = endPos - center;
 
                 transform.position = Vector3.Slerp(startPos, endPos, 0.05f);
-                //transform.position = Vector3.Slerp(transform.position, target.transform.position, 0.05f);
                 transform.position += center;
             });
     }

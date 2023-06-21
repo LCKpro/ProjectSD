@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4093590661879254618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.31, y: 0, z: -9.24}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62,8 +62,10 @@ MonoBehaviour:
   anim: {fileID: 4093590661879254616}
   marker: {fileID: 6634060922182405815}
   lookAtAction: {fileID: 6634060923203701020}
-  poolProjectileIndex: 1
+  poolProjectileIndex: 4
   startPos: {fileID: 6634060923802055247}
+  projectileKey: P0201
+  atkStructType: 1
   craftType: 0
   repairAnim: {fileID: 0}
   repairTxt: {fileID: 0}

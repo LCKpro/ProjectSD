@@ -52,7 +52,6 @@ public class GamePlay : MonoBehaviour
     public PoolManager poolManager_Monster;
     public PoolManager poolManager_Projectile;
     public SpawnManager spawnManager;
-    public UI_ClockSystem uI_ClockSystem;
 
     public PoolManager[] poolManager_StructureArray;
     public PoolManager[] poolManager_IncompleteStructureArray;

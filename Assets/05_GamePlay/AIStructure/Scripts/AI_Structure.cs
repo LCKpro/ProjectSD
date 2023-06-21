@@ -14,7 +14,8 @@ public partial class AI_Structure : Stat
     public int poolProjectileIndex;
     // 원거리 투사체 출발 위치
     public Transform startPos;
-    
+    public string projectileKey;
+    public GameDefine.AtkStructureType atkStructType = GameDefine.AtkStructureType.None;
 
 
     // 공격하는데 성공했으면 타이머 끄기
@@ -54,11 +55,23 @@ public partial class AI_Structure : Stat
 
     public void RangeAttack()
     {
-        var projectile = GamePlay.Instance.poolManager_Projectile.GetFromPool<Transform>("P0201");
+        var projectile = GamePlay.Instance.poolManager_Projectile.GetFromPool<Transform>(projectileKey);
 
         projectile.position = startPos.position;
-        projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
-    }
 
-  
+        switch (atkStructType)
+        {
+            case GameDefine.AtkStructureType.Balista:
+                projectile.transform.LookAt(targetObj.transform);
+                projectile.GetComponent<Projectile_Balista>().ReadyAndShot(this, targetObj);
+                break;
+            case GameDefine.AtkStructureType.Cannon:
+                projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
+                break;
+            case GameDefine.AtkStructureType.None:
+                break;
+            default:
+                break;
+        }
+    }
 }

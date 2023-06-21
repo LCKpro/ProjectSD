@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6668387658547444171}
   m_Layer: 0
   m_Name: Building_InComplete_ATK_00201
-  m_TagString: Breakable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
