@@ -8,6 +8,7 @@ TagManager:
   - Breakable
   - AnimTag
   - Monster
+  - CatTower
   layers:
   - Default
   - TransparentFX

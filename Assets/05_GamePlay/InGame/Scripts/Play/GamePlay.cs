@@ -60,6 +60,8 @@ public class GamePlay : MonoBehaviour
     public SkillManager skillManager;
     public UnitManager unitManager;
     public ItemBoxManager itemBoxManager;
+    public FarmingManager farmingManager;
+    public CameraManager cameraManager;
 
 
     #region ¹öÆ°

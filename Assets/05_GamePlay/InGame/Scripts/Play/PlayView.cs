@@ -1,7 +1,4 @@
 using UnityEngine;
-using GameCreator.Core;
-using GameCreator.Characters;
-using GameCreator.Inventory;
 
 public class PlayView : MonoBehaviour
 {
