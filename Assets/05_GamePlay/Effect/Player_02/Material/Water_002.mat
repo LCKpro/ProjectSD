@@ -105,7 +105,7 @@ Material:
     - _DissolveVal: 0.271
     - _DistortionScale: 0.3
     - _DistortionSpeedX: 0
-    - _DistortionSpeedY: -20
+    - _DistortionSpeedY: -30
     - _DstBlend: 0
     - _Float: 0
     - _Flow_Str: 0
@@ -140,5 +140,5 @@ Material:
     m_Colors:
     - _Color: {r: 0.13679248, g: 0.91671515, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 0, g: 0.7491787, b: 2.6701567, a: 1}
+    - _TintColor: {r: 0, g: 1.2987773, b: 2.6701567, a: 1}
   m_BuildTextureStacks: []
