@@ -33,7 +33,6 @@ Transform:
   - {fileID: 1190728030893732531}
   - {fileID: 1195799861595230545}
   - {fileID: 7728593324667918252}
-  - {fileID: 5348924879519683480}
   m_Father: {fileID: 5348924879778943219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
@@ -19181,51 +19180,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &5348924879519683481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5348924879519683480}
-  - component: {fileID: 5348924879519683495}
-  m_Layer: 0
-  m_Name: FlameDetect
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5348924879519683480
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5348924879519683481}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 477963679764657805}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5348924879519683495
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5348924879519683481}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 5, z: 9}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5348924879778943220
 GameObject:
   m_ObjectHideFlags: 0
@@ -19237,6 +19191,8 @@ GameObject:
   - component: {fileID: 5348924879778943219}
   - component: {fileID: 5348924879778943217}
   - component: {fileID: 5348924879778943218}
+  - component: {fileID: 168357372559971761}
+  - component: {fileID: 2902241388583773651}
   m_Layer: 0
   m_Name: P0301
   m_TagString: Untagged
@@ -19298,4 +19254,33 @@ MonoBehaviour:
   anim: {fileID: 5348924879778943217}
   damagePerTick: 3
   burnDuration: 5
-  coll: {fileID: 5348924879519683495}
+  coll: {fileID: 2902241388583773651}
+--- !u!54 &168357372559971761
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348924879778943220}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2902241388583773651
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348924879778943220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 5, z: 9}
+  m_Center: {x: 0, y: 0, z: 5.5}

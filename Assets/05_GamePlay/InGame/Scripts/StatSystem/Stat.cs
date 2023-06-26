@@ -106,7 +106,7 @@ public class Stat : MonoBehaviour
 
     #endregion
 
-    private bool isBurn = false;
+    private System.IDisposable timer = Disposable.Empty;
     public virtual void Burn(GameObject target, float damagePerTick, int duration)
     {
         if(duration <= 0)
@@ -114,16 +114,19 @@ public class Stat : MonoBehaviour
             return;
         }
 
-        isBurn = true;
-        System.IDisposable timer = Disposable.Empty;
         timer.Dispose();
+        timer = Disposable.Empty;
 
         Stat stat = target.GetComponent<Stat>();
         int remainTime = duration;
 
         // 초기 데미지 먼저 계산
         stat.TakeDamage(damageValue, transform.gameObject);
-        timer = Observable.Interval(System.TimeSpan.FromSeconds(1f))
+
+        Debug.Log(target.name + "에게 " + transform.name + "이(가) 데미지 줌");
+        stat.TakeDamage(damagePerTick, transform.gameObject);
+
+        timer = Observable.Interval(System.TimeSpan.FromSeconds(1.0f))
             .TakeUntilDestroy(gameObject)
             .TakeUntilDisable(gameObject)
             .Subscribe(_ =>

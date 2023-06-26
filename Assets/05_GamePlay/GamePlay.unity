@@ -5290,6 +5290,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -15486,6 +15487,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
   buildingSort: 0
   buildingLevel: 1
   maxItemValue: 5
@@ -15880,7 +15882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738938771852781937, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.51
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: 1738938771852781937, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15918,6 +15920,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1741099072697501312, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
+      propertyPath: emissionRenderer
+      value: 
+      objectReference: {fileID: 1032811214}
     - target: {fileID: 1741099072697501315, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
       propertyPath: m_Name
       value: Monster_1001
@@ -17104,6 +17110,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -31955,6 +31962,11 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!137 &1032811214 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1857594458800142977, guid: 637607482fe9afe4b8a272a314fd4861, type: 3}
+  m_PrefabInstance: {fileID: 537361593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1033829257
 GameObject:
   m_ObjectHideFlags: 0
@@ -39914,6 +39926,7 @@ MonoBehaviour:
   rangeValue: 100
   moveSpeed: 0
   atkSpeed: 0.03
+  emissionRenderer: {fileID: 0}
   anim: {fileID: 8023514033024547847}
   marker: {fileID: 367399649}
   lookAtAction: {fileID: 1150573542}
@@ -45381,6 +45394,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
 --- !u!136 &1583438559
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -47428,7 +47442,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 3, z: 20}
+  m_Size: {x: 17.5, y: 3, z: 17.5}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1647629275
 GameObject:
@@ -54526,6 +54540,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -59190,6 +59205,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
   buildingSort: 0
   buildingLevel: 0
   maxItemValue: 2
@@ -82992,6 +83008,7 @@ MonoBehaviour:
   rangeValue: 100
   moveSpeed: 0
   atkSpeed: 0.03
+  emissionRenderer: {fileID: 0}
   anim: {fileID: 4917781588743836487}
   marker: {fileID: 7772573660956735152}
   lookAtAction: {fileID: 7772573659946702723}
@@ -91652,6 +91669,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0
   atkSpeed: 0
+  emissionRenderer: {fileID: 0}
   anim: {fileID: 0}
   marker: {fileID: 0}
   lookAtAction: {fileID: 0}

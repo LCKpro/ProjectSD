@@ -17,7 +17,7 @@ public class Projectile_Structure : MonoBehaviour
         _atkController = Disposable.Empty;
     }
 
-    public void ReadyAndShot(AI_Structure structure, GameObject target)
+    public void ReadyAndShot(AI_Structure structure, Transform target)
     {
         ai_Structure = structure;
 
@@ -26,8 +26,8 @@ public class Projectile_Structure : MonoBehaviour
             .Subscribe(_ =>
             {
                 Vector3 startPos = transform.position;
-                Vector3 endPos = target.transform.position;
-                Vector3 center = (startPos + target.transform.position) * 0.5f;
+                Vector3 endPos = target.position;
+                Vector3 center = (startPos + target.position) * 0.5f;
                 center -= new Vector3(0, 10, 0);
                 startPos = startPos - center;
                 endPos = endPos - center;

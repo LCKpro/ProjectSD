@@ -14,6 +14,7 @@ public class Projectile_Flame : MonoBehaviour
     public int burnDuration = 1;    // 화상 지속시간
 
     private IDisposable _atkController = Disposable.Empty;
+    private IDisposable _lookAtTimer = Disposable.Empty;
     private AI_Structure ai_Structure;
     public BoxCollider coll;
 
@@ -22,11 +23,16 @@ public class Projectile_Flame : MonoBehaviour
     {
         _atkController.Dispose();
         _atkController = Disposable.Empty;
+
+        _lookAtTimer.Dispose();
+        _atkController = Disposable.Empty;
     }
 
+    private bool isShot = false;
     public void ReadyAndShot(AI_Structure structure, Transform target)
     {
-        Debug.Log("화염방사 지속시간 1초 미만 return");
+        int remainTime = durationTime;
+
         StopAttack();
 
         anim.SetTrigger("LaunchStart");
@@ -40,20 +46,25 @@ public class Projectile_Flame : MonoBehaviour
                 coll.enabled = false;
                 coll.enabled = true;
 
-                LookAtTarget(target);
+                remainTime--;
 
-                durationTime--;
-
-                if (durationTime == 1)
+                if (remainTime == 1)
                 {
                     Debug.Log("그만 호출");
                     anim.SetTrigger("LaunchEnd");
                 }
-                else if(durationTime == 0)
+                else if(remainTime == 0)
                 {
                     GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
                     StopAttack();
                 }
+            });
+
+        _lookAtTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
+            .TakeUntilDestroy(gameObject)
+            .Subscribe(_ =>
+            {
+                LookAtTarget(target);
             });
     }
 
@@ -67,9 +78,7 @@ public class Projectile_Flame : MonoBehaviour
     {
         if (other.tag == "Monster")
         {
-            //ai_Structure.Burn(other.gameObject, damagePerTick, burnDuration);
-            //GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
-            //StopAttack();
+            ai_Structure.Burn(other.gameObject, damagePerTick, burnDuration);
             Debug.Log("화염 피해");
         }
     }

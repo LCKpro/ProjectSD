@@ -25,7 +25,7 @@ public partial class AI_Structure : Stat
         _atkController = Disposable.Empty;
     }
 
-    private GameObject targetObj = null;
+    private Transform targetObj = null;
 
     private bool isShot = false;
     public void RangeAttackStart(Collider other, float detectTime)
@@ -36,16 +36,16 @@ public partial class AI_Structure : Stat
         }
 
         isShot = true;
-        ExcuteLookAt(other.transform.position);
+        //ExcuteLookAt(other.transform.position);
 
-        targetObj = other.gameObject;
+        targetObj = other.transform;
         StopAttack();     // 공격하는데 성공했으면 타이머 끄기
         anim.SetTrigger("Shot");    // 공격 애니메이션
         _atkController = Observable.Interval(TimeSpan.FromSeconds(detectTime)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                if (targetObj.activeSelf == false)
+                if (other.gameObject.activeSelf == false)
                 {
                     isShot = false;
                     targetObj = null;
@@ -72,9 +72,11 @@ public partial class AI_Structure : Stat
         switch (atkStructType)
         {
             case GameDefine.AtkStructureType.Balista:
+                ExcuteLookAt(targetObj.position);
                 projectile.GetComponent<Projectile_Balista>().ReadyAndShot(this, targetObj);
                 break;
             case GameDefine.AtkStructureType.Cannon:
+                ExcuteLookAt(targetObj.position);
                 projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
                 break;
             case GameDefine.AtkStructureType.Flame:
