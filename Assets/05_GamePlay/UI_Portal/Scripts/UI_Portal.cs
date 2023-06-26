@@ -8,6 +8,11 @@ public class UI_Portal : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if(GamePlay.Instance.gameStateManager.CheckStateType(GameDefine.StateType.None) == false)
+        {
+            return;
+        }
+
         Core.Instance.uiPopUpManager.Show(portalKey);
     }
 
