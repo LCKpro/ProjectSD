@@ -17,10 +17,10 @@ public class Projectile_Balista : MonoBehaviour
         _atkController = Disposable.Empty;
     }
 
-    public void ReadyAndShot(AI_Structure structure, GameObject target)
+    public void ReadyAndShot(AI_Structure structure, Transform target)
     {
         ai_Structure = structure;
-        Vector3 pos = new Vector3(target.transform.position.x, 2f, target.transform.position.z);
+        Vector3 pos = new Vector3(target.position.x, 2f, target.position.z);
         Debug.Log(pos);
         _atkController = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)

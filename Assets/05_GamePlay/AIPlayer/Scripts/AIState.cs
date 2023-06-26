@@ -16,6 +16,7 @@ public partial class AIPlayer : IPoolObject
     private float finalMoveSpeed = 0f;
 
     public Animator anim;
+    
 
     public void SetStateType(GameDefine.AIStateType type)
     {

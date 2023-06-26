@@ -100,6 +100,8 @@ public static class GameDefine
     {
         Balista = 0,
         Cannon = 1,
+        Flame = 2,
+        Stun = 3,
 
         None = 99,
     }

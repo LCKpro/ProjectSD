@@ -1110,6 +1110,7 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0.45
   atkSpeed: 0
+  emissionRenderer: {fileID: 2100000, guid: 20c0f650cbd7be3439478b735fb08947, type: 2}
   atkType: 0
   poolProjectileIndex: 0
   startPos: {fileID: 0}

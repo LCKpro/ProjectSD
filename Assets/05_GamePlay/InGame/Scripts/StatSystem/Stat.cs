@@ -1,4 +1,5 @@
 using UnityEngine;
+using UniRx;
 
 public class Stat : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class Stat : MonoBehaviour
         // 건물 역시 마찬가지로 넣어주기
     }
 
+    #region CC
+
     /// <summary>
     /// CC기 상대방한테 줄 때
     /// 타겟, CC 타입, 지속시간, CC기 강도(%)
@@ -99,5 +102,44 @@ public class Stat : MonoBehaviour
     protected virtual void StunStart(float duration)
     {
         Debug.LogError("CC는 하위 단계에서 호출되어야 함. 하위 미구현 상태");
+    }
+
+    #endregion
+
+    private System.IDisposable timer = Disposable.Empty;
+    public virtual void Burn(GameObject target, float damagePerTick, int duration)
+    {
+        if(duration <= 0)
+        {
+            return;
+        }
+
+        timer.Dispose();
+        timer = Disposable.Empty;
+
+        Stat stat = target.GetComponent<Stat>();
+        int remainTime = duration;
+
+        // 초기 데미지 먼저 계산
+        stat.TakeDamage(damageValue, transform.gameObject);
+
+        Debug.Log(target.name + "에게 " + transform.name + "이(가) 데미지 줌");
+        stat.TakeDamage(damagePerTick, transform.gameObject);
+
+        timer = Observable.Interval(System.TimeSpan.FromSeconds(1.0f))
+            .TakeUntilDestroy(gameObject)
+            .TakeUntilDisable(gameObject)
+            .Subscribe(_ =>
+        {
+            Debug.Log(target.name + "에게 " + transform.name + "이(가) 데미지 줌");
+            stat.TakeDamage(damagePerTick, transform.gameObject);
+            remainTime--;
+
+            if(remainTime <= 0)
+            {
+                timer.Dispose();
+                timer = Disposable.Empty;
+            }
+        });
     }
 }
