@@ -16,6 +16,7 @@ public partial class AI_Structure : Stat
     public Transform startPos;
     public string projectileKey;
     public GameDefine.AtkStructureType atkStructType = GameDefine.AtkStructureType.None;
+    
 
 
     // 공격하는데 성공했으면 타이머 끄기

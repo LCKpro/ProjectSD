@@ -5,6 +5,7 @@ using UnityEngine;
 public partial class AI_Structure
 {
     public GameDefine.CraftType craftType;
+    public GameObject spawnEffect;
 
     private IDisposable _timer = Disposable.Empty;
 
@@ -19,7 +20,11 @@ public partial class AI_Structure
 
     private void BuildingRaise()
     {
+        spawnEffect.SetActive(false);
         StopRaise();
+        bool isShake = false;
+        float shakePower = 0.015f;
+        var originPos = transform.position;
         _timer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
@@ -28,10 +33,25 @@ public partial class AI_Structure
                 if (transform.position.y >= 0)
                 {
                     StopRaise();
+                    spawnEffect.SetActive(true);
                 }
                 else
                 {
                     var pos = transform.position;
+
+                    if(isShake == true)
+                    {
+                        pos.x = originPos.x - shakePower;
+                        pos.z = originPos.z - shakePower;
+                        isShake = false;
+                    }
+                    else
+                    {
+                        pos.x = originPos.x + shakePower;
+                        pos.z = originPos.z + shakePower;
+                        isShake = true;
+                    }
+
                     pos.y += time;
                     transform.position = pos;
                 }

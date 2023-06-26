@@ -114,6 +114,7 @@ public class CraftingManager : MonoBehaviour
         _code = code;
 
         // 여기서 버그나면 매니저랑 DB의 인덱스가 일치하지 않아서 그럼
+        Debug.Log(_typeCode + ", " + _code);
         preparatoryObj = GamePlay.Instance.spawnManager.SpawnIncompleteStructure(_typeCode, _code).gameObject;
 
         // 플레이어 앞에 설치하기 위한 준비
