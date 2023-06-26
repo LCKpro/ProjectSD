@@ -5,6 +5,7 @@ using UniRx;
 public class AI_Structure_Detect : MonoBehaviour
 {
     public AI_Structure structure;
+    public float detectTime = 1f;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -13,8 +14,6 @@ public class AI_Structure_Detect : MonoBehaviour
             return;
         }
 
-        structure.RangeAttackStart(other);
+        structure.RangeAttackStart(other, detectTime);
     }
-
-    
 }
