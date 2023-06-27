@@ -1110,7 +1110,6 @@ MonoBehaviour:
   rangeValue: 0
   moveSpeed: 0.45
   atkSpeed: 0
-  emissionRenderer: {fileID: 2100000, guid: 20c0f650cbd7be3439478b735fb08947, type: 2}
   atkType: 0
   poolProjectileIndex: 0
   startPos: {fileID: 0}
@@ -4532,14 +4531,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d04f14e09d5344589a9d0eb60936f2a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d0040fb9fae4464ab441354ad8ad8b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4562,7 +4561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 835283800358258983}
-  markColor: {r: 1, g: 0, b: 0, a: 0}
+  markColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &7529761508800765343
 GameObject:
   m_ObjectHideFlags: 0

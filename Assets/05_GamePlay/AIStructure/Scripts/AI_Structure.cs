@@ -15,7 +15,7 @@ public partial class AI_Structure : Stat
     public Transform startPos;
     public string projectileKey;
     public GameDefine.AtkStructureType atkStructType = GameDefine.AtkStructureType.None;
-    
+    public GameObject shotEffect;
 
 
     // 공격하는데 성공했으면 타이머 끄기
@@ -41,7 +41,7 @@ public partial class AI_Structure : Stat
         }
 
         isShot = true;
-        //ExcuteLookAt(other.transform.position);
+        ExcuteLookAt(other.transform.position);
 
         targetObj = other.transform;
         StopAttack();     // 공격하는데 성공했으면 타이머 끄기
@@ -50,6 +50,8 @@ public partial class AI_Structure : Stat
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
+                ExcuteLookAt(other.transform.position);
+
                 if (other.gameObject.activeSelf == false)
                 {
                     isShot = false;
@@ -77,12 +79,13 @@ public partial class AI_Structure : Stat
         switch (atkStructType)
         {
             case GameDefine.AtkStructureType.Balista:
-                ExcuteLookAt(targetObj.position);
+                //ExcuteLookAt(targetObj.position);
                 projectile.GetComponent<Projectile_Balista>().ReadyAndShot(this, targetObj);
                 break;
             case GameDefine.AtkStructureType.Cannon:
-                ExcuteLookAt(targetObj.position);
+                //ExcuteLookAt(targetObj.position);
                 projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
+                ActiveShotEffect();
                 break;
             case GameDefine.AtkStructureType.Flame:
                 projectile.GetComponent<Projectile_Flame>().ReadyAndShot(this, targetObj.transform);
@@ -94,6 +97,15 @@ public partial class AI_Structure : Stat
                 break;
             default:
                 break;
+        }
+    }
+
+    private void ActiveShotEffect()
+    {
+        if(shotEffect != null)
+        {
+            shotEffect.SetActive(false);
+            shotEffect.SetActive(true);
         }
     }
 }

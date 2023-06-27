@@ -39954,6 +39954,7 @@ MonoBehaviour:
   startPos: {fileID: 1290438984}
   projectileKey: P0301
   atkStructType: 2
+  shotEffect: {fileID: 0}
   craftType: 0
   spawnEffect: {fileID: 962865928}
   repairAnim: {fileID: 0}
@@ -83032,6 +83033,7 @@ MonoBehaviour:
   startPos: {fileID: 7772573661471413300}
   projectileKey: P0101
   atkStructType: 0
+  shotEffect: {fileID: 0}
   craftType: 0
   spawnEffect: {fileID: 7532310508923412504}
   repairAnim: {fileID: 0}
@@ -91692,6 +91694,7 @@ MonoBehaviour:
   startPos: {fileID: 0}
   projectileKey: 
   atkStructType: 99
+  shotEffect: {fileID: 0}
   craftType: 1
   spawnEffect: {fileID: 1674917729}
   repairAnim: {fileID: 0}
@@ -94421,3 +94424,60 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &9220821265264072326
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939106, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706525362667939117, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
+      propertyPath: m_Name
+      value: Building_ATK_00201
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ec4930a61ac9884398fa5e6d485257c, type: 3}
