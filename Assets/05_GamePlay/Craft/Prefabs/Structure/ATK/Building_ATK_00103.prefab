@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   structure: {fileID: 3041337789235700020}
+  detectTime: 1
 --- !u!1 &3041337789235477781
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e63aef3463b514dbd43570a6872648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idName: Building_ATK_00101
+  idName: Building_ATK_00103
   maxHealthValue: 150
   healthValue: 150
   damageValue: 100
@@ -519,7 +520,6 @@ MonoBehaviour:
   anim: {fileID: 7708399540442312964}
   marker: {fileID: 1013801399516453084}
   lookAtAction: {fileID: 1013801398968671038}
-  poolProjectileIndex: 3
   startPos: {fileID: 1013801398315541384}
   projectileKey: P0103
   atkStructType: 0

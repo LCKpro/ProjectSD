@@ -2,16 +2,17 @@ using System;
 using UnityEngine;
 using UniRx;
 
-public class Projectile_Flame : MonoBehaviour
+public class Projectile_Stun : MonoBehaviour
 {
     public float power;
-    public int durationTime;  // 화염포 지속시간
+    public int durationTime;  // 전자포 지속시간
     public string idName;
 
     public Animator anim;
 
-    public float damagePerTick = 0f;
-    public int burnDuration = 1;    // 화상 지속시간
+    public int slowDuration = 1;    // 슬로우 지속시간
+    public float slowPercent = 0.2f;   // 슬로우 %
+    public float rotateSpeed = 2f;      // 회전 속도(n초에 1바퀴)
 
     private IDisposable _atkController = Disposable.Empty;
     private IDisposable _lookAtTimer = Disposable.Empty;
@@ -42,9 +43,6 @@ public class Projectile_Flame : MonoBehaviour
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                coll.enabled = false;
-                coll.enabled = true;
-
                 remainTime--;
 
                 if (remainTime == 1)
@@ -52,24 +50,27 @@ public class Projectile_Flame : MonoBehaviour
                     Debug.Log("그만 호출");
                     anim.SetTrigger("LaunchEnd");
                 }
-                else if(remainTime == 0)
+                else if (remainTime == 0)
                 {
                     GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
                     StopAttack();
                 }
             });
 
+        var vec = Vector3.zero;
         _lookAtTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                LookAtTarget(target);
+                //LookAtTarget(target);
+                vec.y = Time.deltaTime * 360 / rotateSpeed;
+                transform.Rotate(vec);
             });
     }
 
     private void LookAtTarget(Transform target)
     {
-        var targetPos = target.position + new Vector3(0, 3, 0);
+        var targetPos = target.position + new Vector3(0, -1.5f, 0);
         transform.LookAt(targetPos);
     }
 
@@ -77,8 +78,9 @@ public class Projectile_Flame : MonoBehaviour
     {
         if (other.tag == "Monster")
         {
-            ai_Structure.Burn(other.gameObject, damagePerTick, burnDuration);
-            Debug.Log("화염 피해");
+            ai_Structure.DealCrowdControl(other.gameObject, GameDefine.CCType.Slow, slowDuration, slowPercent);
+            ai_Structure.DealDamage(other.gameObject);
+            Debug.Log("둔화 피해");
         }
     }
 }

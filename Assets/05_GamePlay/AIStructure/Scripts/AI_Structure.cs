@@ -83,6 +83,7 @@ public partial class AI_Structure : Stat
                 projectile.GetComponent<Projectile_Flame>().ReadyAndShot(this, targetObj.transform);
                 break;
             case GameDefine.AtkStructureType.Stun:
+                projectile.GetComponent<Projectile_Stun>().ReadyAndShot(this, targetObj.transform);
                 break;
             case GameDefine.AtkStructureType.None:
                 break;
