@@ -8,6 +8,7 @@ public partial class AI_Structure
     public GameObject spawnEffect;
 
     private IDisposable _timer = Disposable.Empty;
+    private bool _isFinishCrafting = false;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public partial class AI_Structure
 
     private void BuildingRaise()
     {
+        _isFinishCrafting = false;
         spawnEffect.SetActive(false);
         StopRaise();
         bool isShake = false;
@@ -33,6 +35,7 @@ public partial class AI_Structure
                 if (transform.position.y >= 0)
                 {
                     StopRaise();
+                    _isFinishCrafting = true;
                     spawnEffect.SetActive(true);
                 }
                 else

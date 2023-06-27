@@ -30,6 +30,11 @@ public partial class AI_Structure : Stat
     private bool isShot = false;
     public void RangeAttackStart(Collider other, float detectTime)
     {
+        if(_isFinishCrafting == false)
+        {
+            return;
+        }
+
         if(isShot == true)
         {
             return;
