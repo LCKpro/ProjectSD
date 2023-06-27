@@ -51,6 +51,7 @@ public class GamePlay : MonoBehaviour
     public InGamePools inGamePools;
     public PoolManager poolManager_Monster;
     public PoolManager poolManager_Projectile;
+    public PoolManager poolManager_Effect;
     public SpawnManager spawnManager;
 
     public PoolManager[] poolManager_StructureArray;
