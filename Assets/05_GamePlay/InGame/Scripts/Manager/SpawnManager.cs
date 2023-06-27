@@ -29,10 +29,10 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        /*for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             poolManager_Monster.GetFromPool<AIPlayer>(2);
-        }*/
+        }
 
         //poolManager_Monster.GetFromPool<AIPlayer>(2);
         //poolManager_Monster.GetFromPool<AIPlayer>(0);
@@ -43,6 +43,11 @@ public class SpawnManager : MonoBehaviour
         Transform newObj = poolManager_Structure_Array[structIndex].GetFromPool<Transform>(index);
 
         return newObj;
+    }
+
+    public void ReturnStructurePool(int structIndex, string idName, Transform clone)
+    {
+        poolManager_Structure_Array[structIndex].TakeToPool<Transform>(idName, clone);
     }
 
     public Transform SpawnIncompleteStructure(int structIndex, int index)

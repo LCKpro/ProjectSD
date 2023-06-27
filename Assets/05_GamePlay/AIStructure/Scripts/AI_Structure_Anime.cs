@@ -42,7 +42,7 @@ public partial class AI_Structure
                 {
                     var pos = transform.position;
 
-                    if(isShake == true)
+                    if (isShake == true)
                     {
                         pos.x = originPos.x - shakePower;
                         pos.z = originPos.z - shakePower;
@@ -71,5 +71,7 @@ public partial class AI_Structure
     protected override void Die()
     {
         transform.gameObject.SetActive(false);
+        GamePlay.Instance.spawnManager.GetFromPool("Explosion", transform.position);
+        //GamePlay.Instance.spawnManager.ReturnStructurePool((int)craftType, idName, this.transform);
     }
 }
