@@ -72,6 +72,7 @@ public partial class AI_Structure
     {
         transform.gameObject.SetActive(false);
         GamePlay.Instance.spawnManager.GetFromPool("Explosion", transform.position);
+        SoundManager.instance.PlaySound("Break");
         //GamePlay.Instance.spawnManager.ReturnStructurePool((int)craftType, idName, this.transform);
     }
 }

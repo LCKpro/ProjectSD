@@ -45,8 +45,17 @@ public class GameDataManager : MonoBehaviour
         Core.Instance.itemManager.InitItemData();   // 아이템 불러오기
         GamePlay.Instance.stageManager.Init();      //  스테이지 정보 불러오기
     }
+
+    private bool isSaveClick = false;
     public void SaveData()
     {
+        if(isSaveClick == true)
+        {
+            return;
+        }
+
+        isSaveClick = true;
+
         PlayerPrefs.SetInt("Gold", player_Gold);        // 골드, 포인트 저장
         PlayerPrefs.SetInt("Point", player_Point);
 
@@ -56,6 +65,13 @@ public class GameDataManager : MonoBehaviour
 
         Core.Instance.itemManager.SaveItemData();   // 아이템 저장
         GamePlay.Instance.stageManager.SaveStage();     // 스테이지 저장Init
+
+        Invoke("SaveCoolTime", 5f);
+    }
+
+    public void SaveCoolTime()
+    {
+        isSaveClick = false;
     }
 
     

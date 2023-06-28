@@ -80,17 +80,21 @@ public partial class AI_Structure : Stat
         {
             case GameDefine.AtkStructureType.Balista:
                 //ExcuteLookAt(targetObj.position);
+                SoundManager.instance.PlaySound("Balista");
                 projectile.GetComponent<Projectile_Balista>().ReadyAndShot(this, targetObj);
                 break;
             case GameDefine.AtkStructureType.Cannon:
                 //ExcuteLookAt(targetObj.position);
+                SoundManager.instance.PlaySound("Cannon");
                 projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
                 ActiveShotEffect();
                 break;
             case GameDefine.AtkStructureType.Flame:
+                SoundManager.instance.PlaySound("Flame");
                 projectile.GetComponent<Projectile_Flame>().ReadyAndShot(this, targetObj.transform);
                 break;
             case GameDefine.AtkStructureType.Stun:
+                SoundManager.instance.PlaySound("Lightning");
                 projectile.GetComponent<Projectile_Stun>().ReadyAndShot(this, targetObj.transform);
                 break;
             case GameDefine.AtkStructureType.None:

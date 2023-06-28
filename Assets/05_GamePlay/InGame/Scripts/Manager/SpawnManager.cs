@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
                     var monster = GamePlay.Instance.poolManager_Monster.GetFromPool<AIPlayer>(monsterIndex);
                     monster.transform.position = spawnPos;
 
-                    await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.5f)).SuppressCancellationThrow();
                 }
             }
             catch (Exception ex)

@@ -77,6 +77,8 @@ public class StageManager : MonoBehaviour
 
         StopTimer();
         PrepareSpawn();
+        SoundManager.instance.PlayBGM("Battle");
+        SoundManager.instance.PlaySound("BattleStart");
         int count = 0;
         _timer = Observable.Interval(TimeSpan.FromSeconds(60f)).TakeUntilDisable(gameObject)
            .TakeUntilDestroy(gameObject)
