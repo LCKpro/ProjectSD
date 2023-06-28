@@ -105,4 +105,18 @@ public static class GameDefine
 
         None = 99,
     }
+
+    public enum WaveType
+    {
+        Linear = 0,
+        Circle = 1,
+        Double = 2,
+        OnlyTop = 3,
+        OnlyBottom = 4,
+        OnlyLeft = 5,
+        OnlyRight = 6,
+        
+        None = 99,
+    }
+
 }

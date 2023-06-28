@@ -1,38 +1,29 @@
 using UnityEngine;
-using Redcode.Pools;
-using Random = UnityEngine.Random;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class SpawnManager : MonoBehaviour
 {
-    private PoolManager poolManager_Monster;
-
-    private PoolManager[] poolManager_Structure_Array;
-    private PoolManager[] poolManager_IncompleteStructure_Array;
-
-    private PoolManager poolManager_Projectile;
-    private PoolManager poolManager_Effect;
-
-    //private Transform _target = null;
-
-    private void Start()
+    public void SpawnMonster(int monsterIndex, int monsterAmount, Vector3 spawnPos)
     {
-        var manager = GamePlay.Instance;
-        poolManager_Monster = manager.poolManager_Monster;
-        poolManager_Projectile = manager.poolManager_Projectile;
-        poolManager_Projectile = manager.poolManager_Effect;
-
-        poolManager_Structure_Array = manager.poolManager_StructureArray;
-        poolManager_IncompleteStructure_Array = manager.poolManager_IncompleteStructureArray;
-
-        SpawnMonster();
-    }
-
-    public void SpawnMonster()
-    {
-        for (int i = 0; i < 5; i++)
+        UniTask.Create(async () =>
         {
-            poolManager_Monster.GetFromPool<AIPlayer>(2);
-        }
+            try
+            {
+                for (int i = 0; i < monsterAmount; i++)
+                {
+                    var monster = GamePlay.Instance.poolManager_Monster.GetFromPool<AIPlayer>(monsterIndex);
+                    monster.transform.position = spawnPos;
+
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+                }
+            }
+            catch (Exception ex)
+            {
+                GameUtils.Error(ex.ToString());
+            }
+
+        });
 
         //poolManager_Monster.GetFromPool<AIPlayer>(2);
         //poolManager_Monster.GetFromPool<AIPlayer>(0);
@@ -40,19 +31,19 @@ public class SpawnManager : MonoBehaviour
 
     public Transform SpawnStructure(int structIndex, int index)
     {
-        Transform newObj = poolManager_Structure_Array[structIndex].GetFromPool<Transform>(index);
+        Transform newObj = GamePlay.Instance.poolManager_StructureArray[structIndex].GetFromPool<Transform>(index);
 
         return newObj;
     }
 
     public void ReturnStructurePool(int structIndex, string idName, Transform clone)
     {
-        poolManager_Structure_Array[structIndex].TakeToPool<Transform>(idName, clone);
+        GamePlay.Instance.poolManager_StructureArray[structIndex].TakeToPool<Transform>(idName, clone);
     }
 
     public Transform SpawnIncompleteStructure(int structIndex, int index)
     {
-        Transform newObj = poolManager_IncompleteStructure_Array[structIndex].GetFromPool<Transform>(index);
+        Transform newObj = GamePlay.Instance.poolManager_IncompleteStructureArray[structIndex].GetFromPool<Transform>(index);
 
         return newObj;
     }
@@ -60,12 +51,12 @@ public class SpawnManager : MonoBehaviour
 
     public void ReturnPool(AIPlayer clone)
     {
-        poolManager_Monster.TakeToPool<AIPlayer>(clone.idName, clone);
+        GamePlay.Instance.poolManager_Monster.TakeToPool<AIPlayer>(clone.idName, clone);
     }
 
     public void ReturnProjectilePool(string idName, Transform clone)
     {
-        poolManager_Projectile.TakeToPool<Transform>(idName, clone);
+        GamePlay.Instance.poolManager_Projectile.TakeToPool<Transform>(idName, clone);
     }
 
     public void GetFromPool(string idName, Vector3 pos)
@@ -76,6 +67,6 @@ public class SpawnManager : MonoBehaviour
 
     public void ReturnEffectPool(string idName, Transform clone)
     {
-        poolManager_Effect.TakeToPool<Transform>(idName, clone);
+        GamePlay.Instance.poolManager_Effect.TakeToPool<Transform>(idName, clone);
     }
 }

@@ -12,6 +12,11 @@ public class Pool_Effect : MonoBehaviour
         Invoke("GoToPool", duration);
     }
 
+    private void OnDisable()
+    {
+        CancelInvoke("GoToPool");
+    }
+
     public void GoToPool()
     {
         GamePlay.Instance.spawnManager.ReturnEffectPool(idName, this.transform);

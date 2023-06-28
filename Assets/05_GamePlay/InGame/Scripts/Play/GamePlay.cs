@@ -64,6 +64,10 @@ public class GamePlay : MonoBehaviour
     public FarmingManager farmingManager;
     public CameraManager cameraManager;
 
+    public GameDataManager gameDataManager;
+    public StageManager stageManager;
+    public ArchitectureManager architectureManager;
+
 
     #region ¹öÆ°
 
