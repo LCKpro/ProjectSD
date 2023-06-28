@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8380b3d456ae2ad4c8ecbe2769f93378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idName: "\uAC70\uBD81\uB0E5"
+  idName: "\uAE30\uC0C1\uCE90\uC2A4\uD130\uB0E5"
   maxHealthValue: 150
   healthValue: 150
   damageValue: 50

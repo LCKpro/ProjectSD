@@ -36,6 +36,7 @@ public partial class AI_Structure
                 {
                     healthValue = maxHealthValue;
                     StopRepair();
+                    GamePlay.Instance.spawnManager.GetFromPool("CatFoot", this.transform.position);
                     player.ChangeStateToIdle();
                 }
                 else
