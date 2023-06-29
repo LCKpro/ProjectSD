@@ -45,7 +45,7 @@ public class StageManager : MonoBehaviour
         currentStage = PlayerPrefs.GetInt("Stage", 1);
 
         // 임시 코드
-        StartSequence();
+        //StartSequence();
     }
 
     public void SaveStage()
