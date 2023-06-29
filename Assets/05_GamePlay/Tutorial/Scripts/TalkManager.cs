@@ -13,6 +13,8 @@ public class TalkManager : MonoBehaviour
 
     public string[] talkDialogList;
 
+    public Animator npcAnim;
+
     /*"이걸 어쩌지..:5, 
       "저기 잠깐만 기다려줘! 내 부탁 좀 들어줄 수 있어?:4",
       "사실 아까 괴물을 피해서 도망쳐왔는데.. 아무래도 그 때 지갑을 잃어버린 것 같아:5",
@@ -44,6 +46,8 @@ public class TalkManager : MonoBehaviour
 
     public string GetTalk(int id, int talkIndex)
     {
+        Debug.Log("GetTalk" + id + " " + talkIndex);
+
         // 우리가 딕셔너리에 넣은 키값이 있냐 없냐?!
         if (!talkData.ContainsKey(id))
         {
@@ -59,13 +63,54 @@ public class TalkManager : MonoBehaviour
             }
         }
         if (talkIndex == talkData[id].Length)
+        {
+            if (id == 1000)
+            {
+                GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
+            }
+            Debug.Log("Null");
             return null;
+        }
         else
+        {
+            if(id == 1000)
+            {
+                SetDirection(talkIndex);
+            }
+
             return talkData[id][talkIndex];
+        }
+
     }
-    
+
     public Material GetNPCFaceMat(int id, int portraitIndex)
     {
+        Debug.Log("GetNPCFaceMat : " + id + " index : " + portraitIndex);
         return faceMatData_NPC[id + portraitIndex];
+    }
+
+    public void SetDirection(int index)
+    {
+        if (index == 0)
+        {
+            npcAnim.SetInteger("animation", 34);
+        }
+        else if (index == 5)
+        {
+            SoundManager.instance.PlaySound("Break");
+        }
+        else if (index == 8)
+        {
+            GamePlay.Instance.cameraManager.ChangeCam_NPC();
+        }
+        else if (index == 21)
+        {
+            npcAnim.SetInteger("animation", 42);
+            SoundManager.instance.PlaySound("Propose");
+        }
+        else if (index == 22)
+        {
+            npcAnim.SetInteger("animation", 34);
+        }
     }
 }

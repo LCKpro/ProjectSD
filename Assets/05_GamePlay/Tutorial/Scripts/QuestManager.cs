@@ -6,8 +6,6 @@ public class QuestManager : MonoBehaviour
     public int questId = 0;
     public int questActionIndex = 0;
     private Dictionary<int, QuestData> questList;
-    bool isSpawn = false;
-    bool isHelp = false;
 
     public static QuestManager instance;
     void Awake()
@@ -37,20 +35,6 @@ public class QuestManager : MonoBehaviour
         // 퀘스트액션 인덱스가 배열크기와 같을 경우(퀘스트 끝까지 도달했을 때) 넘어감
         if (questActionIndex == questList[questId].npcId.Length)
             NextQuest();
-
-        if (questId == 20 && !isHelp)
-        {
-            //GameManager.instance.helpText.SetActive(true);
-            //GameManager.instance.helpText.GetComponent<FadeText>().HideReddy(5.0f);
-            isHelp = true;
-        }
-
-        if (questId == 30 && !isSpawn)
-        {
-            //GameManager.instance.rikayon.SetActive(true);
-            //GameManager.instance.SubCam();
-            isSpawn = true;
-        }
 
         return questList[questId].questName;
     }
