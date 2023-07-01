@@ -24,6 +24,21 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Debug.Log(QuestManager.instance.CheckQuest());
+        CheckTutorial();
+    }
+
+    private void CheckTutorial()
+    {
+        if(PlayerPrefs.GetInt("Tutorial") == 0)
+        {
+            Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
+            PlayerPrefs.SetInt("Tutorial", 1);
+            //TalkAction();
+        }
+        else
+        {
+            GamePlay.Instance.uI_DayNightSystem.Init();
+        }
     }
 
     public void TalkAction()
@@ -68,6 +83,7 @@ public class DialogManager : MonoBehaviour
             talkIndex = 0;
             Debug.Log(QuestManager.instance.CheckQuest(id));
             GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
+            GamePlay.Instance.uI_DayNightSystem.Init();
             return;
         }
 

@@ -94,6 +94,7 @@ public class TalkManager : MonoBehaviour
         if (index == 0)
         {
             npcAnim.SetInteger("animation", 34);
+            GamePlay.Instance.cameraManager.ChangeCam_Sky();
         }
         else if (index == 5)
         {

@@ -39,7 +39,7 @@ public partial class AIPlayer : IPoolObject
 
     public void Init()
     {
-        _target = GamePlay.Instance.playerManager.GetPlayer().transform;
+        _target = GamePlay.Instance.playerManager.GetCatTower().transform;
         _rigid = GetComponent<Rigidbody>();
         SetPosition();
         AIControllerStart();

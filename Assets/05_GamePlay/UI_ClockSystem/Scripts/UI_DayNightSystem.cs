@@ -15,15 +15,10 @@ public class UI_DayNightSystem : MonoBehaviour
     private IDisposable _clockTimer = Disposable.Empty;
     private IDisposable _dayNightTimer = Disposable.Empty;
 
-    private void Start()
-    {
-        Init();
-    }
-
     public void Init()
     {
-        StartDayTimer();
-        StartDayNightTimer();
+        StartDayTimer();        // 텍스트 수정하는 타이머
+        StartDayNightTimer();   // 조명 수정하는 타이머
     }
 
     private void StartDayTimer()
@@ -54,8 +49,14 @@ public class UI_DayNightSystem : MonoBehaviour
                     if(hour >= 12)
                     {
                         isDay = !isDay;     // 낮밤 바꿔주기
+
                         hour = 0;
                     }
+                }
+
+                if(isDay == false && hour == 0 && minute == 0)  // 밤 정각에 몬스터 스폰
+                {
+                    ActionOnNight();
                 }
 
                 if(isDay == true)
@@ -66,7 +67,6 @@ public class UI_DayNightSystem : MonoBehaviour
                 {
                     timeTxt.text = string.Format($"PM {hour:D2} : {minute:D2}");
                 }
-
             });
     }
 
@@ -109,5 +109,10 @@ public class UI_DayNightSystem : MonoBehaviour
                     dayLight.intensity -= (dt / dayTimeSecond);
                 }
             });
+    }
+
+    private void ActionOnNight()
+    {
+        GamePlay.Instance.stageManager.StartSequence();
     }
 }

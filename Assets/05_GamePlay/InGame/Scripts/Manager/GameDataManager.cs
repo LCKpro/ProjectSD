@@ -29,10 +29,6 @@ public class GameDataManager : MonoBehaviour
     public int Player_Point { get => player_Point; private set => player_Point = value; }
     private int player_Point;
 
-    private void Start()
-    {
-        Init();
-    }
 
     public void Init()
     {

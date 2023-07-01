@@ -88,6 +88,7 @@ public class StageManager : MonoBehaviour
 
                if(count >= 5)
                {
+                   ClearStage();
                    count = 0;
                    StopTimer();
                }
