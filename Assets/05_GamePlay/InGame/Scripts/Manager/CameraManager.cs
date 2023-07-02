@@ -14,21 +14,25 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCam_PlayerToTarget()
     {
-        controller.currentCameraMotor = cameraMotor_Target;
+        controller.ChangeCameraMotor(cameraMotor_Target, 0.2f);
+        //controller.currentCameraMotor = cameraMotor_Target;
     }
 
     public void ChangeCam_TargetToPlayer()
     {
-        controller.currentCameraMotor = cameraMotor_Player;
+        controller.ChangeCameraMotor(cameraMotor_Player, 0.2f);
+        //controller.currentCameraMotor = cameraMotor_Player;
     }
 
     public void ChangeCam_Sky()
     {
-        controller.currentCameraMotor = cameraMotor_Sky;
+        controller.ChangeCameraMotor(cameraMotor_Sky, 0.7f);
+        //controller.currentCameraMotor = cameraMotor_Sky;
     }
 
     public void ChangeCam_NPC()
     {
-        controller.currentCameraMotor = cameraMotor_NPC;
+        controller.ChangeCameraMotor(cameraMotor_NPC, 0.7f);
+        //controller.currentCameraMotor = cameraMotor_NPC;
     }
 }

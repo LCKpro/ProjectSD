@@ -3,6 +3,7 @@ using UnityEngine;
 using UniRx;
 using Redcode.Pools;
 using Random = UnityEngine.Random;
+using UnityEngine.AI;
 
 public partial class AIPlayer : IPoolObject
 {
@@ -16,7 +17,7 @@ public partial class AIPlayer : IPoolObject
     private float finalMoveSpeed = 0f;
 
     public Animator anim;
-    
+    private NavMeshAgent _ai;
 
     public void SetStateType(GameDefine.AIStateType type)
     {
@@ -40,8 +41,10 @@ public partial class AIPlayer : IPoolObject
     public void Init()
     {
         _target = GamePlay.Instance.playerManager.GetCatTower().transform;
+        transform.LookAt(_target);
         _rigid = GetComponent<Rigidbody>();
-        SetPosition();
+        _ai = GetComponent<NavMeshAgent>();
+        //SetPosition();
         AIControllerStart();
     }
 
@@ -108,10 +111,18 @@ public partial class AIPlayer : IPoolObject
     {
         //_ai.SetDestination(_target.position);
 
-        _rigid.velocity = Vector3.zero;
+        /*_rigid.velocity = Vector3.zero;
         if (_target != null)
         {
             _rigid.velocity = (_target.position - this.transform.position) * finalMoveSpeed;
+        }
+        else
+            Debug.Log("Å¸°Ù NULL");*/
+
+        if (_target != null)
+        {
+            _ai.isStopped = false;
+            _ai.SetDestination(_target.position);
         }
         else
             Debug.Log("Å¸°Ù NULL");
@@ -132,8 +143,8 @@ public partial class AIPlayer : IPoolObject
     {
         if (_rigid != null)
             _rigid.velocity = Vector3.zero;
-        //_ai.isStopped = true;
-        //_ai.velocity = Vector3.zero;
+        _ai.isStopped = true;
+        _ai.velocity = Vector3.zero;
     }
 
     #endregion
@@ -142,6 +153,7 @@ public partial class AIPlayer : IPoolObject
     {
         if (targetObj != null)
         {
+            SoundManager.instance.PlaySound("NormalAtk");
             DealDamage(targetObj);
         }
         else

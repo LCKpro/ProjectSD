@@ -19,6 +19,7 @@ public class UI_DayNightSystem : MonoBehaviour
     {
         StartDayTimer();        // 텍스트 수정하는 타이머
         StartDayNightTimer();   // 조명 수정하는 타이머
+        SoundManager.instance.PlayBGM("Title");
     }
 
     private void StartDayTimer()
@@ -54,7 +55,7 @@ public class UI_DayNightSystem : MonoBehaviour
                     }
                 }
 
-                if(isDay == false && hour == 0 && minute == 0)  // 밤 정각에 몬스터 스폰
+                if(isDay == false && hour == 6 && minute == 0)  // 밤 정각에 몬스터 스폰
                 {
                     ActionOnNight();
                 }
@@ -78,7 +79,7 @@ public class UI_DayNightSystem : MonoBehaviour
         dayLight.intensity = 0.5f;
 
         float fullTime = dayTimeSecond * 2; // 낮 밤 합친 시간
-        float time = 450;    // 계산할 시간
+        float time = fullTime * 0.75f;    // 계산할 시간
         _dayNightTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>

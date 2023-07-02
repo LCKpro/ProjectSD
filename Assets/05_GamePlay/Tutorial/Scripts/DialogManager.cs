@@ -29,7 +29,7 @@ public class DialogManager : MonoBehaviour
 
     private void CheckTutorial()
     {
-        if(PlayerPrefs.GetInt("Tutorial") == 0)
+        /*if(PlayerPrefs.GetInt("Tutorial") == 0)
         {
             Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
             PlayerPrefs.SetInt("Tutorial", 1);
@@ -38,7 +38,9 @@ public class DialogManager : MonoBehaviour
         else
         {
             GamePlay.Instance.uI_DayNightSystem.Init();
-        }
+        }*/
+
+        GamePlay.Instance.uI_DayNightSystem.Init();
     }
 
     public void TalkAction()
