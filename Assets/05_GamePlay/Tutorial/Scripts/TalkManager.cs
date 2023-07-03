@@ -64,12 +64,6 @@ public class TalkManager : MonoBehaviour
         }
         if (talkIndex == talkData[id].Length)
         {
-            if (id == 1000)
-            {
-                GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
-                PlayerPrefs.SetInt("Tutorial", 1);
-                PlayView.Instance.SetActiveUI(true);
-            }
             Debug.Log("Null");
             return null;
         }

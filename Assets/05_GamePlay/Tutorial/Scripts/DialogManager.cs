@@ -47,6 +47,12 @@ public class DialogManager : MonoBehaviour
         tutorial_Actor.SetActive(false);
     }
 
+    public void Cheat_TalkAction()
+    {
+        tutorial_Actor.SetActive(true);
+        TalkAction();
+    }
+
     public void TalkAction()
     {
         if (PlayerPrefs.GetInt("Tutorial") == 1)
@@ -94,9 +100,12 @@ public class DialogManager : MonoBehaviour
         {
             isAction = false;
             talkIndex = 0;
-            Debug.Log(QuestManager.instance.CheckQuest(id));
+            GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
+            PlayerPrefs.SetInt("Tutorial", 1);
+            PlayView.Instance.SetActiveUI(true);
             GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
             GamePlay.Instance.uI_DayNightSystem.Init();
+            talkBox.gameObject.SetActive(false);
             return;
         }
 

@@ -42,7 +42,7 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCam_NPC()
     {
-        controller.ChangeCameraMotor(cameraMotor_NPC, 2f);
+        controller.ChangeCameraMotor(cameraMotor_NPC, 1.5f);
         //controller.currentCameraMotor = cameraMotor_NPC;
     }
 }
