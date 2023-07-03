@@ -6,11 +6,21 @@ using GameCreator.Camera;
 public class CameraManager : MonoBehaviour
 {
     public CameraController controller;
+
+    public CameraMotor cameraMotor_Day;
+
     public CameraMotor cameraMotor_Player;
     public CameraMotor cameraMotor_Target;
 
     public CameraMotor cameraMotor_Sky;
     public CameraMotor cameraMotor_NPC;
+
+    public void ChangeCam_Day()
+    {
+        controller.ChangeCameraMotor(cameraMotor_Day, 0.2f);
+        //controller.currentCameraMotor = cameraMotor_Target;
+    }
+
 
     public void ChangeCam_PlayerToTarget()
     {

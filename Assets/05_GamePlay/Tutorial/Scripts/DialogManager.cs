@@ -14,7 +14,7 @@ public class DialogManager : MonoBehaviour
 
     public SkinnedMeshRenderer npcRenderer;
 
-
+    public GameObject tutorial_Actor;
 
     private void Awake()
     {
@@ -33,6 +33,7 @@ public class DialogManager : MonoBehaviour
         /*if(PlayerPrefs.GetInt("Tutorial") == 0)
         {
             Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
+            tutorial_Actor.SetActive(true);
             TalkAction();
         }
         else
@@ -40,7 +41,9 @@ public class DialogManager : MonoBehaviour
             GamePlay.Instance.uI_DayNightSystem.Init();
         }*/
 
+
         GamePlay.Instance.uI_DayNightSystem.Init();
+        tutorial_Actor.SetActive(false);
     }
 
     public void TalkAction()
