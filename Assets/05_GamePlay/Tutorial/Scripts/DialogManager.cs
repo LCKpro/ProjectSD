@@ -33,6 +33,7 @@ public class DialogManager : MonoBehaviour
         /*if(PlayerPrefs.GetInt("Tutorial") == 0)
         {
             Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
+            PlayView.Instance.SetActiveUI(false);
             tutorial_Actor.SetActive(true);
             TalkAction();
         }
@@ -41,7 +42,7 @@ public class DialogManager : MonoBehaviour
             GamePlay.Instance.uI_DayNightSystem.Init();
         }*/
 
-
+        PlayView.Instance.SetActiveUI(true);
         GamePlay.Instance.uI_DayNightSystem.Init();
         tutorial_Actor.SetActive(false);
     }
@@ -52,6 +53,8 @@ public class DialogManager : MonoBehaviour
         {
             return;
         }
+
+        PlayView.Instance.SetActiveUI(false);
 
         Talk(1000);
 

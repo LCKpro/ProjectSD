@@ -68,6 +68,7 @@ public class TalkManager : MonoBehaviour
             {
                 GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
                 PlayerPrefs.SetInt("Tutorial", 1);
+                PlayView.Instance.SetActiveUI(true);
             }
             Debug.Log("Null");
             return null;
