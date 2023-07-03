@@ -24,6 +24,7 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Debug.Log(QuestManager.instance.CheckQuest());
+        PlayerPrefs.DeleteAll();
         CheckTutorial();
     }
 
@@ -32,8 +33,7 @@ public class DialogManager : MonoBehaviour
         /*if(PlayerPrefs.GetInt("Tutorial") == 0)
         {
             Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
-            PlayerPrefs.SetInt("Tutorial", 1);
-            //TalkAction();
+            TalkAction();
         }
         else
         {
@@ -45,6 +45,11 @@ public class DialogManager : MonoBehaviour
 
     public void TalkAction()
     {
+        if (PlayerPrefs.GetInt("Tutorial") == 1)
+        {
+            return;
+        }
+
         Talk(1000);
 
         // UI대화창 On/Off

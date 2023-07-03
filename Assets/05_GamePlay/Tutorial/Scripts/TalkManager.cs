@@ -67,6 +67,7 @@ public class TalkManager : MonoBehaviour
             if (id == 1000)
             {
                 GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
+                PlayerPrefs.SetInt("Tutorial", 1);
             }
             Debug.Log("Null");
             return null;

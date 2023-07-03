@@ -90,6 +90,7 @@ public class UI_System : MonoBehaviour
 
     public void OnClick_Hide()
     {
+        SoundManager.instance.PlaySound("NormalClick");
         GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
         transform.gameObject.SetActive(false);
     }

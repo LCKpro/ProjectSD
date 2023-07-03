@@ -26,13 +26,13 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCam_Sky()
     {
-        controller.ChangeCameraMotor(cameraMotor_Sky, 0.7f);
+        controller.ChangeCameraMotor(cameraMotor_Sky, 2f);
         //controller.currentCameraMotor = cameraMotor_Sky;
     }
 
     public void ChangeCam_NPC()
     {
-        controller.ChangeCameraMotor(cameraMotor_NPC, 0.7f);
+        controller.ChangeCameraMotor(cameraMotor_NPC, 2f);
         //controller.currentCameraMotor = cameraMotor_NPC;
     }
 }

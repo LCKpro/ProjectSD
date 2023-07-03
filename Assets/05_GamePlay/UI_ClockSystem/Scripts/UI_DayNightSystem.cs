@@ -12,6 +12,8 @@ public class UI_DayNightSystem : MonoBehaviour
     public float dayTimeSecond = 300f;
     public TextMeshProUGUI timeTxt;
 
+    public GameObject ui_UnitSkill;
+
     private IDisposable _clockTimer = Disposable.Empty;
     private IDisposable _dayNightTimer = Disposable.Empty;
 
@@ -20,6 +22,7 @@ public class UI_DayNightSystem : MonoBehaviour
         StartDayTimer();        // 텍스트 수정하는 타이머
         StartDayNightTimer();   // 조명 수정하는 타이머
         SoundManager.instance.PlayBGM("Day");
+        ui_UnitSkill.SetActive(false);
     }
 
     private void StartDayTimer()
@@ -57,6 +60,10 @@ public class UI_DayNightSystem : MonoBehaviour
                 if(isDay == false && hour == 6 && minute == 0)  // 밤 정각에 몬스터 스폰
                 {
                     ActionOnNight();
+                }
+                else if(isDay == true && hour == 6 && minute == 0)
+                {
+                    ActionOnDay();
                 }
 
                 if(isDay == true)
@@ -113,6 +120,12 @@ public class UI_DayNightSystem : MonoBehaviour
 
     private void ActionOnNight()
     {
+        ui_UnitSkill.SetActive(true);
         GamePlay.Instance.stageManager.StartSequence();
+    }
+
+    private void ActionOnDay()
+    {
+        ui_UnitSkill.SetActive(false);
     }
 }
