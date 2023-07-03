@@ -67,12 +67,5 @@ public partial class AI_Structure
         _timer = Disposable.Empty;
     }
 
-
-    protected override void Die()
-    {
-        transform.gameObject.SetActive(false);
-        GamePlay.Instance.spawnManager.GetFromPool("Explosion", transform.position);
-        SoundManager.instance.PlaySound("Break");
-        //GamePlay.Instance.spawnManager.ReturnStructurePool((int)craftType, idName, this.transform);
-    }
+    
 }

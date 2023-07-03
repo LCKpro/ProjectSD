@@ -16,6 +16,7 @@ public partial class AI_Structure : Stat
     public string projectileKey;
     public GameDefine.AtkStructureType atkStructType = GameDefine.AtkStructureType.None;
     public GameObject shotEffect;
+    public AI_Structure_HpBar aI_Structure_HpBar;
 
 
     // 공격하는데 성공했으면 타이머 끄기
@@ -79,9 +80,9 @@ public partial class AI_Structure : Stat
         switch (atkStructType)
         {
             case GameDefine.AtkStructureType.Balista:
-                //ExcuteLookAt(targetObj.position);
+                projectile.transform.LookAt(targetObj.transform);
                 SoundManager.instance.PlaySound("Balista");
-                projectile.GetComponent<Projectile_Balista>().ReadyAndShot(this, targetObj);
+                projectile.GetComponent<Projectile_Balista>().ReadyAndShot_Balista(this, targetObj);
                 break;
             case GameDefine.AtkStructureType.Cannon:
                 //ExcuteLookAt(targetObj.position);

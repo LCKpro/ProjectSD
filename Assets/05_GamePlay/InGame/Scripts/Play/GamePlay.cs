@@ -90,6 +90,7 @@ public class GamePlay : MonoBehaviour
             return;
         }
 
+        gameStateManager.SetStateType(GameDefine.StateType.Build);
         ui_System.gameObject.SetActive(true);
         ui_System.OnClick_StartCraftSystem();
     }

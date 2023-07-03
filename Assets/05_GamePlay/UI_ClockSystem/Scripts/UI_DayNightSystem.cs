@@ -19,7 +19,7 @@ public class UI_DayNightSystem : MonoBehaviour
     {
         StartDayTimer();        // 텍스트 수정하는 타이머
         StartDayNightTimer();   // 조명 수정하는 타이머
-        SoundManager.instance.PlayBGM("Title");
+        SoundManager.instance.PlayBGM("Day");
     }
 
     private void StartDayTimer()
@@ -35,7 +35,6 @@ public class UI_DayNightSystem : MonoBehaviour
         bool isDay = true;
 
         timeTxt.text = string.Format("AM 06 : 00");
-
         _clockTimer = Observable.Interval(TimeSpan.FromSeconds(time)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>

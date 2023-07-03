@@ -17,6 +17,7 @@ public partial class AIPlayer : IPoolObject
     private float finalMoveSpeed = 0f;
 
     public Animator anim;
+    public AI_Structure_HpBar ai_Structure_HpBar;
     private NavMeshAgent _ai;
 
     public void SetStateType(GameDefine.AIStateType type)
@@ -174,13 +175,15 @@ public partial class AIPlayer : IPoolObject
     {
         base.TakeDamage(damage);
 
+        ai_Structure_HpBar.SetHpBar(maxHealthValue, healthValue);
+
         /*if(attacker != null)
         {
             Debug.Log("몬스터 데미지 받음");
             KnockBack(attacker);
         }*/
 
-        if(_stateType == GameDefine.AIStateType.Die)
+        if (_stateType == GameDefine.AIStateType.Die)
         {
             return;
         }

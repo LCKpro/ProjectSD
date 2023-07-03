@@ -20,6 +20,7 @@ public class GameStateManager : MonoBehaviour
     public void SetStateType(GameDefine.StateType type)
     {
         stateType = type;
+        Debug.Log("ÇöÀç State : " + type);
     }
 
     public GameDefine.StateType GetStateType()
