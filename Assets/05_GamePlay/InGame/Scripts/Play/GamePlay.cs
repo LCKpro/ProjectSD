@@ -90,6 +90,11 @@ public class GamePlay : MonoBehaviour
             return;
         }
 
+        if (Core.Instance.uiPopUpManager.CheckIsView("UI_Portal_CatTower") == true)
+        {
+            return;
+        }
+
         SoundManager.instance.PlaySound("NormalClick");
         gameStateManager.SetStateType(GameDefine.StateType.Build);
         ui_System.gameObject.SetActive(true);

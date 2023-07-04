@@ -22,7 +22,7 @@ MonoBehaviour:
     postProcess: 0
     translationID: 0
   itemColor: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 21300000, guid: f771c6dccbe605b4589ee3df15359609, type: 3}
+  sprite: {fileID: 21300000, guid: 966f109f229b291458b8f598048566ab, type: 3}
   prefab: {fileID: 0}
   canBeSold: 1
   price: 10
@@ -59,7 +59,7 @@ MonoBehaviour:
     postProcess: 0
     translationID: 0
   itemColor: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 21300000, guid: beae2bc885284604a8313a6d224e85f1, type: 3}
+  sprite: {fileID: 21300000, guid: e8fbcbf7107c4bb4d9dcd4dc7b50a517, type: 3}
   prefab: {fileID: 0}
   canBeSold: 1
   price: 5
@@ -361,7 +361,7 @@ MonoBehaviour:
     postProcess: 0
     translationID: 0
   itemColor: {r: 1, g: 1, b: 1, a: 1}
-  sprite: {fileID: 21300000, guid: e4fe42ad2abc0d64296dda0535761718, type: 3}
+  sprite: {fileID: 21300000, guid: 4e718cc8eba9fbd42ba5ab7d46ba5b6f, type: 3}
   prefab: {fileID: 0}
   canBeSold: 1
   price: 1

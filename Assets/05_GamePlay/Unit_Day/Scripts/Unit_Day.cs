@@ -110,8 +110,6 @@ public class Unit_Day : MonoBehaviour
             skinRenderer.materials[1].CopyPropertiesFromMaterial(faceList[0]);
 
             isWalk = true;
-
-            Debug.Log("Walk Dir : " + rndDir);
         }
         else
         {
@@ -122,8 +120,6 @@ public class Unit_Day : MonoBehaviour
             catAnimation.SetInteger("animation", rnd.animNumber);
             skinRenderer.materials[1].CopyPropertiesFromMaterial(faceList[rnd.faceIndex]);
             isWalk = false;
-
-            Debug.Log("Type : " + rnd.stateType + " Anim : " + rnd.animNumber);
         }
     }
 

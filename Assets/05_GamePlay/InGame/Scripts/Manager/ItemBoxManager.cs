@@ -63,6 +63,8 @@ public class ItemBoxManager : MonoBehaviour
 
     public void OnClick_OpenInventory()
     {
+        SoundManager.instance.PlaySound("NormalClick");
+
         if (btn_Delete != null)
         {
             btn_Delete.UnCheckDelete();
