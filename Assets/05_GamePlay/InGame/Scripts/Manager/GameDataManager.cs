@@ -35,6 +35,8 @@ public class GameDataManager : MonoBehaviour
         player_Gold = PlayerPrefs.GetInt("Gold", 0);        // 골드, 포인트 불러오기
         player_Point = PlayerPrefs.GetInt("Point", 0);
 
+        PlayView.Instance.SetUI_Gold(player_Gold);   // 화면 세팅
+        PlayView.Instance.SetUI_Point(player_Point);   // 화면 세팅
         GamePlay.Instance.architectureManager.Init();   // 건물 정보 불러오기
 
         GamePlay.Instance.unitManager.Init();       // 유닛 정보 불러오기
@@ -77,5 +79,17 @@ public class GameDataManager : MonoBehaviour
     public void DeleteAllData()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void AddGold(int gold)
+    {
+        player_Gold += gold;
+        PlayView.Instance.SetUI_Gold(player_Gold);   // 화면 세팅
+    }
+
+    public void AddPoint(int point)
+    {
+        player_Point += point;
+        PlayView.Instance.SetUI_Point(player_Point);   // 화면 세팅
     }
 }

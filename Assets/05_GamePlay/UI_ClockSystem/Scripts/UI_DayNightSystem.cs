@@ -120,12 +120,14 @@ public class UI_DayNightSystem : MonoBehaviour
 
     private void ActionOnNight()
     {
+        GamePlay.Instance.gameDataManager.SaveData();
         ui_UnitSkill.SetActive(true);
         GamePlay.Instance.stageManager.StartSequence();
     }
 
     private void ActionOnDay()
     {
+        GamePlay.Instance.gameDataManager.SaveData();
         ui_UnitSkill.SetActive(false);
     }
 }

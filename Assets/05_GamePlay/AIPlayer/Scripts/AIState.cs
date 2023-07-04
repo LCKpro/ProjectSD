@@ -18,6 +18,8 @@ public partial class AIPlayer : IPoolObject
 
     public Animator anim;
     public AI_Structure_HpBar ai_Structure_HpBar;
+    public int goldReward = 0;
+    public int pointReward = 0;
     private NavMeshAgent _ai;
 
     public void SetStateType(GameDefine.AIStateType type)
@@ -238,6 +240,8 @@ public partial class AIPlayer : IPoolObject
     {
         _stateType = GameDefine.AIStateType.Die;
         anim.SetInteger("animation", 6);   // 6 or 7
+        GamePlay.Instance.gameDataManager.AddGold(goldReward);
+        GamePlay.Instance.gameDataManager.AddPoint(pointReward);
         Invoke("ReturnToPool", 1);
         //Invoke("DieAI", 1);
         // 몬스터의 경우 풀에 다시 넣어주는 로직 필요.

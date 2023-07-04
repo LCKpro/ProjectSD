@@ -24,13 +24,13 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCam_PlayerToTarget()
     {
-        controller.ChangeCameraMotor(cameraMotor_Target, 0.2f);
+        controller.ChangeCameraMotor(cameraMotor_Target, 0.4f);
         //controller.currentCameraMotor = cameraMotor_Target;
     }
 
     public void ChangeCam_TargetToPlayer()
     {
-        controller.ChangeCameraMotor(cameraMotor_Player, 0.2f);
+        controller.ChangeCameraMotor(cameraMotor_Player, 0.4f);
         //controller.currentCameraMotor = cameraMotor_Player;
     }
 

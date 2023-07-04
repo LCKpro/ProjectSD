@@ -28,6 +28,8 @@ public class UI_System : MonoBehaviour
     /// </summary>
     public void OnClick_StartCraftSystem()
     {
+        SoundManager.instance.PlaySound("NormalClick");
+
         SetActiveFalse();
         btn_ATK.SetActive(true);
 
@@ -36,6 +38,8 @@ public class UI_System : MonoBehaviour
 
     public void OnClick_CraftATK()
     {
+        SoundManager.instance.PlaySound("NormalClick");
+
         if(btn_ATK.activeSelf == true)
         {
             return;
@@ -48,6 +52,8 @@ public class UI_System : MonoBehaviour
 
     public void OnClick_CraftDFS()
     {
+        SoundManager.instance.PlaySound("NormalClick");
+
         if (btn_DFS.activeSelf == true)
         {
             return;
@@ -60,6 +66,8 @@ public class UI_System : MonoBehaviour
 
     public void OnClick_CraftPD()
     {
+        SoundManager.instance.PlaySound("NormalClick");
+
         if (btn_PD.activeSelf == true)
         {
             return;
@@ -72,6 +80,8 @@ public class UI_System : MonoBehaviour
 
     public void OnClick_CraftOA()
     {
+        SoundManager.instance.PlaySound("NormalClick");
+
         if (btn_OA.activeSelf == true)
         {
             return;

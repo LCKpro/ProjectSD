@@ -370,6 +370,8 @@ MonoBehaviour:
   dieMark: {fileID: 5158602631808343031}
   anim: {fileID: 9084333710805986437}
   ai_Structure_HpBar: {fileID: 5702391212702889908}
+  goldReward: 10
+  pointReward: 1
 --- !u!195 &2522175766669036713
 NavMeshAgent:
   m_ObjectHideFlags: 0

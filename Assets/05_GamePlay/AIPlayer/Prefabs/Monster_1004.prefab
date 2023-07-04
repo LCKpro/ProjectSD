@@ -1371,6 +1371,8 @@ MonoBehaviour:
   dieMark: {fileID: 7944599601475945303}
   anim: {fileID: 3090562680169721548}
   ai_Structure_HpBar: {fileID: 7418867184460181268}
+  goldReward: 10
+  pointReward: 1
 --- !u!54 &3090562680169721545
 Rigidbody:
   m_ObjectHideFlags: 0

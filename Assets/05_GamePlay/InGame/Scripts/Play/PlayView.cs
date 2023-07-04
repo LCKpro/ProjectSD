@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayView : MonoBehaviour
 {
@@ -48,6 +49,9 @@ public class PlayView : MonoBehaviour
     public GameObject ui_Btn_Grid;
     public GameObject ui_System_Grid;
 
+    public TextMeshProUGUI ui_Text_Gold;
+    public TextMeshProUGUI ui_Text_Point;
+
     public void SetActiveUI(bool isAcive)
     {
         ui_Top_Goods.SetActive(isAcive);
@@ -59,5 +63,16 @@ public class PlayView : MonoBehaviour
     public void OnClick_Setting()
     {
         Core.Instance.uiPopUpManager.Show("UI_Setting");
+    }
+
+    public void SetUI_Gold(int gold)
+    {
+        ui_Text_Gold.text = gold.ToString();
+    }
+
+    public void SetUI_Point(int point)
+    {
+        ui_Text_Point.text = point.ToString();
+
     }
 }
