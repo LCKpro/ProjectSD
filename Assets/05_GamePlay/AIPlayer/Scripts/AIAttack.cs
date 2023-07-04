@@ -29,6 +29,11 @@ public partial class AIPlayer
     // 공격 시작할 때 필요한거
     public void MeleeAttackStart(Collider other)
     {
+        if(targetObj != null)
+        {
+            return;
+        }
+
         SetStateType(GameDefine.AIStateType.Attack);
         targetObj = other.gameObject;
         StopAIController();     // 공격하는데 성공했으면 타이머 끄기
@@ -50,6 +55,11 @@ public partial class AIPlayer
     // 공격 시작할 때 필요한거
     public void RangeAttackStart(Collider other)
     {
+        if (targetObj != null)
+        {
+            return;
+        }
+
         SetStateType(GameDefine.AIStateType.Attack);
         targetObj = other.gameObject;
         StopAIController();     // 공격하는데 성공했으면 타이머 끄기
@@ -70,6 +80,11 @@ public partial class AIPlayer
 
     public void RangeAttack()
     {
+        if (targetObj != null)
+        {
+            return;
+        }
+
         //StopAIController();     // 공격하는데 성공했으면 타이머 끄기
         //StopAlMove();  // 이동 멈추고
         //anim.SetInteger("animation", 20);    // 공격 애니메이션
@@ -79,6 +94,7 @@ public partial class AIPlayer
         projectile.position = startPos.position;
         projectile.GetComponent<Projectile>().SetPlayer(this);
         projectile.GetComponent<Rigidbody>().velocity = (targetObj.transform.position - projectile.position) * projectileSpeed;
+        SoundManager.instance.PlaySound("KnifeShot");
     }
 
     public void SuicideAttackStart()
@@ -108,6 +124,7 @@ public partial class AIPlayer
         {
             if(hitCol[i].gameObject.CompareTag("Breakable") == true)
             {
+                SoundManager.instance.PlaySound("Suicide");
                 DealDamage(hitCol[i].gameObject);
                 //hitCol[i].GetComponent<Stat>().DealDamage(this.gameObject);
             }

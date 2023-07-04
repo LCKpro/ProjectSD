@@ -45,7 +45,7 @@ public class Stat : MonoBehaviour
         Debug.Log(transform.name + "이(가) " + damage + "의 데미지를 받음");
         healthValue -= GetDamage(damage, defenseValue);
 
-        if (healthValue < 0f)
+        if (healthValue <= 0f)
         {
             Die();
         }

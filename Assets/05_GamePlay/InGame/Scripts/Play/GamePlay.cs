@@ -64,8 +64,24 @@ public class GamePlay : MonoBehaviour
     public FarmingManager farmingManager;
     public CameraManager cameraManager;
 
+    public GameDataManager gameDataManager;
+    public StageManager stageManager;
+    public ArchitectureManager architectureManager;
+    public GameOverManager gameOverManager;
+
+    public UI_DayNightSystem uI_DayNightSystem;
 
     #region ¹öÆ°
+
+    public void Start()
+    {
+        InitGame();
+    }
+
+    private void InitGame()
+    {
+        gameDataManager.Init();
+    }
 
     public void OnClick_ShowCraftSystem()
     {
@@ -74,6 +90,8 @@ public class GamePlay : MonoBehaviour
             return;
         }
 
+        SoundManager.instance.PlaySound("NormalClick");
+        gameStateManager.SetStateType(GameDefine.StateType.Build);
         ui_System.gameObject.SetActive(true);
         ui_System.OnClick_StartCraftSystem();
     }

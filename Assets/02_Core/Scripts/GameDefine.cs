@@ -52,6 +52,7 @@ public static class GameDefine
         Build = 0,  // 건축 중일 때
         Explore = 1,    // 건물 파밍 중일 때
         OpenInventory = 2,  // 인벤토리 열려있을 때
+        Tutorial = 3,   // 튜토리얼 중일 때
         None = 99,
     }
 
@@ -105,4 +106,18 @@ public static class GameDefine
 
         None = 99,
     }
+
+    public enum WaveType
+    {
+        Linear = 0,
+        Circle = 1,
+        Double = 2,
+        OnlyTop = 3,
+        OnlyBottom = 4,
+        OnlyLeft = 5,
+        OnlyRight = 6,
+        
+        None = 99,
+    }
+
 }

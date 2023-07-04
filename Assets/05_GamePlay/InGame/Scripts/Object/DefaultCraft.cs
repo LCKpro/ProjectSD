@@ -20,7 +20,14 @@ public class DefaultCraft : MonoBehaviour
 
         var building = gamePlay.spawnManager.SpawnStructure(typeCode, bCode);
 
-        building.position = gamePlay.craftingManager.spawnPos.position;
+        var pos = gamePlay.craftingManager.spawnPos.position;
+        building.position = pos;
+
+        var index = (typeCode * 100) + bCode;
+        int x = (int)pos.x;
+        int z = (int)pos.z;
+        GamePlay.Instance.architectureManager.SaveArchitecture(index, x, z);    // 건물 위치 저장할 데이터 저장
+        SoundManager.instance.PlaySound("CraftEnd");
 
         transform.gameObject.SetActive(false);
 

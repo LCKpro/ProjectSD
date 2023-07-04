@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameCreator.Inventory;
 
 public class ItemManager : MonoBehaviour
 {
@@ -30,6 +30,39 @@ public class ItemManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void InitItemData()
+    {
+        foreach (var data in itemDataList)
+        {
+            var amount = PlayerPrefs.GetInt(data.uuid.ToString());
+
+            if(amount == 0)
+            {
+                continue;
+            }
+
+            InventoryManager.Instance.AddItemToInventory(data.uuid, amount);
+            Debug.Log("아이템 획득 : " + data.uuid + " 개수 : " + amount);
+        }
+    }
+
+    public void SaveItemData()
+    {
+        foreach (var data in itemDataList)
+        {
+            int itemAmount = InventoryManager.Instance.GetInventoryAmountOfItem(data.uuid);
+
+            if (itemAmount == 0)
+            {
+                continue;
+            }
+
+            PlayerPrefs.SetInt(data.uuid.ToString(), itemAmount);
+
+            Debug.Log("아이템 저장 : " + data.uuid + " 개수 : " + itemAmount);
+        }
     }
 }
 

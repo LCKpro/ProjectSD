@@ -62,6 +62,7 @@ public class UI_CraftSystemCellView : EnhancedScrollerCellView
     // 버튼 누르면 크래프팅 가능하도록
     public void OnClick_InitCraft()
     {
+        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.Build);
         GamePlay.Instance.ui_System.HideUIImmediately();
         GamePlay.Instance.craftingManager.InitCraft(typeKey, _index);
     }

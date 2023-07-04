@@ -43,6 +43,19 @@ public class PlayView : MonoBehaviour
 
     #endregion
 
+    public GameObject ui_Top_Goods;
+    public GameObject ui_Clock;
+    public GameObject ui_Btn_Grid;
+    public GameObject ui_System_Grid;
+
+    public void SetActiveUI(bool isAcive)
+    {
+        ui_Top_Goods.SetActive(isAcive);
+        ui_Clock.SetActive(isAcive);
+        ui_Btn_Grid.SetActive(isAcive);
+        ui_System_Grid.SetActive(isAcive);
+    }
+
     public void OnClick_Setting()
     {
         Core.Instance.uiPopUpManager.Show("UI_Setting");

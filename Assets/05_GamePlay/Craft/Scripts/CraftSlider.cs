@@ -14,6 +14,10 @@ public class CraftSlider : MonoBehaviour
     {
         _craftSlider = GetComponent<Slider>();
         barValue = 0f;
+    }
+
+    private void OnEnable()
+    {
         Locate();
         ActiveLoadingBar();
     }
@@ -31,6 +35,8 @@ public class CraftSlider : MonoBehaviour
 
     private void ActiveLoadingBar()
     {
+        SoundManager.instance.PlaySound("CraftStart");
+
         sliderTimer = Disposable.Empty;
         sliderTimer.Dispose();
         sliderTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)

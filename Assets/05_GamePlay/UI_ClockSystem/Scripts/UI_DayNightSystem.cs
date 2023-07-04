@@ -12,18 +12,17 @@ public class UI_DayNightSystem : MonoBehaviour
     public float dayTimeSecond = 300f;
     public TextMeshProUGUI timeTxt;
 
+    public GameObject ui_UnitSkill;
+
     private IDisposable _clockTimer = Disposable.Empty;
     private IDisposable _dayNightTimer = Disposable.Empty;
 
-    private void Start()
-    {
-        Init();
-    }
-
     public void Init()
     {
-        StartDayTimer();
-        StartDayNightTimer();
+        StartDayTimer();        // 텍스트 수정하는 타이머
+        StartDayNightTimer();   // 조명 수정하는 타이머
+        SoundManager.instance.PlayBGM("Day");
+        ui_UnitSkill.SetActive(false);
     }
 
     private void StartDayTimer()
@@ -39,7 +38,6 @@ public class UI_DayNightSystem : MonoBehaviour
         bool isDay = true;
 
         timeTxt.text = string.Format("AM 06 : 00");
-
         _clockTimer = Observable.Interval(TimeSpan.FromSeconds(time)).TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
@@ -54,8 +52,18 @@ public class UI_DayNightSystem : MonoBehaviour
                     if(hour >= 12)
                     {
                         isDay = !isDay;     // 낮밤 바꿔주기
+
                         hour = 0;
                     }
+                }
+
+                if(isDay == false && hour == 6 && minute == 0)  // 밤 정각에 몬스터 스폰
+                {
+                    ActionOnNight();
+                }
+                else if(isDay == true && hour == 6 && minute == 0)
+                {
+                    ActionOnDay();
                 }
 
                 if(isDay == true)
@@ -66,7 +74,6 @@ public class UI_DayNightSystem : MonoBehaviour
                 {
                     timeTxt.text = string.Format($"PM {hour:D2} : {minute:D2}");
                 }
-
             });
     }
 
@@ -78,7 +85,7 @@ public class UI_DayNightSystem : MonoBehaviour
         dayLight.intensity = 0.5f;
 
         float fullTime = dayTimeSecond * 2; // 낮 밤 합친 시간
-        float time = 450;    // 계산할 시간
+        float time = fullTime * 0.75f;    // 계산할 시간
         _dayNightTimer = Observable.EveryUpdate().TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
@@ -109,5 +116,16 @@ public class UI_DayNightSystem : MonoBehaviour
                     dayLight.intensity -= (dt / dayTimeSecond);
                 }
             });
+    }
+
+    private void ActionOnNight()
+    {
+        ui_UnitSkill.SetActive(true);
+        GamePlay.Instance.stageManager.StartSequence();
+    }
+
+    private void ActionOnDay()
+    {
+        ui_UnitSkill.SetActive(false);
     }
 }

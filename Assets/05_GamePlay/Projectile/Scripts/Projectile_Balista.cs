@@ -30,6 +30,15 @@ public class Projectile_Balista : MonoBehaviour
             });
     }
 
+    public void ReadyAndShot_Balista(AI_Structure structure, Transform target)
+    {
+        ai_Structure = structure;
+        Vector3 pos = target.position - transform.position + new Vector3(0, 2, 0);
+        var rigid = GetComponent<Rigidbody>();
+        rigid.AddForce(pos * power, ForceMode.Impulse);
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Monster")
