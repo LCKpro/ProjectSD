@@ -14,6 +14,8 @@ public class UI_DayNightSystem : MonoBehaviour
 
     public GameObject ui_UnitSkill;
 
+    public GameObject skyDome;
+
     private IDisposable _clockTimer = Disposable.Empty;
     private IDisposable _dayNightTimer = Disposable.Empty;
 
@@ -97,6 +99,8 @@ public class UI_DayNightSystem : MonoBehaviour
                     return;
                 }
 
+                skyDome.transform.Rotate(Vector3.up * Time.deltaTime);
+
                 // 낮밤 다 돌아가기 전까지 시계 초침 계속 돌림
                 var dt = Time.deltaTime;
                 time += dt;
@@ -105,6 +109,7 @@ public class UI_DayNightSystem : MonoBehaviour
                 if (time >= dayTimeSecond)
                 {
                     dayLight.intensity += (dt / dayTimeSecond);
+                    skyDome.transform.Translate(Vector3.down * Time.deltaTime * 0.02f);
                 }
                 else
                 {
@@ -113,6 +118,7 @@ public class UI_DayNightSystem : MonoBehaviour
                         return;
                     }
 
+                    skyDome.transform.Translate(Vector3.up * Time.deltaTime * 0.02f);
                     dayLight.intensity -= (dt / dayTimeSecond);
                 }
             });
