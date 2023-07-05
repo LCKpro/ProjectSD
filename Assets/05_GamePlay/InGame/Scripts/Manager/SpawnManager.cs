@@ -48,6 +48,11 @@ public class SpawnManager : MonoBehaviour
         return newObj;
     }
 
+    public void ReturnIncompleteStructurePool(int structIndex, string idName, Transform clone)
+    {
+        GamePlay.Instance.poolManager_IncompleteStructureArray[structIndex].TakeToPool<Transform>(idName, clone);
+    }
+
 
     public void ReturnPool(AIPlayer clone)
     {

@@ -41,6 +41,7 @@ public class DialogManager : MonoBehaviour
             GamePlay.Instance.uI_DayNightSystem.Init();
         }
 
+        SoundManager.instance.PlayBGM("Day");
         /*PlayView.Instance.SetActiveUI(true);
         GamePlay.Instance.uI_DayNightSystem.Init();
         tutorial_Actor.SetActive(false);*/

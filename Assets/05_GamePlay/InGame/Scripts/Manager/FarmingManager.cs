@@ -16,14 +16,14 @@ public class FarmingManager : MonoBehaviour
     {
         if(farmingType == GameDefine.FarmingType.OffFarming)
         {
-            loadingAnim.SetTrigger("Loading");
+            //loadingAnim.SetTrigger("Loading");
             goToFarmAction.Execute();
             farmingType = GameDefine.FarmingType.OnFarming;
             Btn_GoToStage.SetActive(true);
         }
         else if(farmingType == GameDefine.FarmingType.OnFarming)
         {
-            loadingAnim.SetTrigger("Loading");
+            //loadingAnim.SetTrigger("Loading");
             goToStageAction.Execute();
             farmingType = GameDefine.FarmingType.OffFarming;
             Btn_GoToStage.SetActive(false);

@@ -25,7 +25,6 @@ public class UI_DayNightSystem : MonoBehaviour
     {
         StartDayTimer();        // 텍스트 수정하는 타이머
         StartDayNightTimer();   // 조명 수정하는 타이머
-        SoundManager.instance.PlayBGM("Day");
         ui_UnitSkill.SetActive(false);
         craftLockObj.SetActive(false);
     }

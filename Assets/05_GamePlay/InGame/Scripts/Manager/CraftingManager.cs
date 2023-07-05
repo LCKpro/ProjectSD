@@ -45,10 +45,10 @@ public class CraftingManager : MonoBehaviour
         craftingModeTimer = Disposable.Empty;
     }
 
-    private void OnDisable()
+    /*private void OnDisable()
     {
         FinalizeCraft();
-    }
+    }*/
 
     private void Start()
     {
@@ -137,6 +137,7 @@ public class CraftingManager : MonoBehaviour
         float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
 
         buttonGroup.transform.position = new Vector3(x, y, 0);
+        ManageActive(true);
     }
 
     
@@ -165,6 +166,9 @@ public class CraftingManager : MonoBehaviour
     public void OnClick_ClickToCraft()
     {
         GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.Build);
+        var idName = preparatoryObj.GetComponent<CraftObject>().idName;
+        GamePlay.Instance.spawnManager.ReturnIncompleteStructurePool(_typeCode, idName, preparatoryObj.transform);
+        preparatoryObj = null;
         FinalizeCraft();    // UniRx 하고 다른 버튼들 다 끄기
         playerMoveAction.Execute();
     }

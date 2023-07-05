@@ -36,6 +36,15 @@ public class GameStart : MonoBehaviour
     void Start()
     {
         GameUtils.Log("Loaded GameStart");
+        SetResolution();
+    }
+
+    private void SetResolution()
+    {
+        int setWidth = 960;
+        int setHeight = 540;
+
+        Screen.SetResolution(setWidth, setHeight, true);
     }
 
     public void OnClick_GameStart()

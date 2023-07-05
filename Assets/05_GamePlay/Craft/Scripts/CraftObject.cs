@@ -18,7 +18,7 @@ public class CraftObject : MonoBehaviour
     private Transform _spawnPos;
 
     public float changeValue = 15f;
-
+    public string idName;
     // 엑셀 파일 받아서 리소스 패스 링크 받아올 예정
 
     public void FinalizeCraft()

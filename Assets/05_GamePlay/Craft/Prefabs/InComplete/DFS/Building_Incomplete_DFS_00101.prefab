@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80be6b0ed2d2caf44aa90b1948ee2f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
   changeValue: 21
+  idName: Building_Incomplete_DFS_00101
 --- !u!65 &5874623762609469018
 BoxCollider:
   m_ObjectHideFlags: 0

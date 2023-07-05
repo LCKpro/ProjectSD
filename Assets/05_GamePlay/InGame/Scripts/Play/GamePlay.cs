@@ -75,16 +75,25 @@ public class GamePlay : MonoBehaviour
 
     public void Start()
     {
+        SetResolution();
         InitGame();
+    }
+
+    private void SetResolution()
+    {
+        int setWidth = 960;
+        int setHeight = 540;
+
+        Screen.SetResolution(setWidth, setHeight, true);
     }
 
     private void InitGame()
     {
         gameDataManager.Init();
-        gameDataManager.AddGold(999);
+        /*gameDataManager.AddGold(999);
         gameDataManager.AddPoint(999);
         GameCreator.Inventory.InventoryManager.Instance.AddItemToInventory(25686138, 500);
-        GameCreator.Inventory.InventoryManager.Instance.AddItemToInventory(816283316, 500);
+        GameCreator.Inventory.InventoryManager.Instance.AddItemToInventory(816283316, 500);*/
     }
 
     public void OnClick_ShowCraftSystem()

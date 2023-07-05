@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeValue: 21
+  idName: Building_InComplete_ATK_00103
 --- !u!1 &7068543503072687432
 GameObject:
   m_ObjectHideFlags: 0
