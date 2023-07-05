@@ -40,8 +40,8 @@ public class GameDataManager : MonoBehaviour
         /*GamePlay.Instance.architectureManager.Init();   // 건물 정보 불러오기
 
         GamePlay.Instance.unitManager.Init();       // 유닛 정보 불러오기
-        Core.Instance.itemManager.InitItemData();   // 아이템 불러오기
-        GamePlay.Instance.stageManager.Init();      //  스테이지 정보 불러오기*/
+        Core.Instance.itemManager.InitItemData();   // 아이템 불러오기*/
+        GamePlay.Instance.stageManager.Init();      //  스테이지 정보 불러오기
     }
 
     private bool isSaveClick = false;

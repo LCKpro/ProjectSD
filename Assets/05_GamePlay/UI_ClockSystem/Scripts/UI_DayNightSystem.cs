@@ -134,6 +134,7 @@ public class UI_DayNightSystem : MonoBehaviour
         craftLockObj.SetActive(true);
         GamePlay.Instance.stageManager.StartSequence();
         GamePlay.Instance.unitManager.ShowUnitAtNight(true);
+        GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
     }
 
     private void ActionOnDay()
@@ -142,5 +143,6 @@ public class UI_DayNightSystem : MonoBehaviour
         ui_UnitSkill.SetActive(false);
         craftLockObj.SetActive(false);
         GamePlay.Instance.unitManager.ShowUnitAtNight(false);
+        GamePlay.Instance.cameraManager.ChangeCam_Day();
     }
 }

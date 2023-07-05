@@ -81,7 +81,6 @@ public class GamePlay : MonoBehaviour
     private void InitGame()
     {
         gameDataManager.Init();
-
         gameDataManager.AddGold(999);
         gameDataManager.AddPoint(999);
         GameCreator.Inventory.InventoryManager.Instance.AddItemToInventory(25686138, 500);

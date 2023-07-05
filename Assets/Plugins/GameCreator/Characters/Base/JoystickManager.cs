@@ -1,47 +1,50 @@
-using UnityEngine;
-
-public class JoystickManager : MonoBehaviour
+namespace GameCreator.Characters
 {
-    #region SingleTon
+    using UnityEngine;
 
-    private static JoystickManager _instance = null;
-
-    public static JoystickManager Instance
+    public class JoystickManager : MonoBehaviour
     {
-        get
-        {
-            SetInstance();
-            return _instance;
-        }
-    }
+        #region SingleTon
 
-    public static void SetInstance()
-    {
-        if (_instance == null)
+        private static JoystickManager _instance = null;
+
+        public static JoystickManager Instance
         {
-            GameObject go = GameObject.Find("JoystickManager");
-            if (go != null)
+            get
             {
-                _instance = go.GetComponent<JoystickManager>();
-                if (_instance == null)
+                SetInstance();
+                return _instance;
+            }
+        }
+
+        public static void SetInstance()
+        {
+            if (_instance == null)
+            {
+                GameObject go = GameObject.Find("JoystickManager");
+                if (go != null)
                 {
-                    Debug.Log("JoystickManager Instance Null");
+                    _instance = go.GetComponent<JoystickManager>();
+                    if (_instance == null)
+                    {
+                        Debug.Log("JoystickManager Instance Null");
+                    }
                 }
             }
         }
+
+        void OnDestroy()
+        {
+            _instance = null;
+        }
+
+        void OnDisable()
+        {
+            _instance = null;
+        }
+
+        #endregion
+
+        public FloatingJoystick joystick;
     }
-
-    void OnDestroy()
-    {
-        _instance = null;
-    }
-
-    void OnDisable()
-    {
-        _instance = null;
-    }
-
-    #endregion
-
-    public FloatingJoystick joystick;
 }

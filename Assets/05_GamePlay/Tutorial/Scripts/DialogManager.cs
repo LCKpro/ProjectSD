@@ -24,13 +24,12 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         Debug.Log(QuestManager.instance.CheckQuest());
-        PlayerPrefs.DeleteAll();
         CheckTutorial();
     }
 
     private void CheckTutorial()
     {
-        /*if(PlayerPrefs.GetInt("Tutorial") == 0)
+        if(PlayerPrefs.GetInt("Tutorial") == 0)
         {
             Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
             PlayView.Instance.SetActiveUI(false);
@@ -40,11 +39,11 @@ public class DialogManager : MonoBehaviour
         else
         {
             GamePlay.Instance.uI_DayNightSystem.Init();
-        }*/
+        }
 
-        PlayView.Instance.SetActiveUI(true);
+        /*PlayView.Instance.SetActiveUI(true);
         GamePlay.Instance.uI_DayNightSystem.Init();
-        tutorial_Actor.SetActive(false);
+        tutorial_Actor.SetActive(false);*/
     }
 
     public void Cheat_TalkAction()
