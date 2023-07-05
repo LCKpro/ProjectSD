@@ -29,6 +29,6 @@ public class UI_Portal_CatTower : MonoBehaviour
         SoundManager.instance.PlaySound("NormalClick");
         Time.timeScale = 1;
         Core.Instance.uiPopUpManager.Hide("UI_Portal_CatTower");
-        GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
+        GamePlay.Instance.cameraManager.ChangeCam_Day();
     }
 }

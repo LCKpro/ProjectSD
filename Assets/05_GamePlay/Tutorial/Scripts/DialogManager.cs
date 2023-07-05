@@ -100,7 +100,7 @@ public class DialogManager : MonoBehaviour
         {
             isAction = false;
             talkIndex = 0;
-            GamePlay.Instance.cameraManager.ChangeCam_TargetToPlayer();
+            GamePlay.Instance.cameraManager.ChangeCam_Day();
             PlayerPrefs.SetInt("Tutorial", 1);
             PlayView.Instance.SetActiveUI(true);
             GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
