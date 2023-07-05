@@ -100,6 +100,7 @@ public class UI_System : MonoBehaviour
 
     public void OnClick_Hide()
     {
+        GamePlay.Instance.cameraManager.ChangeCam_Day();
         SoundManager.instance.PlaySound("NormalClick");
         GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
         transform.gameObject.SetActive(false);

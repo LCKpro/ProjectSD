@@ -97,6 +97,7 @@ public class GamePlay : MonoBehaviour
 
         SoundManager.instance.PlaySound("NormalClick");
         gameStateManager.SetStateType(GameDefine.StateType.Build);
+        cameraManager.ChangeCam_Craft();
         ui_System.gameObject.SetActive(true);
         ui_System.OnClick_StartCraftSystem();
     }

@@ -62,6 +62,7 @@ public class UI_Setting : MonoBehaviour
 
     public void OnClick_Exit()
     {
+        SoundManager.instance.PlaySound("NormalClick");
         Time.timeScale = 1;
         Core.Instance.uiPopUpManager.Hide("UI_Setting");
     }

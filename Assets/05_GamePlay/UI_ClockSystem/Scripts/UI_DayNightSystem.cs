@@ -16,6 +16,8 @@ public class UI_DayNightSystem : MonoBehaviour
 
     public GameObject skyDome;
 
+    public GameObject craftLockObj;
+
     private IDisposable _clockTimer = Disposable.Empty;
     private IDisposable _dayNightTimer = Disposable.Empty;
 
@@ -25,6 +27,7 @@ public class UI_DayNightSystem : MonoBehaviour
         StartDayNightTimer();   // 조명 수정하는 타이머
         SoundManager.instance.PlayBGM("Day");
         ui_UnitSkill.SetActive(false);
+        craftLockObj.SetActive(false);
     }
 
     private void StartDayTimer()
@@ -128,6 +131,7 @@ public class UI_DayNightSystem : MonoBehaviour
     {
         GamePlay.Instance.gameDataManager.SaveData();
         ui_UnitSkill.SetActive(true);
+        craftLockObj.SetActive(true);
         GamePlay.Instance.stageManager.StartSequence();
     }
 
@@ -135,5 +139,6 @@ public class UI_DayNightSystem : MonoBehaviour
     {
         GamePlay.Instance.gameDataManager.SaveData();
         ui_UnitSkill.SetActive(false);
+        craftLockObj.SetActive(false);
     }
 }

@@ -94,34 +94,76 @@ public class UI_CraftSystemCellView : EnhancedScrollerCellView
             {
                 case "Item_ETC_Gold":
                     {
-                        return GetAmount(1834752059) >= Convert.ToInt32(ingre.Value);
+                        if(GetAmount(1834752059) >= Convert.ToInt32(ingre.Value) == true)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 case "Item_ETC_Point":
                     {
-                        return GetAmount(750108221) >= Convert.ToInt32(ingre.Value);
+                        if (GetAmount(750108221) >= Convert.ToInt32(ingre.Value) == true)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 case "Item_ETC_Wood":
                     {
-                        return GetAmount(25686138) >= Convert.ToInt32(ingre.Value);
+                        if (GetAmount(25686138) >= Convert.ToInt32(ingre.Value) == true)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 case "Item_ETC_Stone":
                     {
-                        return GetAmount(816283316) >= Convert.ToInt32(ingre.Value);
+                        if (GetAmount(816283316) >= Convert.ToInt32(ingre.Value) == true)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 case "Item_ETC_Diamond":
                     {
-                        return GetAmount(1273281591) >= Convert.ToInt32(ingre.Value);
+                        if (GetAmount(1273281591) >= Convert.ToInt32(ingre.Value) == true)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 case "Item_ETC_Oil":
                     {
-                        return GetAmount(1379574024) >= Convert.ToInt32(ingre.Value);
+                        if (GetAmount(1379574024) >= Convert.ToInt32(ingre.Value) == true)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 default:
                     break;
             }
         }
 
-        return false;
+        return true;
     }
 
     private void ConsumeItem()

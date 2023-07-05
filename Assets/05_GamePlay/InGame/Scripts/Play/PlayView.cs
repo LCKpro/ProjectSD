@@ -62,6 +62,7 @@ public class PlayView : MonoBehaviour
 
     public void OnClick_Setting()
     {
+        SoundManager.instance.PlaySound("NormalClick");
         Core.Instance.uiPopUpManager.Show("UI_Setting");
     }
 

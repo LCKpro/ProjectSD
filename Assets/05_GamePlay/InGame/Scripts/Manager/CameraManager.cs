@@ -7,6 +7,7 @@ public class CameraManager : MonoBehaviour
 {
     public CameraController controller;
 
+    public CameraMotor cameraMotor_Craft;
     public CameraMotor cameraMotor_Day;
 
     public CameraMotor cameraMotor_Player;
@@ -18,6 +19,12 @@ public class CameraManager : MonoBehaviour
     public void ChangeCam_Day()
     {
         controller.ChangeCameraMotor(cameraMotor_Day, 0.2f);
+        //controller.currentCameraMotor = cameraMotor_Target;
+    }
+
+    public void ChangeCam_Craft()
+    {
+        controller.ChangeCameraMotor(cameraMotor_Craft, 0.2f);
         //controller.currentCameraMotor = cameraMotor_Target;
     }
 
