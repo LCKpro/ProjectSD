@@ -16,6 +16,7 @@ public class CraftingManager : MonoBehaviour
 
     public GameObject buttonGroup;
     public NavigationMarker marker;
+    public NavigationMarker marker_LookAt;
     public Transform spawnPos;
 
     public GameObject loadingUIObj;

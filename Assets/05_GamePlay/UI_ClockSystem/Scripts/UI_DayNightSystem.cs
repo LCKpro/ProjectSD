@@ -54,7 +54,7 @@ public class UI_DayNightSystem : MonoBehaviour
                     minute = 0;
                     hour++;
 
-                    if(hour >= 12)
+                    if (hour >= 12)
                     {
                         isDay = !isDay;     // ³·¹ã ¹Ù²ãÁÖ±â
 
@@ -62,16 +62,16 @@ public class UI_DayNightSystem : MonoBehaviour
                     }
                 }
 
-                if(isDay == false && hour == 6 && minute == 0)  // ¹ã Á¤°¢¿¡ ¸ó½ºÅÍ ½ºÆù
+                if (isDay == false && hour == 6 && minute == 0)  // ¹ã Á¤°¢¿¡ ¸ó½ºÅÍ ½ºÆù
                 {
                     ActionOnNight();
                 }
-                else if(isDay == true && hour == 6 && minute == 0)
+                else if (isDay == true && hour == 6 && minute == 0)
                 {
                     ActionOnDay();
                 }
 
-                if(isDay == true)
+                if (isDay == true)
                 {
                     timeTxt.text = string.Format($"AM {hour:D2} : {minute:D2}");
                 }
@@ -116,7 +116,7 @@ public class UI_DayNightSystem : MonoBehaviour
                 }
                 else
                 {
-                    if(dayLight.intensity <= 0.2f)
+                    if (dayLight.intensity <= 0.2f)
                     {
                         return;
                     }
@@ -129,16 +129,18 @@ public class UI_DayNightSystem : MonoBehaviour
 
     private void ActionOnNight()
     {
-        GamePlay.Instance.gameDataManager.SaveData();
+        //GamePlay.Instance.gameDataManager.SaveData();
         ui_UnitSkill.SetActive(true);
         craftLockObj.SetActive(true);
         GamePlay.Instance.stageManager.StartSequence();
+        GamePlay.Instance.unitManager.ShowUnitAtNight(true);
     }
 
     private void ActionOnDay()
     {
-        GamePlay.Instance.gameDataManager.SaveData();
+        //GamePlay.Instance.gameDataManager.SaveData();
         ui_UnitSkill.SetActive(false);
         craftLockObj.SetActive(false);
+        GamePlay.Instance.unitManager.ShowUnitAtNight(false);
     }
 }

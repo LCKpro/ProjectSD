@@ -41,7 +41,7 @@ public class UI_Setting : MonoBehaviour
         float volume = bgmVolumeSlider.value;
 
         // 오디오 관리자에 볼륨 설정 적용
-        Core.Instance.audioManager.SetBGMVolume(volume);
+        SoundManager.instance.SetBGMVolume(volume);
 
         // 설정 값 저장
         PlayerPrefs.SetFloat("BGMVolume", volume);
@@ -53,7 +53,7 @@ public class UI_Setting : MonoBehaviour
         float volume = sfxVolumeSlider.value;
 
         // 오디오 관리자에 볼륨 설정 적용
-        Core.Instance.audioManager.SetSFXVolume(volume);
+        SoundManager.instance.SetSFXVolume(volume);
 
         // 설정 값 저장
         PlayerPrefs.SetFloat("SFXVolume", volume);

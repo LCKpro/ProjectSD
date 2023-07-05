@@ -53,11 +53,14 @@
         public float deceleration = 2f;
 
         private bool forceDisplayTouchstick = false;
+        private FloatingJoystick joystick;
 
         // INITIALIZERS: --------------------------------------------------------------------------
 
         protected override void Awake()
         {
+            joystick = JoystickManager.Instance.joystick;
+
             if (!Application.isPlaying) return;
             this.CharacterAwake();
 
@@ -122,6 +125,7 @@
             this.CharacterUpdate();
         }
 
+        
         protected virtual void UpdateInputDirectional()
         {
             Vector3 targetDirection = Vector3.zero;
@@ -136,10 +140,15 @@
             }
             else
             {
-                targetDirection = new Vector3(
+                /*targetDirection = new Vector3(
                     Input.GetAxisRaw(AXIS_H),
                     0.0f,
                     Input.GetAxisRaw(AXIS_V)
+                );*/
+                targetDirection = new Vector3(
+                    joystick.Horizontal,
+                    0.0f,
+                    joystick.Vertical
                 );
             }
 

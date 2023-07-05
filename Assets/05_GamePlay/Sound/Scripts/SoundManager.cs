@@ -20,6 +20,9 @@ public class SoundManager : MonoBehaviour
     private AudioSource bgmSource;
     public Sound[] bgmSounds;
 
+    private float bgmVolume = 1.0f; // 배경음 볼륨 설정 변수
+    private float sfxVolume = 1.0f; // 효과음 볼륨 설정 변수
+
     private void Awake()
     {
         if (instance == null)
@@ -44,6 +47,7 @@ public class SoundManager : MonoBehaviour
         Sound sound = GetSound(name);
         if (sound != null)
         {
+            sound.source.volume = sfxVolume;
             sound.source.Play();
         }
         else
@@ -71,6 +75,7 @@ public class SoundManager : MonoBehaviour
         if (sound != null)
         {
             bgmSource.Stop();
+            bgmSource.volume = bgmVolume;
             bgmSource.clip = sound.clip;
             bgmSource.Play();
         }
@@ -90,5 +95,16 @@ public class SoundManager : MonoBehaviour
     {
         Sound sound = System.Array.Find(bgmSounds, s => s.name == name);
         return sound;
+    }
+
+    public void SetBGMVolume(float volume)
+    {
+        bgmVolume = volume;
+        bgmSource.volume = bgmVolume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = volume;
     }
 }

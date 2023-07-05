@@ -37,11 +37,11 @@ public class GameDataManager : MonoBehaviour
 
         PlayView.Instance.SetUI_Gold(player_Gold);   // 화면 세팅
         PlayView.Instance.SetUI_Point(player_Point);   // 화면 세팅
-        GamePlay.Instance.architectureManager.Init();   // 건물 정보 불러오기
+        /*GamePlay.Instance.architectureManager.Init();   // 건물 정보 불러오기
 
         GamePlay.Instance.unitManager.Init();       // 유닛 정보 불러오기
         Core.Instance.itemManager.InitItemData();   // 아이템 불러오기
-        GamePlay.Instance.stageManager.Init();      //  스테이지 정보 불러오기
+        GamePlay.Instance.stageManager.Init();      //  스테이지 정보 불러오기*/
     }
 
     private bool isSaveClick = false;
@@ -85,11 +85,13 @@ public class GameDataManager : MonoBehaviour
     {
         player_Gold += gold;
         PlayView.Instance.SetUI_Gold(player_Gold);   // 화면 세팅
+        GameCreator.Inventory.InventoryManager.Instance.AddItemToInventory(1834752059, gold);
     }
 
     public void AddPoint(int point)
     {
         player_Point += point;
         PlayView.Instance.SetUI_Point(player_Point);   // 화면 세팅
+        GameCreator.Inventory.InventoryManager.Instance.AddItemToInventory(750108221, point);
     }
 }

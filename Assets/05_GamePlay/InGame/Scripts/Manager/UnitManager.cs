@@ -9,7 +9,22 @@ public class UnitManager : MonoBehaviour
     public Player_0003 player0003;
     public Player_0004 player0004;
 
+    public Unit_Day[] player_Unit;
+
     private bool[] possession = new bool[10];
+
+    public void ShowUnitAtNight(bool isNight)
+    {
+        player0001.gameObject.SetActive(isNight);
+        player0002.gameObject.SetActive(isNight);
+        player0003.gameObject.SetActive(isNight);
+        player0004.gameObject.SetActive(isNight);
+
+        foreach (var unit in player_Unit)
+        {
+            unit.gameObject.SetActive(!isNight);
+        }
+    }
 
     public void Init()
     {

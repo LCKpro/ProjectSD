@@ -30,7 +30,7 @@ public class CraftSlider : MonoBehaviour
 
         transform.position = uiPos;
         var rect = transform.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, rect.anchoredPosition.y + 80f);
+        rect.anchoredPosition = new Vector2(0, rect.anchoredPosition.y + 60f);
     }
 
     private void ActiveLoadingBar()

@@ -630,7 +630,7 @@ MonoBehaviour:
     limitInventoryWeight: 1
     maxInventoryWeight:
       optionIndex: 0
-      value: 100
+      value: 9999
       global:
         allowTypesMask: 4
         name: 

@@ -14,6 +14,7 @@ public class CraftObject : MonoBehaviour
     //private GameObject _clickTrigger;
     private GameObject _buttonGroup;
     private NavigationMarker _marker;
+    private NavigationMarker _marker_LookAt;
     private Transform _spawnPos;
 
     public float changeValue = 15f;
@@ -42,6 +43,7 @@ public class CraftObject : MonoBehaviour
     {
         var manager = GamePlay.Instance.craftingManager;
         _marker = manager.marker;
+        _marker_LookAt = manager.marker_LookAt;
         _spawnPos = manager.spawnPos;
         _buttonGroup = manager.buttonGroup;
     }
@@ -122,6 +124,7 @@ public class CraftObject : MonoBehaviour
         var vec = GamePlay.Instance.playerManager.GetPlayer().transform.position - targetPos;
 
         _marker.transform.position = targetPos + (vec.normalized * 3.5f);
+        _marker_LookAt.transform.position = targetPos;
     }
 
     private void OnMouseDrag()
