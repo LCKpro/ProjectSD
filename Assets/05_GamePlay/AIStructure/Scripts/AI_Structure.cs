@@ -80,7 +80,8 @@ public partial class AI_Structure : Stat
         switch (atkStructType)
         {
             case GameDefine.AtkStructureType.Balista:
-                projectile.transform.LookAt(targetObj.transform);
+                var targetPos = new Vector3(targetObj.transform.position.x, projectile.position.y, targetObj.transform.position.z);
+                projectile.transform.LookAt(targetPos);
                 SoundManager.instance.PlaySound("Balista");
                 projectile.GetComponent<Projectile_Balista>().ReadyAndShot_Balista(this, targetObj);
                 break;

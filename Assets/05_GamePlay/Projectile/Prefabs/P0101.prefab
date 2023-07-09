@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7831799172747380152}
   - component: {fileID: 7831799172748478328}
   - component: {fileID: 4164162174584343321}
-  - component: {fileID: 3596175082250409040}
   - component: {fileID: 7105509256693561448}
+  - component: {fileID: 6507131245315083994}
   m_Layer: 0
   m_Name: P0101
   m_TagString: Untagged
@@ -102,20 +102,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &3596175082250409040
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7831799172750481848}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 4.0773354
-  m_Height: 0.7792642
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.028362393, z: 0.010042191}
 --- !u!114 &7105509256693561448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,5 +114,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2e06f2e31b03d4bbe11bd1fcb0aecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 3
+  power: 5
   idName: P0101
+--- !u!65 &6507131245315083994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831799172750481848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 10, z: 8.154671}
+  m_Center: {x: 0, y: 0.028362393, z: 0.010042191}

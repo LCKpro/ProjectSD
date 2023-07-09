@@ -44,8 +44,15 @@ public class Projectile_Balista : MonoBehaviour
         if (other.tag == "Monster")
         {
             ai_Structure.DealDamage(other.gameObject);
-            GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
             StopAttack();
+            GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
+        }
+
+        if(other.tag == "Border")
+        {
+            Debug.Log("È­»ì º®¿¡ ºÎµúÈû");
+            StopAttack();
+            GamePlay.Instance.spawnManager.ReturnProjectilePool(idName, this.transform);
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - AnimTag
   - Monster
   - CatTower
+  - Border
   layers:
   - Default
   - TransparentFX
