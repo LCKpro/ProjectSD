@@ -31,7 +31,6 @@ public class DefaultCraft : MonoBehaviour
 
         transform.gameObject.SetActive(false);
 
-        GamePlay.Instance.gameStateManager.SetStateType(GameDefine.StateType.None);
         GamePlay.Instance.ui_System.gameObject.SetActive(true);
         GamePlay.Instance.ui_System.OnClick_StartCraftSystem();
     }

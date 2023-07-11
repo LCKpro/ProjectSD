@@ -45,21 +45,15 @@ public class CraftingManager : MonoBehaviour
         craftingModeTimer = Disposable.Empty;
     }
 
-    /*private void OnDisable()
-    {
-        FinalizeCraft();
-    }*/
-
     private void Start()
     {
         ManageActive(false);
-        /*GetReadyToCraft("Appliances_Store");
-        CraftingModeEnd();*/
     }
 
     // 오브젝트 액티브 관리. 버튼 처음에 안보이도록
     private void ManageActive(bool isOn)
     {
+        Debug.Log("매니저 : " + isOn);
         buttonGroup.SetActive(isOn);
     }
 
@@ -80,15 +74,12 @@ public class CraftingManager : MonoBehaviour
     /// <param name="key"></param>
     public void InitCraft(string key)
     {
-        //GetReadyToCraft(key);       // 키 받고 오브젝트 준비
-        //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
         CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
     }
 
     public void InitCraft(int type, int key)
     {
         GetReadyToCraft(type, key);       // 키 받고 오브젝트 준비
-        //GetReadyToCraft("Appliances_Store");     // 키 받고 오브젝트 준비(더미 코드)
         CraftingModeEnd();  // 움직임 감지해서 크래프팅 꺼지도록 수정
     }
 

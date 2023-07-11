@@ -23,7 +23,6 @@ public class DialogManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(QuestManager.instance.CheckQuest());
         CheckTutorial();
     }
 
