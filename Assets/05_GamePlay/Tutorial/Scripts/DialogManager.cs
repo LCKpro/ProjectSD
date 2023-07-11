@@ -29,7 +29,7 @@ public class DialogManager : MonoBehaviour
 
     private void CheckTutorial()
     {
-        if(PlayerPrefs.GetInt("Tutorial") == 0)
+        /*if(PlayerPrefs.GetInt("Tutorial") == 0)
         {
             Debug.Log("튜토리얼 시작. 주석처리해서 튜토리얼은 안뜸");
             PlayView.Instance.SetActiveUI(false);
@@ -39,8 +39,10 @@ public class DialogManager : MonoBehaviour
         else
         {
             GamePlay.Instance.uI_DayNightSystem.Init();
-        }
+        }*/
 
+        // 빌드 때 여기 이닛은 지워야 함
+        GamePlay.Instance.uI_DayNightSystem.Init();
         SoundManager.instance.PlayBGM("Day");
         /*PlayView.Instance.SetActiveUI(true);
         GamePlay.Instance.uI_DayNightSystem.Init();

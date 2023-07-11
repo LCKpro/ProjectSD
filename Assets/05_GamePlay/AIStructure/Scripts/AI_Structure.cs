@@ -88,7 +88,7 @@ public partial class AI_Structure : Stat
             case GameDefine.AtkStructureType.Cannon:
                 //ExcuteLookAt(targetObj.position);
                 SoundManager.instance.PlaySound("Cannon");
-                projectile.GetComponent<Projectile_Structure>().ReadyAndShot(this, targetObj);
+                projectile.GetComponent<Projectile_Cannon>().ReadyAndShot(this, targetObj);
                 ActiveShotEffect();
                 break;
             case GameDefine.AtkStructureType.Flame:
