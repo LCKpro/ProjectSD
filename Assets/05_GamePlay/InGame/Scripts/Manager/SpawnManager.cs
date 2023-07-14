@@ -74,4 +74,16 @@ public class SpawnManager : MonoBehaviour
     {
         GamePlay.Instance.poolManager_Effect.TakeToPool<Transform>(idName, clone);
     }
+
+    public AI_Structure_HpBar GetHpBarFromPool()
+    {
+        var hpBar = GamePlay.Instance.poolManager_HpBar.GetFromPool<AI_Structure_HpBar>("HpBar");
+        hpBar.name = "HpBar";
+        return hpBar;
+    }
+
+    public void ReturnHpBarPool(AI_Structure_HpBar clone)
+    {
+        GamePlay.Instance.poolManager_HpBar.TakeToPool<AI_Structure_HpBar>("HpBar", clone);
+    }
 }

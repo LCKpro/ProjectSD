@@ -173,17 +173,19 @@ public partial class AIPlayer : IPoolObject
 
     }
 
+    private AI_Structure_HpBar _hpBarObj = null;
     public override void TakeDamage(float damage, GameObject attacker = null, float power = 0f)
     {
         base.TakeDamage(damage);
 
-        ai_Structure_HpBar.SetHpBar(maxHealthValue, healthValue);
-
-        /*if(attacker != null)
+        if(_hpBarObj == null)
         {
-            Debug.Log("몬스터 데미지 받음");
-            KnockBack(attacker);
-        }*/
+            var hpBar = GamePlay.Instance.spawnManager.GetHpBarFromPool();
+            _hpBarObj = hpBar;
+        }
+
+        _hpBarObj.SetTarget(transform);
+        _hpBarObj.SetHpBar(maxHealthValue, healthValue);
 
         if (_stateType == GameDefine.AIStateType.Die)
         {

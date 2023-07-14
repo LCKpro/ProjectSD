@@ -104,6 +104,7 @@ public class Player_0002 : Stat
             {
                 transform.LookAt(targetPos);
             }
+
             Invoke("UnitAtk_0002", 1.2f);
         }
     }
@@ -111,14 +112,13 @@ public class Player_0002 : Stat
     private AIPlayer monster = null;
     public void UnitAtk_0002()
     {
+        StopPlayer();
         Debug.Log("UnitAtk_0002");
 
         if (monster == null)
         {
             monster = _target.GetComponent<AIPlayer>();
         }
-
-        StopMove();
 
         if (CheckMonsterDie(monster) == false)
         {

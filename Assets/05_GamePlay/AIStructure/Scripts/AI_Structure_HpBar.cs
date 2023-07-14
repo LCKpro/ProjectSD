@@ -5,18 +5,29 @@ using System;
 
 public class AI_Structure_HpBar : MonoBehaviour
 {
+    public GameObject hpBar_Frame;
     public Image hpBar_Fill;
     public float hpDownSpeed = 1f;
     private float prevHp = 1f;
+    private float originLimitTime = 3f;
 
+    private IDisposable _countDownTimer = Disposable.Empty;
     private IDisposable _hpTimer = Disposable.Empty;
     private IDisposable _checkTimer = Disposable.Empty;
     private IDisposable _activeTimer = Disposable.Empty;
+    private Transform _target;
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
 
     public void SetHpBar(float maxValue, float currentValue)
     {
+        hpBar_Frame.SetActive(true);
+        _limitTime = originLimitTime;
+        
         ActiveHpBar();
-
         StopTimer();
 
         float targetFillAmount = currentValue / maxValue;
@@ -28,14 +39,8 @@ public class AI_Structure_HpBar : MonoBehaviour
 
         prevHp = targetFillAmount;
 
-        _hpTimer = Observable.EveryUpdate()
-            .TakeUntilDisable(gameObject)
-            .TakeUntilDestroy(gameObject)
-            .Subscribe(_ =>
-        {
-            hpBar_Fill.fillAmount -= (Time.deltaTime * (1 / hpDownSpeed));
-        });
-
+        SetHpCountDown();   // N초가 지나면 HP바 사라지게 함
+        SetHpValue();       // 시간에 따라 hp를 낮추거나 높임
         CheckHp(targetFillAmount);  // 도달했으면 타이머 멈추기
 
         _checkTimer = Observable.Interval(TimeSpan.FromSeconds(0.5f))
@@ -44,6 +49,41 @@ public class AI_Structure_HpBar : MonoBehaviour
             .Subscribe(_ =>
             {
                 CheckHp(targetFillAmount);
+            });
+    }
+
+    private float _limitTime = 3f;
+    private void SetHpCountDown()
+    {
+        _countDownTimer = Observable.EveryUpdate()
+            .TakeUntilDisable(gameObject)
+            .TakeUntilDestroy(gameObject)
+            .Subscribe(_ =>
+            {
+                _limitTime -= Time.deltaTime;
+
+                if (_limitTime <= 0f)
+                {
+                    _limitTime = originLimitTime;
+                    hpBar_Frame.SetActive(false);
+                }
+            });
+    }
+
+    private void StopCountDown()
+    {
+        _countDownTimer.Dispose();
+        _countDownTimer = Disposable.Empty;
+    }
+
+    private void SetHpValue()
+    {
+        _hpTimer = Observable.EveryUpdate()
+            .TakeUntilDisable(gameObject)
+            .TakeUntilDestroy(gameObject)
+            .Subscribe(_ =>
+            {
+                hpBar_Fill.fillAmount -= (Time.deltaTime * (1 / hpDownSpeed));
             });
     }
 
@@ -66,22 +106,30 @@ public class AI_Structure_HpBar : MonoBehaviour
 
     private void ActiveHpBar()
     {
-        ResetActiveTimer();
-        transform.gameObject.SetActive(true);
-
-        _activeTimer = Observable.Interval(TimeSpan.FromSeconds(3f))
+        _activeTimer = Observable.EveryLateUpdate()
             .TakeUntilDisable(gameObject)
             .TakeUntilDestroy(gameObject)
             .Subscribe(_ =>
             {
-                transform.gameObject.SetActive(false);
-                ResetActiveTimer();
+                Vector3 uiPos = Camera.main.WorldToScreenPoint(_target.position) + new Vector3(0, 25, 0);
+                transform.position = uiPos;
             });
     }
 
-    private void ResetActiveTimer()
+    private void StopFollow()
     {
         _activeTimer.Dispose();
         _activeTimer = Disposable.Empty;
     }
+
+    public void ResetActiveTimer()
+    {
+        Debug.Log("HPBar 종료");
+        StopTimer();
+        StopCountDown();
+        StopFollow();
+        GamePlay.Instance.spawnManager.ReturnHpBarPool(this);
+    }
+
+    
 }

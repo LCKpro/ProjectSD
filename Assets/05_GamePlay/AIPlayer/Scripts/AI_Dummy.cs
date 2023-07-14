@@ -97,16 +97,30 @@ public class AI_Dummy : Stat
 
     }
 
+    private AI_Structure_HpBar _hpBarObj = null;
     public override void TakeDamage(float damage, GameObject attacker = null, float power = 0f)
     {
         base.TakeDamage(damage);
 
-        //ai_Structure_HpBar.SetHpBar(maxHealthValue, healthValue);
+        if (_hpBarObj == null)
+        {
+            var hpBar = GamePlay.Instance.spawnManager.GetHpBarFromPool();
+            _hpBarObj = hpBar;
+        }
+
+        _hpBarObj.SetTarget(transform);
+        _hpBarObj.SetHpBar(maxHealthValue, healthValue);
 
         if (power > 1f)
         {
             KnockBack(attacker, power);
         }
+    }
+
+    public void ReturnHpBar()
+    {
+        _hpBarObj.ResetActiveTimer();
+        _hpBarObj = null;
     }
 
     private void KnockBack(GameObject target, float power)
@@ -121,6 +135,7 @@ public class AI_Dummy : Stat
 
     protected override void Die()
     {
+        ReturnHpBar();
         anim.SetInteger("animation", 6);   // 6 or 7
         Invoke("ReturnToPool", 1);
         Invoke("DieAI", 1);
