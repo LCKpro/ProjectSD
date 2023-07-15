@@ -7,7 +7,7 @@ using GameCreator.Core;
 public partial class AI_Structure : Stat
 {
     private IDisposable _atkController = Disposable.Empty;
-    private IDisposable _repairController = Disposable.Empty;
+    
     public Animator anim;
     public NavigationMarker marker;
     public Actions lookAtAction;

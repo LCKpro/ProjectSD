@@ -6,6 +6,8 @@ using TMPro;
 
 public partial class AI_Structure
 {
+    private IDisposable _repairController = Disposable.Empty;
+
     public Animator repairAnim;
     public TextMeshProUGUI repairTxt;
 
@@ -46,6 +48,13 @@ public partial class AI_Structure
             });
     }
 
+    public void FullRepairStructure()
+    {
+        StopRepair();
+        Repair(1);
+        GamePlay.Instance.spawnManager.GetFromPool("CatFoot", this.transform.position);
+    }
+
     private void Repair(float repairTime)
     {
         float gainHp = maxHealthValue / repairTime;
@@ -70,11 +79,11 @@ public partial class AI_Structure
         return healthValue / maxHealthValue;
     }
 
-    private bool isClick = false;
+    //private bool isClick = false;
     /// <summary>
     /// 일단 스킬 사용 확인 후 건물을 클릭했을 때 -> 수리버튼이 등장하도록
     /// </summary>
-    public void OnClick_Skill0001_CheckStructure()
+    /*public void OnClick_Skill0001_CheckStructure()
     {
         if (isClick == false)    // 처음 클릭한거면 
         {
@@ -97,5 +106,5 @@ public partial class AI_Structure
         }
 
         OnClick_Skill0001_CheckStructure();
-    }
+    }*/
 }

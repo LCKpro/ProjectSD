@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using System;
+using System.Globalization;
 
 public class SkillManager : MonoBehaviour
 {
@@ -12,6 +11,9 @@ public class SkillManager : MonoBehaviour
     private Player_0001 player0001;
     private AI_Structure targetStructure;
     public GameObject btn_Skill;
+    public SkillAttack_0001 unit_Skill_0001;
+    public Skill_0001_Detect unit_Skill_Detect;
+    public GameObject buttonGroup;
 
     /// <summary>
     /// 처음에 좌측 유닛 스킬 버튼 누르면 작동하는 온클릭 버튼 함수
@@ -20,8 +22,66 @@ public class SkillManager : MonoBehaviour
     {
         Debug.Log("1001");
         GamePlay.Instance.gameStateManager.SetSkillStateType(GameDefine.SkillStateType.Player0001Skill);
-        ReadySkill0001(GamePlay.Instance.unitManager.player0001);
+        ReadySkill_0001();
     }
+
+    private void ReadySkill_0001()
+    {
+        player0001 = GamePlay.Instance.unitManager.player0001;
+
+        // 여기서 버그나면 매니저랑 DB의 인덱스가 일치하지 않아서 그럼
+        if (unit_Skill_Detect == null)
+        {
+            Debug.Log("아치 스킬 오브젝트 Null. 스킬매니저 인스펙터 확인");
+            return;
+        }
+
+        // 플레이어 앞에 설치하기 위한 준비
+        Vector3 playerPos = GamePlay.Instance.playerManager.GetPlayer().transform.position;
+        playerPos.z += 2.0f;
+        playerPos.y = 0;
+
+        unit_Skill_Detect.transform.position = playerPos;
+
+        // 스폰된 건물의 위치에 맞게 UI도 위치 변경
+        Vector3 uiPos = Camera.main.WorldToScreenPoint(playerPos);
+
+        double truncateX = Math.Truncate(uiPos.x);
+        double truncateY = Math.Truncate(uiPos.y);
+        var defaultValueX = truncateX > 0f ? 0.5f : -0.5f;
+        var defaultValueY = truncateY > 0f ? 0.5f : -0.5f;
+
+        float x = Convert.ToSingle(defaultValueX + truncateX, CultureInfo.InvariantCulture);
+        float y = Convert.ToSingle(defaultValueY + truncateY, CultureInfo.InvariantCulture);
+
+        buttonGroup.transform.position = new Vector3(x, y, 0);
+        ManageActive(true);
+
+        unit_Skill_Detect.CraftingModeStart();
+    }
+
+    // 아치 스킬 버튼 UI 온오프
+    private void ManageActive(bool isOn)
+    {
+        buttonGroup.SetActive(isOn);
+    }
+
+    // 버튼 그룹에서 위치 정하고 누르는 버튼
+    public void OnClick_LocateCompleteSkill_0001()
+    {
+        GamePlay.Instance.gameStateManager.SetSkillStateType(GameDefine.SkillStateType.None);
+        unit_Skill_0001.InitSkill_0001(unit_Skill_Detect.transform.position);
+        unit_Skill_Detect.transform.position = new Vector3(0, 50, 0);
+        buttonGroup.SetActive(false);
+    }
+
+    public void OnClick_CancelSkill_0001()
+    {
+        GamePlay.Instance.gameStateManager.SetSkillStateType(GameDefine.SkillStateType.None);
+        buttonGroup.SetActive(false);
+    }
+
+    #region 구0001
 
     /// <summary>
     /// 스킬 취소 버튼
@@ -32,15 +92,6 @@ public class SkillManager : MonoBehaviour
         btn_Skill.SetActive(false);
     }
     
-    /// <summary>
-    /// 유닛 정보 가져와서 저장
-    /// </summary>
-    /// <param name="player"></param>
-    public void ReadySkill0001(Player_0001 player)
-    {
-        player0001 = player;
-    }
-
     /// <summary>
     /// 건물 클릭하면 건물 위에 버튼 띄우기
     /// </summary>
@@ -77,6 +128,8 @@ public class SkillManager : MonoBehaviour
             Debug.Log("스킬 버그");
         }
     }
+
+    #endregion
 
     #endregion
 
